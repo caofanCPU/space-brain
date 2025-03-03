@@ -7,6 +7,8 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+'use client';
+
 import * as React from "react";
 import { Slot } from "@radix-ui/react-slot";
 import { cva, type VariantProps } from "class-variance-authority";

@@ -7,7 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import Image from 'next/image';
+'use client';
 
 interface TestimonialsSectionProps {
   title: string;
@@ -20,7 +20,7 @@ const testimonials = [
     author: {
       name: "张明",
       role: "高级软件工程师",
-      imageUrl: "/images/testimonials/testimonial-1.jpg"
+      initial: "张"
     }
   },
   {
@@ -28,7 +28,7 @@ const testimonials = [
     author: {
       name: "李华",
       role: "技术总监",
-      imageUrl: "/images/testimonials/testimonial-2.jpg"
+      initial: "李"
     }
   },
   {
@@ -36,7 +36,7 @@ const testimonials = [
     author: {
       name: "王芳",
       role: "前端开发者",
-      imageUrl: "/images/testimonials/testimonial-3.jpg"
+      initial: "王"
     }
   },
 ];
@@ -58,14 +58,8 @@ export default function TestimonialsSection({ title, subtitle }: TestimonialsSec
                 <p className="text-base leading-7 text-gray-600">{testimonial.content}</p>
               </div>
               <div className="mt-6 flex items-center gap-x-4">
-                <div className="h-10 w-10 rounded-full bg-gray-50 overflow-hidden">
-                  <Image
-                    className="h-full w-full object-cover"
-                    src={testimonial.author.imageUrl}
-                    alt={testimonial.author.name}
-                    width={40}
-                    height={40}
-                  />
+                <div className="h-10 w-10 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center text-white font-semibold">
+                  {testimonial.author.initial}
                 </div>
                 <div>
                   <h3 className="text-sm font-semibold leading-6 text-gray-900">{testimonial.author.name}</h3>

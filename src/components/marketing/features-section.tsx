@@ -7,6 +7,8 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+'use client';
+
 import { LucideIcon } from 'lucide-react';
 import { Code, Layers, Users } from 'lucide-react';
 import { cn } from '@/lib/utils';
