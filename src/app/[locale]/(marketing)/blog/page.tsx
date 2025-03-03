@@ -24,14 +24,14 @@ const getBlogPosts = async () => {
       slug: 'space-ide-2-5-release',
       excerpt: '我们很高兴地宣布 Space IDE 2.5 的发布，带来了多项新特性和性能改进，提升您的开发体验。',
       content: '',
-      category: 'product-updates',
+      category: 'productUpdates',
       author: {
         name: '张明',
-        avatar: '/images/authors/zhang-ming.webp'
+        avatar: '/images/default.webp'
       },
       publishedAt: '2023-12-15',
       readTime: '5 min',
-      imageUrl: '/images/blog/space-ide-2-5.webp',
+      imageUrl: '/images/default.webp',
       featured: true
     },
     {
@@ -43,11 +43,11 @@ const getBlogPosts = async () => {
       category: 'tutorials',
       author: {
         name: '李华',
-        avatar: '/images/authors/li-hua.webp'
+        avatar: '/images/default.webp'
       },
       publishedAt: '2023-11-28',
       readTime: '8 min',
-      imageUrl: '/images/blog/space-profiler-tutorial.webp',
+      imageUrl: '/images/default.webp',
       featured: false
     },
     {
@@ -59,11 +59,11 @@ const getBlogPosts = async () => {
       category: 'insights',
       author: {
         name: '王芳',
-        avatar: '/images/authors/wang-fang.webp'
+        avatar: '/images/default.webp'
       },
       publishedAt: '2023-11-15',
       readTime: '6 min',
-      imageUrl: '/images/blog/future-trends.webp',
+      imageUrl: '/images/default.webp',
       featured: false
     },
     {
@@ -72,14 +72,14 @@ const getBlogPosts = async () => {
       slug: 'how-space-brain-helps-enterprises',
       excerpt: '了解 Space Brain 工具套件如何帮助企业团队提高开发效率，减少错误，加速产品上市。',
       content: '',
-      category: 'case-studies',
+      category: 'caseStudies',
       author: {
         name: '赵伟',
-        avatar: '/images/authors/zhao-wei.webp'
+        avatar: '/images/default.webp'
       },
       publishedAt: '2023-10-30',
       readTime: '7 min',
-      imageUrl: '/images/blog/enterprise-efficiency.webp',
+      imageUrl: '/images/default.webp',
       featured: false
     },
     {
@@ -95,7 +95,7 @@ const getBlogPosts = async () => {
       },
       publishedAt: '2023-10-18',
       readTime: '9 min',
-      imageUrl: '/images/blog/frontend-development.webp',
+      imageUrl: '/images/default.webp',
       featured: false
     },
     {
@@ -107,11 +107,11 @@ const getBlogPosts = async () => {
       category: 'community',
       author: {
         name: '李华',
-        avatar: '/images/authors/li-hua.webp'
+        avatar: '/images/default.webp'
       },
       publishedAt: '2023-10-05',
       readTime: '6 min',
-      imageUrl: '/images/blog/open-source.webp',
+      imageUrl: '/images/default.webp',
       featured: false
     }
   ];
@@ -120,11 +120,11 @@ const getBlogPosts = async () => {
 // 获取博客分类
 const getCategories = async () => {
   return [
-    { id: 'all', name: 'All Posts' },
-    { id: 'product-updates', name: 'Product Updates' },
+    { id: 'allPosts', name: 'All Posts' },
+    { id: 'productUpdates', name: 'Product Updates' },
     { id: 'tutorials', name: 'Tutorials' },
     { id: 'insights', name: 'Insights' },
-    { id: 'case-studies', name: 'Case Studies' },
+    { id: 'caseStudies', name: 'Case Studies' },
     { id: 'community', name: 'Community' }
   ];
 };
@@ -133,10 +133,10 @@ export default async function BlogPage({ searchParams }: { searchParams: { categ
   const t = await getTranslations('blog');
   const posts = await getBlogPosts();
   const categories = await getCategories();
-  const selectedCategory = searchParams.category || 'all';
+  const selectedCategory = searchParams.category || 'allPosts';
 
   // 过滤文章
-  const filteredPosts = selectedCategory === 'all' 
+  const filteredPosts = selectedCategory === 'allPosts' 
     ? posts 
     : posts.filter(post => post.category === selectedCategory);
 
@@ -197,7 +197,7 @@ export default async function BlogPage({ searchParams }: { searchParams: { categ
         {categories.map(category => (
           <Link 
             key={category.id} 
-            href={`/blog${category.id === 'all' ? '' : `?category=${category.id}`}`}
+            href={`/blog${category.id === 'allPosts' ? '' : `?category=${category.id}`}`}
             className={`px-4 py-2 rounded-full text-sm font-medium ${
               selectedCategory === category.id 
                 ? 'bg-primary text-primary-foreground' 

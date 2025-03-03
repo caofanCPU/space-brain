@@ -22,7 +22,7 @@ export default async function AboutPage() {
       name: t('team.member1.name'),
       role: t('team.member1.role'),
       bio: t('team.member1.bio'),
-      imageUrl: '/images/team/member1.webp',
+      imageUrl: '/images/default.webp',
       social: {
         twitter: 'https://twitter.com/member1',
         linkedin: 'https://linkedin.com/in/member1',
@@ -33,7 +33,7 @@ export default async function AboutPage() {
       name: t('team.member2.name'),
       role: t('team.member2.role'),
       bio: t('team.member2.bio'),
-      imageUrl: '/images/team/member2.webp',
+      imageUrl: '/images/default.webp',
       social: {
         twitter: 'https://twitter.com/member2',
         linkedin: 'https://linkedin.com/in/member2',
@@ -44,7 +44,7 @@ export default async function AboutPage() {
       name: t('team.member3.name'),
       role: t('team.member3.role'),
       bio: t('team.member3.bio'),
-      imageUrl: '/images/team/member3.webp',
+      imageUrl: '/images/default.webp',
       social: {
         twitter: 'https://twitter.com/member3',
         linkedin: 'https://linkedin.com/in/member3',
@@ -55,7 +55,7 @@ export default async function AboutPage() {
       name: t('team.member4.name'),
       role: t('team.member4.role'),
       bio: t('team.member4.bio'),
-      imageUrl: '/images/team/member4.webp',
+      imageUrl: '/images/default.webp',
       social: {
         twitter: 'https://twitter.com/member4',
         linkedin: 'https://linkedin.com/in/member4',

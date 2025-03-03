@@ -21,103 +21,103 @@ export default async function PricingPage() {
   const plans = {
     monthly: [
       {
-        name: t('plans.personal.name'),
-        description: t('plans.personal.description'),
+        name: t('plansA.personal.name'),
+        description: t('plansA.personal.description'),
         price: '¥29',
         period: t('monthly'),
         features: [
-          t('plans.personal.features.feature1'),
-          t('plans.personal.features.feature2'),
-          t('plans.personal.features.feature3'),
-          t('plans.personal.features.feature4'),
-          t('plans.personal.features.feature5')
+          t('plansA.personal.features.feature1'),
+          t('plansA.personal.features.feature2'),
+          t('plansA.personal.features.feature3'),
+          t('plansA.personal.features.feature4'),
+          t('plansA.personal.features.feature5')
         ],
-        cta: t('plans.personal.cta'),
+        cta: t('plansA.personal.cta'),
         popular: false
       },
       {
-        name: t('plans.professional.name'),
-        description: t('plans.professional.description'),
+        name: t('plansA.professional.name'),
+        description: t('plansA.professional.description'),
         price: '¥99',
         period: t('monthly'),
         features: [
-          t('plans.professional.features.feature1'),
-          t('plans.professional.features.feature2'),
-          t('plans.professional.features.feature3'),
-          t('plans.professional.features.feature4'),
-          t('plans.professional.features.feature5'),
-          t('plans.professional.features.feature6')
+          t('plansA.professional.features.feature1'),
+          t('plansA.professional.features.feature2'),
+          t('plansA.professional.features.feature3'),
+          t('plansA.professional.features.feature4'),
+          t('plansA.professional.features.feature5'),
+          t('plansA.professional.features.feature6')
         ],
-        cta: t('plans.professional.cta'),
+        cta: t('plansA.professional.cta'),
         popular: true
       },
       {
-        name: t('plans.enterprise.name'),
-        description: t('plans.enterprise.description'),
-        price: t('plans.enterprise.contactUs'),
+        name: t('plansA.enterprise.name'),
+        description: t('plansA.enterprise.description'),
+        price: t('plansA.enterprise.contactUs'),
         period: '',
         features: [
-          t('plans.enterprise.features.feature1'),
-          t('plans.enterprise.features.feature2'),
-          t('plans.enterprise.features.feature3'),
-          t('plans.enterprise.features.feature4'),
-          t('plans.enterprise.features.feature5'),
-          t('plans.enterprise.features.feature6'),
-          t('plans.enterprise.features.feature7')
+          t('plansA.enterprise.features.feature1'),
+          t('plansA.enterprise.features.feature2'),
+          t('plansA.enterprise.features.feature3'),
+          t('plansA.enterprise.features.feature4'),
+          t('plansA.enterprise.features.feature5'),
+          t('plansA.enterprise.features.feature6'),
+          t('plansA.enterprise.features.feature7')
         ],
-        cta: t('plans.enterprise.cta'),
+        cta: t('plansA.enterprise.cta'),
         popular: false
       }
     ],
     annual: [
       {
-        name: t('plans.personal.name'),
-        description: t('plans.personal.description'),
+        name: t('plansA.personal.name'),
+        description: t('plansA.personal.description'),
         price: '¥290',
         period: t('annual'),
         discount: '¥58',
         features: [
-          t('plans.personal.features.feature1'),
-          t('plans.personal.features.feature2'),
-          t('plans.personal.features.feature3'),
-          t('plans.personal.features.feature4'),
-          t('plans.personal.features.feature5')
+          t('plansA.personal.features.feature1'),
+          t('plansA.personal.features.feature2'),
+          t('plansA.personal.features.feature3'),
+          t('plansA.personal.features.feature4'),
+          t('plansA.personal.features.feature5')
         ],
-        cta: t('plans.personal.cta'),
+        cta: t('plansA.personal.cta'),
         popular: false
       },
       {
-        name: t('plans.professional.name'),
-        description: t('plans.professional.description'),
+        name: t('plansA.professional.name'),
+        description: t('plansA.professional.description'),
         price: '¥990',
         period: t('annual'),
         discount: '¥198',
         features: [
-          t('plans.professional.features.feature1'),
-          t('plans.professional.features.feature2'),
-          t('plans.professional.features.feature3'),
-          t('plans.professional.features.feature4'),
-          t('plans.professional.features.feature5'),
-          t('plans.professional.features.feature6')
+          t('plansA.professional.features.feature1'),
+          t('plansA.professional.features.feature2'),
+          t('plansA.professional.features.feature3'),
+          t('plansA.professional.features.feature4'),
+          t('plansA.professional.features.feature5'),
+          t('plansA.professional.features.feature6')
         ],
-        cta: t('plans.professional.cta'),
+        cta: t('plansA.professional.cta'),
         popular: true
       },
       {
-        name: t('plans.enterprise.name'),
-        description: t('plans.enterprise.description'),
-        price: t('plans.enterprise.contactUs'),
+        name: t('plansA.enterprise.name'),
+        description: t('plansA.enterprise.description'),
+        price: t('plansA.enterprise.contactUs'),
         period: '',
         features: [
-          t('plans.enterprise.features.feature1'),
-          t('plans.enterprise.features.feature2'),
-          t('plans.enterprise.features.feature3'),
-          t('plans.enterprise.features.feature4'),
-          t('plans.enterprise.features.feature5'),
-          t('plans.enterprise.features.feature6'),
-          t('plans.enterprise.features.feature7')
+          t('plansA.enterprise.features.feature1'),
+          t('plansA.enterprise.features.feature2'),
+          t('plansA.enterprise.features.feature3'),
+          t('plansA.enterprise.features.feature4'),
+          t('plansA.enterprise.features.feature5'),
+          t('plansA.enterprise.features.feature6'),
+          t('plansA.enterprise.features.feature7')
         ],
-        cta: t('plans.enterprise.cta'),
+        cta: t('plansA.enterprise.cta'),
         popular: false
       }
     ]
@@ -218,35 +218,35 @@ export default async function PricingPage() {
         <div className="flex flex-col md:flex-row gap-8 items-center">
           <div className="md:w-2/3 space-y-4">
             <h2 className="text-3xl font-bold">{t('faq.title')}</h2>
-            <p className="text-lg">{t('faq.description')}</p>
+            <p className="text-lg">{t('faqA.description')}</p>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-8">
               <div className="space-y-2">
                 <h3 className="text-lg font-medium flex items-center">
                   <HelpCircle className="mr-2 h-5 w-5 text-primary" />
-                  {t('faq.question1')}
+                  {t('faqA.question1')}
                 </h3>
-                <p className="text-muted-foreground">{t('faq.answer1')}</p>
+                <p className="text-muted-foreground">{t('faqA.answer1')}</p>
               </div>
               <div className="space-y-2">
                 <h3 className="text-lg font-medium flex items-center">
                   <HelpCircle className="mr-2 h-5 w-5 text-primary" />
-                  {t('faq.question2')}
+                  {t('faqA.question2')}
                 </h3>
-                <p className="text-muted-foreground">{t('faq.answer2')}</p>
+                <p className="text-muted-foreground">{t('faqA.answer2')}</p>
               </div>
               <div className="space-y-2">
                 <h3 className="text-lg font-medium flex items-center">
                   <HelpCircle className="mr-2 h-5 w-5 text-primary" />
-                  {t('faq.question3')}
+                  {t('faqA.question3')}
                 </h3>
-                <p className="text-muted-foreground">{t('faq.answer3')}</p>
+                <p className="text-muted-foreground">{t('faqA.answer3')}</p>
               </div>
               <div className="space-y-2">
                 <h3 className="text-lg font-medium flex items-center">
                   <HelpCircle className="mr-2 h-5 w-5 text-primary" />
-                  {t('faq.question4')}
+                  {t('faqA.question4')}
                 </h3>
-                <p className="text-muted-foreground">{t('faq.answer4')}</p>
+                <p className="text-muted-foreground">{t('faqA.answer4')}</p>
               </div>
             </div>
           </div>
