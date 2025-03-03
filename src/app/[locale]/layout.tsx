@@ -1,10 +1,19 @@
+/**
+ * @license
+ * MIT License
+ * Copyright (c) 2025 D8ger
+ * 
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
 import { Inter } from 'next/font/google';
 import { notFound } from 'next/navigation';
 import { NextIntlClientProvider } from 'next-intl';
 import { getMessages, getTranslations } from 'next-intl/server';
 
-import '../globals.css';
-import { locales } from '../i18n';
+import '@/styles/globals.css';
+import { locales } from '@/i18n';
 
 const inter = Inter({ subsets: ['latin'] });
 
