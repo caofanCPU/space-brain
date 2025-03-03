@@ -12,6 +12,7 @@
 import React from 'react';
 import Link from 'next/link';
 import { useTranslations } from 'next-intl';
+import { usePathname } from 'next/navigation';
 import { Button } from '@/components/ui/button';
 
 interface CtaSectionProps {
@@ -21,6 +22,8 @@ interface CtaSectionProps {
 
 export default function CtaSection({ title, subtitle }: CtaSectionProps) {
   const t = useTranslations('common.buttons');
+  const pathname = usePathname();
+  const locale = pathname.split('/')[1]; // 获取当前语言
 
   return (
     <div className="bg-blue-600">
@@ -32,10 +35,10 @@ export default function CtaSection({ title, subtitle }: CtaSectionProps) {
         </h2>
         <div className="mt-10 flex items-center gap-x-6 lg:mt-0 lg:flex-shrink-0">
           <Button size="lg" variant="secondary" asChild>
-            <Link href="/download">{t('download')}</Link>
+            <Link href={`/${locale}/download`}>{t('download')}</Link>
           </Button>
           <Button variant="outline" className="bg-transparent text-white hover:bg-white hover:text-blue-600" size="lg" asChild>
-            <Link href="/contact">{t('contactUs')}</Link>
+            <Link href={`/${locale}/contact`}>{t('contactUs')}</Link>
           </Button>
         </div>
       </div>

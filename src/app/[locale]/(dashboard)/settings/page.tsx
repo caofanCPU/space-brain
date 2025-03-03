@@ -61,7 +61,7 @@ export default async function SettingsPage() {
                 <div className="flex flex-col md:flex-row gap-4 items-start md:items-center">
                   <div className="relative h-24 w-24 rounded-full overflow-hidden border">
                     <Image
-                      src="/images/avatars/default.webp"
+                      src="/images/default.webp"
                       alt="Profile"
                       fill
                       className="object-cover"

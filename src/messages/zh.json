@@ -96,5 +96,178 @@
     "licenses": "许可证",
     "settings": "设置",
     "profile": "个人资料"
+  },
+  "solutions": {
+    "title": "解决方案",
+    "subtitle": "为不同开发场景量身定制的解决方案",
+    "hero": {
+      "title": "现代开发的全面解决方案",
+      "subtitle": "为各种规模的开发团队量身定制"
+    },
+    "enterprise": {
+      "title": "企业解决方案",
+      "description": "为大型组织提供全面的工具和支持"
+    },
+    "team": {
+      "title": "团队协作",
+      "description": "通过团队协作功能提高生产力",
+      "features": {
+        "feature1": "实时代码协作",
+        "feature2": "集成的项目管理工具",
+        "feature3": "简化的代码审查流程"
+      }
+    },
+    "cloud": {
+      "title": "云开发",
+      "description": "在云端获得无缝的开发体验",
+      "features": {
+        "feature1": "可扩展的云基础设施",
+        "feature2": "集成的部署流水线",
+        "feature3": "跨平台云兼容性"
+      }
+    },
+    "security": {
+      "title": "安全解决方案",
+      "description": "保护您的代码和开发环境",
+      "features": {
+        "feature1": "代码漏洞扫描",
+        "feature2": "安全的身份验证和授权",
+        "feature3": "合规性和安全策略执行"
+      }
+    },
+    "development": {
+      "title": "开发解决方案",
+      "description": "通过我们的集成工具简化您的开发工作流程",
+      "features": {
+        "feature1": "高级代码补全和建议",
+        "feature2": "集成的调试和测试工具",
+        "feature3": "可定制的开发环境"
+      }
+    },
+    "data": {
+      "title": "数据解决方案",
+      "description": "强大的数据管理和分析工具",
+      "features": {
+        "feature1": "高效的数据库集成和管理",
+        "feature2": "实时数据可视化和分析",
+        "feature3": "安全的数据存储和处理"
+      }
+    },
+    "performance": {
+      "title": "性能优化",
+      "description": "提升应用性能的工具",
+      "features": {
+        "feature1": "代码性能分析",
+        "feature2": "内存和CPU使用优化",
+        "feature3": "自动化性能测试"
+      }
+    }
+  },
+  "download": {
+    "title": "下载 Space-Brain",
+    "subtitle": "开始使用我们的开发工具",
+    "windows": "Windows 版下载",
+    "mac": "macOS 版下载",
+    "linux": "Linux 版下载",
+    "requirements": "系统要求",
+    "versions": "所有版本",
+    "beta": "测试版本"
+  },
+  "about": {
+    "title": "关于 Space-Brain",
+    "subtitle": "我们的使命和愿景",
+    "hero": {
+      "title": "赋能全球开发者",
+      "subtitle": "构建开发工具的未来"
+    },
+    "story": {
+      "title": "我们的故事",
+      "paragraph1": "Space-Brain 成立于2020年，使命是创建能提高生产力的智能开发工具。",
+      "paragraph2": "我们的团队由经验丰富的开发人员和设计师组成，致力于构建使编码更高效和愉快的工具。",
+      "paragraph3": "我们相信技术的力量可以改变开发者工作和创造的方式。"
+    },
+    "mission": {
+      "title": "我们的使命",
+      "description": "通过智能工具提升开发者的生产力和创造力"
+    },
+    "vision": {
+      "title": "我们的愿景",
+      "description": "成为全球领先的智能开发工具平台"
+    },
+    "team": {
+      "title": "我们的团队",
+      "description": "认识 Space-Brain 背后的人们",
+      "joinUs": "加入我们",
+      "positions": "职位空缺",
+      "culture": "公司文化"
+    },
+    "values": {
+      "title": "我们的价值观",
+      "innovation": "创新",
+      "quality": "品质",
+      "community": "社区",
+      "accessibility": "可访问性",
+      "descriptions": {
+        "innovation": "推动开发工具可能性的边界",
+        "quality": "在每一行代码中追求卓越",
+        "community": "构建和支持开发者社区",
+        "accessibility": "让先进工具触手可及"
+      }
+    },
+    "milestones": {
+      "title": "我们的历程",
+      "subtitle": "公司发展的重要里程碑",
+      "timeline": "公司时间线"
+    },
+    "contact": {
+      "title": "联系我们",
+      "subtitle": "期待您的反馈",
+      "office": "办公地点",
+      "email": "电子邮件",
+      "phone": "联系电话"
+    }
+  },
+  "blog": {
+    "title": "博客",
+    "subtitle": "最新消息、更新和见解",
+    "readMore": "阅读更多",
+    "categories": "分类",
+    "allPosts": "所有文章",
+    "development": "开发",
+    "design": "设计",
+    "tutorials": "教程",
+    "company": "公司"
+  },
+  "licenses": {
+    "title": "您的许可证",
+    "subtitle": "管理您的产品许可证",
+    "noLicenses": "您还没有任何许可证",
+    "addLicense": "添加许可证",
+    "licenseKey": "许可证密钥",
+    "product": "产品",
+    "expiryDate": "到期日期",
+    "status": "状态",
+    "actions": "操作"
+  },
+  "settings": {
+    "title": "账户设置",
+    "subtitle": "管理您的账户偏好",
+    "profile": "个人资料",
+    "security": "安全",
+    "notifications": "通知",
+    "billing": "账单",
+    "saveChanges": "保存更改",
+    "personalInfo": "个人信息",
+    "name": "姓名",
+    "email": "电子邮箱",
+    "password": "密码",
+    "currentPassword": "当前密码",
+    "newPassword": "新密码",
+    "confirmPassword": "确认密码"
+  },
+  "notFound": {
+    "title": "404 - 页面未找到",
+    "message": "抱歉，我们找不到您要查找的页面。",
+    "backHome": "返回首页"
   }
-} 
+}

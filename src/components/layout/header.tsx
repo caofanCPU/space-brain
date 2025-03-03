@@ -21,15 +21,16 @@ export default function Header() {
   const t = useTranslations('common');
   const pathname = usePathname();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const locale = pathname.split('/')[1]; // 获取当前语言
 
   const navigation = [
-    { name: t('nav.home'), href: '/' },
-    { name: t('nav.products'), href: '/products' },
-    { name: t('nav.solutions'), href: '/solutions' },
-    { name: t('nav.pricing'), href: '/pricing' },
-    { name: t('nav.download'), href: '/download' },
-    { name: t('nav.about'), href: '/about' },
-    { name: t('nav.blog'), href: '/blog' },
+    { name: t('nav.home'), href: `/${locale}` },
+    { name: t('nav.products'), href: `/${locale}/products` },
+    { name: t('nav.solutions'), href: `/${locale}/solutions` },
+    { name: t('nav.pricing'), href: `/${locale}/pricing` },
+    { name: t('nav.download'), href: `/${locale}/download` },
+    { name: t('nav.about'), href: `/${locale}/about` },
+    { name: t('nav.blog'), href: `/${locale}/blog` },
   ];
 
   return (
@@ -37,7 +38,7 @@ export default function Header() {
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="flex h-16 items-center justify-between">
           <div className="flex items-center">
-            <Link href="/" className="flex items-center">
+            <Link href={`/${locale}`} className="flex items-center">
               <span className="text-xl font-bold text-gray-900">{t('appName')}</span>
             </Link>
           </div>

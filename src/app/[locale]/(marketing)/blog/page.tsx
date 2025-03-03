@@ -91,7 +91,7 @@ const getBlogPosts = async () => {
       category: 'tutorials',
       author: {
         name: '张明',
-        avatar: '/images/authors/zhang-ming.webp'
+        avatar: '/images/default.webp'
       },
       publishedAt: '2023-10-18',
       readTime: '9 min',
@@ -275,4 +275,4 @@ export default async function BlogPage({ searchParams }: { searchParams: { categ
       </div>
     </div>
   );
-} 
+}

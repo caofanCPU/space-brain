@@ -9,187 +9,135 @@
 
 import { getTranslations } from 'next-intl/server';
 import { notFound } from 'next/navigation';
+import Image from 'next/image';
+import Link from 'next/link';
 import { Button } from '@/components/ui/button';
-
+import { ArrowRight, Download, Check } from 'lucide-react';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Badge } from '@/components/ui/badge';
-import { ArrowRight, Download, Check } from 'lucide-react';
-import Image from 'next/image';
-import Link from 'next/link';
 
-// 模拟产品数据，实际项目中应从数据库获取
-const getProductData = async (productId: string) => {
-  const products = {
-    'space-ide': {
-      id: 'space-ide',
-      name: 'Space IDE',
-      description: '智能开发环境，提升您的编码效率',
-      longDescription: 'Space IDE 是一款功能强大的集成开发环境，专为现代开发者设计。它提供智能代码补全、实时错误检测、集成调试工具等功能，帮助您更快、更高效地完成开发任务。',
-      features: [
-        '智能代码补全和建议',
-        '实时错误检测和修复',
-        '集成版本控制',
-        '强大的调试工具',
-        '可定制的界面和主题',
-        '跨平台支持'
-      ],
-      price: 299,
-      imageUrl: '/images/products/space-ide.webp',
-      versions: [
-        { version: '2.5.0', releaseDate: '2023-12-15', downloadUrl: '/download/space-ide-2.5.0' },
-        { version: '2.4.0', releaseDate: '2023-10-01', downloadUrl: '/download/space-ide-2.4.0' }
-      ]
-    },
-    'space-profiler': {
-      id: 'space-profiler',
-      name: 'Space Profiler',
-      description: '性能分析工具，优化您的应用',
-      longDescription: 'Space Profiler 是一款高级性能分析工具，帮助开发者识别和解决应用中的性能瓶颈。通过详细的性能报告和可视化分析，您可以轻松优化应用性能，提供更好的用户体验。',
-      features: [
-        '实时性能监控',
-        '内存使用分析',
-        'CPU 使用率跟踪',
-        '线程活动可视化',
-        '性能热点识别',
-        '自定义性能报告'
-      ],
-      price: 199,
-      imageUrl: '/images/products/space-profiler.webp',
-      versions: [
-        { version: '1.8.0', releaseDate: '2023-11-20', downloadUrl: '/download/space-profiler-1.8.0' },
-        { version: '1.7.0', releaseDate: '2023-09-05', downloadUrl: '/download/space-profiler-1.7.0' }
-      ]
-    }
-  };
-  
-  return products[productId as keyof typeof products] || null;
-};
+// 产品ID类型
+type ProductId = 'ide' | 'tools' | 'plugins';
 
-export default async function ProductPage({ params }: { params: { productId: string } }) {
-  const t = await getTranslations('products');
-  const product = await getProductData(params.productId);
-  
-  if (!product) {
+// 验证产品ID是否有效
+function isValidProductId(id: string): id is ProductId {
+  return ['ide', 'tools', 'plugins'].includes(id);
+}
+
+export default async function ProductPage({ 
+  params: { locale, productId } 
+}: { 
+  params: { locale: string; productId: string } 
+}) {
+  // 验证产品ID
+  if (!isValidProductId(productId)) {
     notFound();
   }
 
+  const t = await getTranslations('products');
+  
+  // 根据产品ID获取产品信息
+  const productInfo = {
+    ide: {
+      title: "Space-Brain IDE",
+      description: "强大的集成开发环境，为开发者提供智能编码体验",
+      features: [
+        "智能代码补全",
+        "实时错误检测",
+        "内置版本控制",
+        "多语言支持",
+        "可定制界面",
+        "高级调试工具"
+      ],
+      image: "/images/product-ide.png"
+    },
+    tools: {
+      title: "Space-Brain Tools",
+      description: "专业开发工具套件，提升您的开发效率",
+      features: [
+        "性能分析工具",
+        "代码质量检查",
+        "自动化测试",
+        "构建工具",
+        "部署助手",
+        "监控系统"
+      ],
+      image: "/images/product-tools.png"
+    },
+    plugins: {
+      title: "Space-Brain Plugins",
+      description: "丰富的插件和扩展，为您的开发环境增添更多功能",
+      features: [
+        "主题和界面定制",
+        "语言支持扩展",
+        "框架集成",
+        "云服务连接器",
+        "协作工具",
+        "生产力增强"
+      ],
+      image: "/images/product-plugins.png"
+    }
+  };
+
+  const product = productInfo[productId];
+
   return (
-    <div className="container mx-auto py-12 space-y-12">
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-        <div className="space-y-6">
-          <Badge className="mb-2">{t('new')}</Badge>
-          <h1 className="text-4xl font-bold tracking-tight">{product.name}</h1>
-          <p className="text-xl text-muted-foreground">{product.description}</p>
-          <p className="text-lg">{product.longDescription}</p>
-          <div className="flex flex-col sm:flex-row gap-4 pt-4">
-            <Button asChild size="lg">
-              <Link href={`/download?product=${product.id}`}>
-                <Download className="mr-2 h-5 w-5" /> {t('download')}
+    <div className="container mx-auto px-4 py-16">
+      <div className="grid md:grid-cols-2 gap-12 items-center mb-16">
+        <div>
+          <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl mb-4">
+            {product.title}
+          </h1>
+          <p className="text-xl text-gray-600 mb-8">
+            {product.description}
+          </p>
+          <div className="flex flex-wrap gap-4">
+            <Button size="lg" asChild>
+              <Link href={`/${locale}/download`}>
+                <Download className="mr-2 h-5 w-5" />
+                下载试用
               </Link>
             </Button>
             <Button variant="outline" size="lg" asChild>
-              <Link href="/pricing">
-                {t('buyNow')} <ArrowRight className="ml-2 h-5 w-5" />
-              </Link>
+              <Link href={`/${locale}/pricing`}>查看价格</Link>
             </Button>
           </div>
         </div>
-        <div className="relative aspect-video rounded-lg overflow-hidden shadow-xl">
-          {product.imageUrl && (
-            <Image
-              src={product.imageUrl}
-              alt={product.name}
-              fill
-              className="object-cover"
-              priority
-            />
-          )}
+        <div className="bg-gray-100 rounded-lg p-4 flex items-center justify-center">
+          <div className="w-full h-64 relative bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg flex items-center justify-center">
+            <span className="text-white text-2xl font-bold">{product.title}</span>
+          </div>
         </div>
       </div>
 
-      <Tabs defaultValue="features" className="w-full">
-        <TabsList className="grid w-full md:w-auto grid-cols-3">
-          <TabsTrigger value="features">{t('features')}</TabsTrigger>
-          <TabsTrigger value="versions">{t('versions')}</TabsTrigger>
-          <TabsTrigger value="pricing">{t('pricing')}</TabsTrigger>
-        </TabsList>
-        <TabsContent value="features" className="mt-6">
-          <Card>
-            <CardHeader>
-              <CardTitle>{t('featuresTitle')}</CardTitle>
-              <CardDescription>{t('featuresDescription')}</CardDescription>
-            </CardHeader>
-            <CardContent>
-              <ul className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                {product.features.map((feature, index) => (
-                  <li key={index} className="flex items-start">
-                    <Check className="mr-2 h-5 w-5 text-primary mt-0.5" />
-                    <span>{feature}</span>
-                  </li>
-                ))}
-              </ul>
-            </CardContent>
-          </Card>
-        </TabsContent>
-        <TabsContent value="versions" className="mt-6">
-          <Card>
-            <CardHeader>
-              <CardTitle>{t('versionsTitle')}</CardTitle>
-              <CardDescription>{t('versionsDescription')}</CardDescription>
-            </CardHeader>
-            <CardContent>
-              <div className="space-y-4">
-                {product.versions.map((version, index) => (
-                  <div key={index} className="flex flex-col md:flex-row justify-between p-4 border rounded-lg">
-                    <div>
-                      <h4 className="font-medium">{t('version')} {version.version}</h4>
-                      <p className="text-sm text-muted-foreground">{t('released')}: {version.releaseDate}</p>
-                    </div>
-                    <Button variant="outline" asChild className="mt-2 md:mt-0">
-                      <Link href={version.downloadUrl}>
-                        <Download className="mr-2 h-4 w-4" /> {t('download')}
-                      </Link>
-                    </Button>
-                  </div>
-                ))}
-              </div>
-            </CardContent>
-          </Card>
-        </TabsContent>
-        <TabsContent value="pricing" className="mt-6">
-          <Card>
-            <CardHeader>
-              <CardTitle>{t('pricingTitle')}</CardTitle>
-              <CardDescription>{t('pricingDescription')}</CardDescription>
-            </CardHeader>
-            <CardContent>
-              <div className="p-6 border rounded-lg">
-                <div className="flex justify-between items-center mb-4">
-                  <h3 className="text-2xl font-bold">{product.name}</h3>
-                  <div className="text-3xl font-bold">¥{product.price}</div>
+      <div className="mb-16">
+        <h2 className="text-3xl font-bold mb-8 text-center">主要功能</h2>
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {product.features.map((feature, index) => (
+            <div key={index} className="flex items-start p-4 bg-gray-50 rounded-lg">
+              <div className="flex-shrink-0 mr-3">
+                <div className="w-8 h-8 rounded-full bg-green-100 flex items-center justify-center">
+                  <Check className="h-5 w-5 text-green-600" />
                 </div>
-                <p className="text-muted-foreground mb-6">{t('pricingIncluded')}</p>
-                <ul className="space-y-2 mb-6">
-                  {product.features.slice(0, 4).map((feature, index) => (
-                    <li key={index} className="flex items-start">
-                      <Check className="mr-2 h-5 w-5 text-primary mt-0.5" />
-                      <span>{feature}</span>
-                    </li>
-                  ))}
-                </ul>
               </div>
-            </CardContent>
-            <CardFooter>
-              <Button className="w-full" asChild>
-                <Link href="/pricing">
-                  {t('viewAllPlans')}
-                </Link>
-              </Button>
-            </CardFooter>
-          </Card>
-        </TabsContent>
-      </Tabs>
+              <div>
+                <h3 className="text-lg font-semibold">{feature}</h3>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div className="text-center">
+        <h2 className="text-3xl font-bold mb-8">准备好提升您的开发体验了吗？</h2>
+        <Button size="lg" asChild>
+          <Link href={`/${locale}/download`}>
+            立即开始使用
+            <ArrowRight className="ml-2 h-5 w-5" />
+          </Link>
+        </Button>
+      </div>
     </div>
   );
 } 

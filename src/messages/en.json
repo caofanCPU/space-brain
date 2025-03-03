@@ -96,5 +96,178 @@
     "licenses": "Licenses",
     "settings": "Settings",
     "profile": "Profile"
+  },
+  "solutions": {
+    "title": "Our Solutions",
+    "subtitle": "Tailored solutions for different development scenarios",
+    "hero": {
+      "title": "Comprehensive Solutions for Modern Development",
+      "subtitle": "Tailored to meet the diverse needs of development teams of all sizes"
+    },
+    "enterprise": {
+      "title": "Enterprise Solutions",
+      "description": "Comprehensive tools and support for large organizations"
+    },
+    "team": {
+      "title": "Team Collaboration",
+      "description": "Enhance productivity with our team-focused features",
+      "features": {
+        "feature1": "Real-time code collaboration",
+        "feature2": "Integrated project management tools",
+        "feature3": "Streamlined code review processes"
+      }
+    },
+    "cloud": {
+      "title": "Cloud Development",
+      "description": "Seamless development experience in the cloud",
+      "features": {
+        "feature1": "Scalable cloud infrastructure",
+        "feature2": "Integrated deployment pipelines",
+        "feature3": "Cross-platform cloud compatibility"
+      }
+    },
+    "security": {
+      "title": "Security Solutions",
+      "description": "Protect your code and development environment",
+      "features": {
+        "feature1": "Code vulnerability scanning",
+        "feature2": "Secure authentication and authorization",
+        "feature3": "Compliance and security policy enforcement"
+      }
+    },
+    "development": {
+      "title": "Development Solutions",
+      "description": "Streamline your development workflow with our integrated tools",
+      "features": {
+        "feature1": "Advanced code completion and suggestions",
+        "feature2": "Integrated debugging and testing tools",
+        "feature3": "Customizable development environments"
+      }
+    },
+    "data": {
+      "title": "Data Solutions",
+      "description": "Powerful tools for data management and analysis",
+      "features": {
+        "feature1": "Efficient database integration and management",
+        "feature2": "Real-time data visualization and analytics",
+        "feature3": "Secure data storage and processing"
+      }
+    },
+    "performance": {
+      "title": "Performance Optimization",
+      "description": "Tools to enhance your application's performance",
+      "features": {
+        "feature1": "Code performance analysis",
+        "feature2": "Memory and CPU usage optimization",
+        "feature3": "Automated performance testing"
+      }
+    }
+  },
+  "download": {
+    "title": "Download Space-Brain",
+    "subtitle": "Get started with our development tools",
+    "windows": "Download for Windows",
+    "mac": "Download for macOS",
+    "linux": "Download for Linux",
+    "requirements": "System Requirements",
+    "versions": "All Versions",
+    "beta": "Beta Versions"
+  },
+  "about": {
+    "title": "About Space-Brain",
+    "subtitle": "Our mission and vision",
+    "hero": {
+      "title": "Empowering Developers Worldwide",
+      "subtitle": "Building the future of development tools"
+    },
+    "story": {
+      "title": "Our Story",
+      "paragraph1": "Space-Brain was founded in 2020 with a mission to create intelligent development tools that enhance productivity.",
+      "paragraph2": "Our team of experienced developers and designers is dedicated to building tools that make coding more efficient and enjoyable.",
+      "paragraph3": "We believe in the power of technology to transform the way developers work and create."
+    },
+    "mission": {
+      "title": "Our Mission",
+      "description": "To empower developers with intelligent tools that enhance productivity and creativity"
+    },
+    "vision": {
+      "title": "Our Vision",
+      "description": "To be the leading platform for intelligent development tools worldwide"
+    },
+    "team": {
+      "title": "Our Team",
+      "description": "Meet the people behind Space-Brain",
+      "joinUs": "Join Our Team",
+      "positions": "Open Positions",
+      "culture": "Company Culture"
+    },
+    "values": {
+      "title": "Our Values",
+      "innovation": "Innovation",
+      "quality": "Quality",
+      "community": "Community",
+      "accessibility": "Accessibility",
+      "descriptions": {
+        "innovation": "Pushing the boundaries of what's possible in development tools",
+        "quality": "Delivering excellence in every line of code",
+        "community": "Building and supporting the developer community",
+        "accessibility": "Making advanced tools accessible to everyone"
+      }
+    },
+    "milestones": {
+      "title": "Our Journey",
+      "subtitle": "Key milestones in our history",
+      "timeline": "Company Timeline"
+    },
+    "contact": {
+      "title": "Get in Touch",
+      "subtitle": "We'd love to hear from you",
+      "office": "Our Office",
+      "email": "Email Us",
+      "phone": "Call Us"
+    }
+  },
+  "blog": {
+    "title": "Blog",
+    "subtitle": "Latest news, updates, and insights",
+    "readMore": "Read More",
+    "categories": "Categories",
+    "allPosts": "All Posts",
+    "development": "Development",
+    "design": "Design",
+    "tutorials": "Tutorials",
+    "company": "Company"
+  },
+  "licenses": {
+    "title": "Your Licenses",
+    "subtitle": "Manage your product licenses",
+    "noLicenses": "You don't have any licenses yet",
+    "addLicense": "Add License",
+    "licenseKey": "License Key",
+    "product": "Product",
+    "expiryDate": "Expiry Date",
+    "status": "Status",
+    "actions": "Actions"
+  },
+  "settings": {
+    "title": "Account Settings",
+    "subtitle": "Manage your account preferences",
+    "profile": "Profile",
+    "security": "Security",
+    "notifications": "Notifications",
+    "billing": "Billing",
+    "saveChanges": "Save Changes",
+    "personalInfo": "Personal Information",
+    "name": "Name",
+    "email": "Email",
+    "password": "Password",
+    "currentPassword": "Current Password",
+    "newPassword": "New Password",
+    "confirmPassword": "Confirm Password"
+  },
+  "notFound": {
+    "title": "404 - Page Not Found",
+    "message": "Sorry, we couldn't find the page you're looking for.",
+    "backHome": "Back to Home"
   }
-} 
+}

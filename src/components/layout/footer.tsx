@@ -11,29 +11,32 @@
 
 import Link from 'next/link';
 import { useTranslations } from 'next-intl';
+import { usePathname } from 'next/navigation';
 
 export default function Footer() {
   const t = useTranslations('common.footer');
+  const pathname = usePathname();
+  const locale = pathname.split('/')[1]; // 获取当前语言
   
   const footerNavigation = {
     products: [
-      { name: 'IDE', href: '/products/ide' },
-      { name: 'Tools', href: '/products/tools' },
-      { name: 'Plugins', href: '/products/plugins' },
+      { name: 'IDE', href: `/${locale}/products/ide` },
+      { name: 'Tools', href: `/${locale}/products/tools` },
+      { name: 'Plugins', href: `/${locale}/products/plugins` },
     ],
     resources: [
-      { name: 'Documentation', href: '/docs' },
-      { name: 'Tutorials', href: '/tutorials' },
-      { name: 'Blog', href: '/blog' },
+      { name: 'Documentation', href: `/${locale}/docs` },
+      { name: 'Tutorials', href: `/${locale}/tutorials` },
+      { name: 'Blog', href: `/${locale}/blog` },
     ],
     company: [
-      { name: 'About', href: '/about' },
-      { name: 'Careers', href: '/careers' },
-      { name: 'Contact', href: '/contact' },
+      { name: 'About', href: `/${locale}/about` },
+      { name: 'Careers', href: `/${locale}/careers` },
+      { name: 'Contact', href: `/${locale}/contact` },
     ],
     legal: [
-      { name: 'Privacy', href: '/privacy' },
-      { name: 'Terms', href: '/terms' },
+      { name: 'Privacy', href: `/${locale}/privacy` },
+      { name: 'Terms', href: `/${locale}/terms` },
     ],
   };
 
@@ -45,7 +48,7 @@ export default function Footer() {
       <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8 lg:py-16">
         <div className="xl:grid xl:grid-cols-3 xl:gap-8">
           <div className="space-y-8 xl:col-span-1">
-            <Link href="/" className="flex items-center">
+            <Link href={`/${locale}`} className="flex items-center">
               <span className="text-xl font-bold text-gray-900">Space-Brain</span>
             </Link>
             <p className="text-base text-gray-500">

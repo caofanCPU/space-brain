@@ -9,9 +9,11 @@
 
 'use client';
 
+import { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { useTranslations } from 'next-intl';
+import { usePathname } from 'next/navigation';
 import { Button } from '@/components/ui/button';
 
 interface HeroSectionProps {
@@ -21,6 +23,9 @@ interface HeroSectionProps {
 
 export default function HeroSection({ title, subtitle }: HeroSectionProps) {
   const t = useTranslations('common.buttons');
+  const [imgError, setImgError] = useState(false);
+  const pathname = usePathname();
+  const locale = pathname.split('/')[1]; // 获取当前语言
 
   return (
     <div className="relative isolate overflow-hidden">
@@ -34,24 +39,31 @@ export default function HeroSection({ title, subtitle }: HeroSectionProps) {
           </p>
           <div className="mt-10 flex items-center gap-x-6">
             <Button size="lg" asChild>
-              <Link href="/download">{t('download')}</Link>
+              <Link href={`/${locale}/download`}>{t('download')}</Link>
             </Button>
             <Button variant="outline" size="lg" asChild>
-              <Link href="/products">{t('learnMore')}</Link>
+              <Link href={`/${locale}/products`}>{t('learnMore')}</Link>
             </Button>
           </div>
         </div>
         <div className="mx-auto mt-16 flex max-w-2xl sm:mt-24 lg:ml-10 lg:mr-0 lg:mt-0 lg:max-w-none lg:flex-none xl:ml-32">
           <div className="max-w-3xl flex-none sm:max-w-5xl lg:max-w-none">
             <div className="relative -m-2 rounded-xl bg-gray-900/5 p-2 ring-1 ring-inset ring-gray-900/10 lg:-m-4 lg:rounded-2xl lg:p-4">
-              <Image
-                src="/images/hero-screenshot.png"
-                alt="App screenshot"
-                width={2432}
-                height={1442}
-                className="w-[76rem] rounded-md shadow-2xl ring-1 ring-gray-900/10"
-                priority
-              />
+              {imgError ? (
+                <div className="w-[76rem] h-[40rem] rounded-md shadow-2xl ring-1 ring-gray-900/10 bg-gradient-to-r from-blue-500 to-purple-600 flex items-center justify-center">
+                  <span className="text-white text-2xl font-bold">Space-Brain</span>
+                </div>
+              ) : (
+                <Image
+                  src="/images/hero-screenshot.png"
+                  alt="App screenshot"
+                  width={2432}
+                  height={1442}
+                  className="w-[76rem] rounded-md shadow-2xl ring-1 ring-gray-900/10"
+                  priority
+                  onError={() => setImgError(true)}
+                />
+              )}
             </div>
           </div>
         </div>

@@ -8,11 +8,11 @@ export default createMiddleware({
   defaultLocale,
   // 可选：如果访问不支持的语言路径，重定向到默认语言
   localeDetection: true,
-  // 移除 localePrefix 配置或设置为 'always'
+  // 设置为 'always'，确保所有路径都有语言前缀
   localePrefix: 'always'
 });
 
 export const config = {
-  // 确保不匹配已经包含语言前缀的路径
+  // 匹配所有路径，但排除静态资源、API路由和已有语言前缀的路径
   matcher: ['/((?!api|_next|.*\\..*|zh|en).*)']
 }; 

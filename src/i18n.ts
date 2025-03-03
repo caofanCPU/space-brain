@@ -12,9 +12,19 @@ import { getRequestConfig } from 'next-intl/server';
 export const locales = ['en', 'zh'];
 export const defaultLocale = 'zh';
 
-export default getRequestConfig(async ({ locale }) => {
+export default getRequestConfig(async ({
+  requestLocale
+}) => {
+  // 这通常对应于由中间件匹配的 [locale] 段
+  let locale = await requestLocale;
+  
+  // 确保传入的区域设置有效
+  if (!locale || !locales.includes(locale as any)) {
+    locale = defaultLocale;
+  }
+  
   return {
-    messages: (await import(`./messages/${locale}.json`)).default,
-    locale
+    locale,
+    messages: (await import(`./messages/${locale}.json`)).default
   };
-}); 
+});

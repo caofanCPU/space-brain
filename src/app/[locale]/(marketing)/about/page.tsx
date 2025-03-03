@@ -101,7 +101,7 @@ export default async function AboutPage() {
         </div>
         <div className="relative aspect-video rounded-lg overflow-hidden shadow-xl">
           <Image
-            src="/images/about/office.webp"
+            src="/images/office.webp"
             alt={t('story.imageAlt')}
             fill
             className="object-cover"
