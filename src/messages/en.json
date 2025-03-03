@@ -1,0 +1,100 @@
+{
+  "common": {
+    "appName": "Space-Brain",
+    "nav": {
+      "home": "Home",
+      "products": "Products",
+      "solutions": "Solutions",
+      "pricing": "Pricing",
+      "download": "Download",
+      "about": "About",
+      "blog": "Blog"
+    },
+    "buttons": {
+      "getStarted": "Get Started",
+      "learnMore": "Learn More",
+      "download": "Download",
+      "tryFree": "Try for Free",
+      "buyNow": "Buy Now",
+      "signIn": "Sign In",
+      "signUp": "Sign Up",
+      "contactUs": "Contact Us"
+    },
+    "footer": {
+      "products": "Products",
+      "resources": "Resources",
+      "company": "Company",
+      "legal": "Legal",
+      "copyright": "© 2024 Space-Brain. All rights reserved."
+    }
+  },
+  "home": {
+    "hero": {
+      "title": "Intelligent Tools Platform for Developers",
+      "subtitle": "Boost your development efficiency, streamline workflows, and unleash creativity"
+    },
+    "features": {
+      "title": "Powerful Features, Simple to Use",
+      "subtitle": "Our toolkit provides everything you need for development",
+      "feature1": {
+        "title": "Smart Coding Assistance",
+        "description": "AI-powered code completion and suggestions to help you code faster and more accurately"
+      },
+      "feature2": {
+        "title": "Cross-Platform Support",
+        "description": "Consistent experience across Windows, macOS, and Linux"
+      },
+      "feature3": {
+        "title": "Team Collaboration",
+        "description": "Built-in version control and collaboration tools for efficient teamwork"
+      }
+    },
+    "testimonials": {
+      "title": "What Developers Say",
+      "subtitle": "See how other developers rate our products"
+    },
+    "cta": {
+      "title": "Ready to Elevate Your Development Experience?",
+      "subtitle": "Start using Space-Brain today and experience the future of intelligent development"
+    }
+  },
+  "products": {
+    "title": "Our Products",
+    "subtitle": "Professional tools designed for different development needs",
+    "categories": {
+      "ide": "Integrated Development Environments",
+      "tools": "Development Tools",
+      "plugins": "Plugins & Extensions"
+    }
+  },
+  "pricing": {
+    "title": "Simple, Transparent Pricing",
+    "subtitle": "Choose the right plan for your needs",
+    "plans": {
+      "free": {
+        "name": "Free",
+        "description": "For individual learning and small projects"
+      },
+      "pro": {
+        "name": "Professional",
+        "description": "For professional developers and small teams"
+      },
+      "enterprise": {
+        "name": "Enterprise",
+        "description": "For large teams and enterprise-grade requirements"
+      }
+    },
+    "faq": {
+      "title": "Frequently Asked Questions",
+      "q1": "How do I choose the right plan?",
+      "a1": "Choose based on your team size, project complexity, and required features. Free is good for individuals, Professional for small teams, and Enterprise for comprehensive features and support."
+    }
+  },
+  "dashboard": {
+    "welcome": "Welcome back",
+    "overview": "Overview",
+    "licenses": "Licenses",
+    "settings": "Settings",
+    "profile": "Profile"
+  }
+} 

@@ -1,0 +1,100 @@
+{
+  "common": {
+    "appName": "Space-Brain",
+    "nav": {
+      "home": "首页",
+      "products": "产品",
+      "solutions": "解决方案",
+      "pricing": "定价",
+      "download": "下载",
+      "about": "关于我们",
+      "blog": "博客"
+    },
+    "buttons": {
+      "getStarted": "开始使用",
+      "learnMore": "了解更多",
+      "download": "下载",
+      "tryFree": "免费试用",
+      "buyNow": "立即购买",
+      "signIn": "登录",
+      "signUp": "注册",
+      "contactUs": "联系我们"
+    },
+    "footer": {
+      "products": "产品",
+      "resources": "资源",
+      "company": "公司",
+      "legal": "法律",
+      "copyright": "© 2024 Space-Brain. 保留所有权利。"
+    }
+  },
+  "home": {
+    "hero": {
+      "title": "为开发者打造的智能工具平台",
+      "subtitle": "提升您的开发效率，简化工作流程，释放创造力"
+    },
+    "features": {
+      "title": "强大功能，简单使用",
+      "subtitle": "我们的工具套件为您提供开发所需的一切",
+      "feature1": {
+        "title": "智能编码辅助",
+        "description": "AI 驱动的代码补全和建议，帮助您更快、更准确地编写代码"
+      },
+      "feature2": {
+        "title": "跨平台支持",
+        "description": "在 Windows、macOS 和 Linux 上获得一致的体验"
+      },
+      "feature3": {
+        "title": "团队协作",
+        "description": "内置的版本控制和协作工具，让团队工作更高效"
+      }
+    },
+    "testimonials": {
+      "title": "用户心声",
+      "subtitle": "看看其他开发者如何评价我们的产品"
+    },
+    "cta": {
+      "title": "准备好提升您的开发体验了吗？",
+      "subtitle": "立即开始使用 Space-Brain，体验智能开发的未来"
+    }
+  },
+  "products": {
+    "title": "我们的产品",
+    "subtitle": "为不同开发需求打造的专业工具",
+    "categories": {
+      "ide": "集成开发环境",
+      "tools": "开发工具",
+      "plugins": "插件和扩展"
+    }
+  },
+  "pricing": {
+    "title": "简单透明的定价",
+    "subtitle": "为您的需求选择合适的计划",
+    "plans": {
+      "free": {
+        "name": "免费版",
+        "description": "适合个人学习和小型项目"
+      },
+      "pro": {
+        "name": "专业版",
+        "description": "适合专业开发者和小型团队"
+      },
+      "enterprise": {
+        "name": "企业版",
+        "description": "适合大型团队和企业级需求"
+      }
+    },
+    "faq": {
+      "title": "常见问题",
+      "q1": "如何选择合适的计划？",
+      "a1": "根据您的团队规模、项目复杂度和所需功能来选择。免费版适合个人使用，专业版适合小型团队，企业版则提供全面的功能和支持。"
+    }
+  },
+  "dashboard": {
+    "welcome": "欢迎回来",
+    "overview": "概览",
+    "licenses": "许可证",
+    "settings": "设置",
+    "profile": "个人资料"
+  }
+} 

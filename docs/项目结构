@@ -1,0 +1,89 @@
+space-brain/
+├── .github/
+│   └── workflows/
+│       └── ci.yml
+├── docs/
+│   ├── product-design.md
+│   ├── ui-design.md
+│   └── code-architecture.md
+├── prisma/
+│   └── schema.prisma
+├── public/
+│   ├── favicon.ico
+│   ├── logo.svg
+│   └── images/
+├── src/
+│   ├── app/
+│   │   ├── [locale]/
+│   │   │   ├── (marketing)/
+│   │   │   │   ├── page.tsx
+│   │   │   │   ├── products/
+│   │   │   │   │   ├── [productId]/
+│   │   │   │   │   │   └── page.tsx
+│   │   │   │   │   └── page.tsx
+│   │   │   │   ├── solutions/
+│   │   │   │   │   └── page.tsx
+│   │   │   │   ├── pricing/
+│   │   │   │   │   └── page.tsx
+│   │   │   │   ├── download/
+│   │   │   │   │   └── page.tsx
+│   │   │   │   ├── about/
+│   │   │   │   │   └── page.tsx
+│   │   │   │   └── blog/
+│   │   │   │       └── page.tsx
+│   │   │   ├── (dashboard)/
+│   │   │   │   ├── dashboard/
+│   │   │   │   │   └── page.tsx
+│   │   │   │   ├── settings/
+│   │   │   │   │   └── page.tsx
+│   │   │   │   └── licenses/
+│   │   │   │       └── page.tsx
+│   │   │   ├── api/
+│   │   │   │   ├── auth/
+│   │   │   │   ├── products/
+│   │   │   │   ├── users/
+│   │   │   │   └── licenses/
+│   │   │   └── layout.tsx
+│   │   └── i18n.ts
+│   ├── components/
+│   │   ├── ui/
+│   │   │   ├── button.tsx
+│   │   │   ├── card.tsx
+│   │   │   ├── dialog.tsx
+│   │   │   └── ...
+│   │   ├── marketing/
+│   │   │   ├── hero-section.tsx
+│   │   │   ├── product-card.tsx
+│   │   │   ├── pricing-table.tsx
+│   │   │   └── ...
+│   │   ├── dashboard/
+│   │   │   ├── sidebar.tsx
+│   │   │   ├── license-card.tsx
+│   │   │   └── ...
+│   │   └── layout/
+│   │       ├── header.tsx
+│   │       ├── footer.tsx
+│   │       ├── marketing-layout.tsx
+│   │       └── dashboard-layout.tsx
+│   ├── lib/
+│   │   ├── utils.ts
+│   │   ├── db.ts
+│   │   └── auth.ts
+│   ├── hooks/
+│   │   ├── use-media-query.ts
+│   │   └── use-scroll.ts
+│   ├── styles/
+│   │   └── globals.css
+│   ├── types/
+│   │   └── index.ts
+│   └── messages/
+│       ├── en.json
+│       └── zh.json
+├── .eslintrc.js
+├── .gitignore
+├── .prettierrc
+├── next.config.js
+├── package.json
+├── postcss.config.js
+├── tailwind.config.js
+└── tsconfig.json
