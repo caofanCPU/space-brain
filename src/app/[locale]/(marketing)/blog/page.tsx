@@ -149,7 +149,6 @@ const getBlogPosts = (): BlogPost[] => {
 // 获取所有分类
 const getCategories = (): Category[] => {
   return [
-    { id: 'allPosts', name: 'All Posts' },
     { id: 'productUpdates', name: 'Product Updates' },
     { id: 'tutorials', name: 'Tutorials' },
     { id: 'insights', name: 'Insights' },
@@ -186,57 +185,96 @@ export default function BlogPage() {
   }, [categoryParam]);
 
   return (
-    <div className="container mx-auto py-12 space-y-12">
-      <div className="text-center space-y-4 max-w-3xl mx-auto">
+    <div className="container mx-auto py-12">
+      {/* 页面标题 */}
+      <div className="text-center space-y-4 max-w-3xl mx-auto mb-12">
         <h1 className="text-4xl font-bold tracking-tight">{t('hero.title')}</h1>
         <p className="text-xl text-muted-foreground">{t('hero.subtitle')}</p>
       </div>
 
-      <div className="flex flex-col md:flex-row gap-8">
-        <div className="md:w-3/4 space-y-12">
-          {featuredPost && (
-            <div className="relative rounded-xl overflow-hidden">
-              <div className="relative aspect-video">
-                <Image
-                  src="/images/default.webp"
-                  alt={featuredPost.title}
-                  fill
-                  sizes="(max-width: 768px) 100vw, 75vw"
-                  className="object-cover"
-                />
-              </div>
-              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent flex flex-col justify-end p-6 text-white">
-                <Badge className="mb-2 self-start">{featuredPost.category}</Badge>
-                <h2 className="text-2xl md:text-3xl font-bold mb-2">{featuredPost.title}</h2>
-                <p className="text-white/80 mb-4 max-w-2xl">{featuredPost.excerpt}</p>
-                <div className="flex items-center gap-4">
-                  <div className="flex items-center gap-2">
-                    <div className="relative w-10 h-10 rounded-full overflow-hidden">
-                      <Image
-                        src="/images/default.webp"
-                        alt={featuredPost.author.name}
-                        fill
-                        sizes="40px"
-                        className="object-cover"
-                      />
-                    </div>
-                    <span>{featuredPost.author.name}</span>
+      {/* 搜索和分类筛选 - 放在顶部，宽度占满 */}
+      <div className="mb-12 space-y-6">
+        <div className="relative max-w-xl mx-auto">
+          <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
+          <input
+            type="search"
+            placeholder={t('searchPlaceholder')}
+            className="w-full pl-10 pr-4 py-3 border rounded-md"
+          />
+        </div>
+        
+        <div className="flex flex-wrap justify-center gap-2 mt-6">
+          <Button
+            variant={selectedCategory === 'allPosts' ? 'default' : 'outline'}
+            size="sm"
+            onClick={() => setSelectedCategory('allPosts')}
+            className="px-4 py-2 text-sm"
+          >
+            {t('allPosts')}
+          </Button>
+          {categories.map((category: Category) => (
+            <Button
+              key={category.id}
+              variant={selectedCategory === category.id ? 'default' : 'outline'}
+              size="sm"
+              onClick={() => setSelectedCategory(category.id)}
+              className="px-4 py-2 text-sm"
+            >
+              {t(`categories.${category.id}`)}
+            </Button>
+          ))}
+        </div>
+      </div>
+
+      {/* 特色文章 - 全宽展示 */}
+      {featuredPost && (
+        <div className="mb-12">
+          <div className="relative rounded-xl overflow-hidden">
+            <div className="relative aspect-[21/9]">
+              <Image
+                src="/images/default.webp"
+                alt={featuredPost.title}
+                fill
+                sizes="100vw"
+                className="object-cover"
+              />
+            </div>
+            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent flex flex-col justify-end p-6 md:p-10 text-white">
+              <Badge className="mb-2 self-start">{t(`categories.${featuredPost.category}`)}</Badge>
+              <h2 className="text-2xl md:text-4xl font-bold mb-2 max-w-3xl">{featuredPost.title}</h2>
+              <p className="text-white/80 mb-4 max-w-2xl md:text-lg">{featuredPost.excerpt}</p>
+              <div className="flex items-center gap-4 flex-wrap">
+                <div className="flex items-center gap-2">
+                  <div className="relative w-10 h-10 rounded-full overflow-hidden">
+                    <Image
+                      src="/images/default.webp"
+                      alt={featuredPost.author.name}
+                      fill
+                      sizes="40px"
+                      className="object-cover"
+                    />
                   </div>
-                  <div className="flex items-center gap-1">
-                    <Clock className="h-4 w-4" />
-                    <span>{featuredPost.readTime} {t('readTime')}</span>
-                  </div>
-                  <div>{featuredPost.publishedAt}</div>
+                  <span>{featuredPost.author.name}</span>
                 </div>
+                <div className="flex items-center gap-1">
+                  <Clock className="h-4 w-4" />
+                  <span>{featuredPost.readTime} {t('readTime')}</span>
+                </div>
+                <div>{featuredPost.publishedAt}</div>
               </div>
             </div>
-          )}
+          </div>
+        </div>
+      )}
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+      <div className="flex flex-col lg:flex-row gap-12">
+        {/* 文章列表 - 自适应布局 */}
+        <div className="lg:w-3/4">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {filteredPosts.map((post: BlogPost) => (
-              <div key={post.id} className="group">
-                <Link href={`/blog/${post.slug}`} className="space-y-4">
-                  <div className="relative aspect-video rounded-lg overflow-hidden">
+              <div key={post.id} className="group bg-white dark:bg-gray-800 rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-200">
+                <Link href={`/blog/${post.slug}`} className="flex flex-col h-full">
+                  <div className="relative aspect-video">
                     <Image
                       src="/images/default.webp"
                       alt={post.title}
@@ -245,11 +283,11 @@ export default function BlogPage() {
                       className="object-cover transition-transform duration-300 group-hover:scale-105"
                     />
                   </div>
-                  <div>
-                    <Badge className="mb-2">{t(`categories.${post.category}`)}</Badge>
-                    <h3 className="text-xl font-bold mb-2 group-hover:text-primary transition-colors">{post.title}</h3>
-                    <p className="text-muted-foreground mb-4">{post.excerpt}</p>
-                    <div className="flex items-center gap-4">
+                  <div className="p-4 flex-grow flex flex-col">
+                    <Badge className="self-start mb-2">{t(`categories.${post.category}`)}</Badge>
+                    <h3 className="text-lg font-bold mb-2 group-hover:text-primary transition-colors line-clamp-2">{post.title}</h3>
+                    <p className="text-muted-foreground mb-4 text-sm line-clamp-3">{post.excerpt}</p>
+                    <div className="mt-auto flex items-center gap-4">
                       <div className="flex items-center gap-2">
                         <div className="relative w-8 h-8 rounded-full overflow-hidden">
                           <Image
@@ -262,9 +300,9 @@ export default function BlogPage() {
                         </div>
                         <span className="text-sm">{post.author.name}</span>
                       </div>
-                      <div className="flex items-center gap-1 text-sm text-muted-foreground">
+                      <div className="flex items-center gap-1 text-xs text-muted-foreground ml-auto">
                         <Clock className="h-3 w-3" />
-                        <span>{post.readTime} {t('readTime')}</span>
+                        <span>{post.readTime}</span>
                       </div>
                     </div>
                   </div>
@@ -273,63 +311,32 @@ export default function BlogPage() {
             ))}
           </div>
 
-          <Button variant="outline" className="w-full">
-            {t('loadMore')}
-          </Button>
+          <div className="mt-8 flex justify-center">
+            <Button variant="outline" className="px-8">
+              {t('loadMore')}
+            </Button>
+          </div>
         </div>
 
-        <div className="md:w-1/4 space-y-8">
-          <div>
-            <div className="relative">
-              <Search className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
-              <input
-                type="search"
-                placeholder={t('searchPlaceholder')}
-                className="w-full pl-9 pr-4 py-2 border rounded-md"
-              />
-            </div>
-          </div>
-
-          <div>
-            <h3 className="font-medium mb-4">{t('categoriesName')}</h3>
-            <div className="flex flex-wrap gap-2">
-              <Button
-                variant={selectedCategory === 'allPosts' ? 'default' : 'outline'}
-                size="sm"
-                onClick={() => setSelectedCategory('allPosts')}
-              >
-                {t('allPosts')}
-              </Button>
-              {categories.map((category: Category) => (
-                <Button
-                  key={category.id}
-                  variant={selectedCategory === category.id ? 'default' : 'outline'}
-                  size="sm"
-                  onClick={() => setSelectedCategory(category.id)}
-                >
-                  {t(`categories.${category.id}`)}
-                </Button>
-              ))}
-            </div>
-          </div>
-
-          <div>
-            <h3 className="font-medium mb-4">{t('recentPosts')}</h3>
+        {/* 侧边栏 - 最近文章和热门标签 */}
+        <div className="lg:w-1/4 space-y-8">
+          <div className="bg-muted/30 p-6 rounded-lg">
+            <h3 className="font-medium mb-4 text-lg border-b pb-2">{t('recentPosts')}</h3>
             <div className="space-y-4">
               {recentPosts.map((post: BlogPost) => (
                 <Link key={post.id} href={`/blog/${post.slug}`} className="flex gap-3 group">
-                  <div className="relative w-16 h-16 rounded overflow-hidden flex-shrink-0">
+                  <div className="relative w-20 h-20 rounded overflow-hidden flex-shrink-0">
                     <Image
                       src="/images/default.webp"
                       alt={post.title}
                       fill
-                      sizes="64px"
+                      sizes="80px"
                       className="object-cover"
                     />
                   </div>
-                  <div>
-                    <h4 className="font-medium group-hover:text-primary transition-colors">{post.title}</h4>
-                    <p className="text-sm text-muted-foreground">{post.publishedAt}</p>
+                  <div className="flex-1">
+                    <h4 className="font-medium group-hover:text-primary transition-colors line-clamp-2 text-sm">{post.title}</h4>
+                    <p className="text-xs text-muted-foreground mt-1">{post.publishedAt}</p>
                   </div>
                 </Link>
               ))}
