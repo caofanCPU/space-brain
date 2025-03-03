@@ -17,7 +17,7 @@ export default async function HomePage() {
   const t = await getTranslations('home');
 
   return (
-    <div className="flex flex-col gap-20 py-10">
+    <div className="flex flex-col gap-16">
       <HeroSection
         title={t('hero.title')}
         subtitle={t('hero.subtitle')}

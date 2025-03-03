@@ -139,6 +139,7 @@ export default async function SolutionsPage() {
               src="/images/case-study.webp"
               alt={t('caseStudy.title')}
               fill
+              sizes="(max-width: 768px) 100vw, 50vw"
               className="object-cover"
             />
           </div>

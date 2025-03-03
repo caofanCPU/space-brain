@@ -21,6 +21,9 @@
       "contactUs": "Contact Us"
     },
     "footer": {
+      "subscribeTitle": "Subscribe to our newsletter",
+      "subscribeText": "Get the latest news and updates",
+      "subscribe": "Subscribe",
       "products": "Products",
       "resources": "Resources",
       "company": "Company",
@@ -410,13 +413,21 @@
       "title": "Join Our Team",
       "description": "We're always looking for talented individuals to join our mission.",
       "primaryButton": "View Open Positions",
-      "secondaryButton": "Learn About Benefits"
+      "secondaryButton": "Learn About Benefits",
+      "subtitle": "Join us, and together we'll create the future of development tools.",
+      "contactButton": "Contact Us",
+      "careersButton": "View Open Positions"
     }
   },
   "blog": {
     "title": "Blog",
     "subtitle": "Latest news, updates, and insights",
+    "categoriesName": "Article Categories",
     "readMore": "Read More",
+    "readTime": "Read Time",
+    "loadMore": "Load More",
+    "searchPlaceholder": "Search articles...",
+    "recentPosts": "Recent Posts",
     "categories": {
       "allPosts": "All Posts",
       "productUpdates": "Product Updates",

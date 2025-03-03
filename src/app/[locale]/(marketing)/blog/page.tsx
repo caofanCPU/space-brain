@@ -7,16 +7,45 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { getTranslations } from 'next-intl/server';
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
-import { Badge } from '@/components/ui/badge';
-import { ArrowRight, Calendar, Clock, User } from 'lucide-react';
+'use client';
+
+import { useState, useEffect } from 'react';
+import { useTranslations } from 'next-intl';
 import Link from 'next/link';
 import Image from 'next/image';
+import { Button } from '@/components/ui/button';
+import { Badge } from '@/components/ui/badge';
+import { Clock, Search } from 'lucide-react';
+import { useSearchParams } from 'next/navigation';
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 
-// 模拟博客数据，实际项目中应从数据库获取
-const getBlogPosts = async () => {
+// 定义类型
+interface Author {
+  name: string;
+  avatar: string;
+}
+
+interface BlogPost {
+  id: string;
+  title: string;
+  slug: string;
+  excerpt: string;
+  content: string;
+  category: string;
+  author: Author;
+  publishedAt: string;
+  readTime: string;
+  imageUrl: string;
+  featured: boolean;
+}
+
+interface Category {
+  id: string;
+  name: string;
+}
+
+// 模拟博客文章数据，实际项目中应从数据库获取
+const getBlogPosts = (): BlogPost[] => {
   return [
     {
       id: '1',
@@ -117,8 +146,8 @@ const getBlogPosts = async () => {
   ];
 };
 
-// 获取博客分类
-const getCategories = async () => {
+// 获取所有分类
+const getCategories = (): Category[] => {
   return [
     { id: 'allPosts', name: 'All Posts' },
     { id: 'productUpdates', name: 'Product Updates' },
@@ -129,19 +158,32 @@ const getCategories = async () => {
   ];
 };
 
-export default async function BlogPage({ searchParams }: { searchParams: { category?: string } }) {
-  const t = await getTranslations('blog');
-  const posts = await getBlogPosts();
-  const categories = await getCategories();
-  const selectedCategory = searchParams.category || 'allPosts';
-
-  // 过滤文章
+export default function BlogPage() {
+  const t = useTranslations('blog');
+  const searchParams = useSearchParams();
+  const categoryParam = searchParams.get('category') || 'allPosts';
+  
+  const [posts] = useState<BlogPost[]>(getBlogPosts());
+  const [categories] = useState<Category[]>(getCategories());
+  const [selectedCategory, setSelectedCategory] = useState<string>(categoryParam);
+  
+  // 根据选中的分类过滤文章
   const filteredPosts = selectedCategory === 'allPosts' 
     ? posts 
     : posts.filter(post => post.category === selectedCategory);
 
-  // 获取特色文章
-  const featuredPost = posts.find(post => post.featured);
+  // 获取特色文章，并确保它存在
+  const featuredPost = posts.find(post => post.featured) || posts[0];
+  
+  // 获取最近的文章
+  const recentPosts = [...posts]
+    .sort((a, b) => new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime())
+    .slice(0, 3);
+
+  // 当URL参数变化时更新选中的分类
+  useEffect(() => {
+    setSelectedCategory(categoryParam);
+  }, [categoryParam]);
 
   return (
     <div className="container mx-auto py-12 space-y-12">
@@ -150,127 +192,149 @@ export default async function BlogPage({ searchParams }: { searchParams: { categ
         <p className="text-xl text-muted-foreground">{t('hero.subtitle')}</p>
       </div>
 
-      {/* 特色文章 */}
-      {featuredPost && (
-        <div className="relative rounded-xl overflow-hidden">
-          <div className="absolute inset-0">
-            <Image
-              src={featuredPost.imageUrl}
-              alt={featuredPost.title}
-              fill
-              className="object-cover"
-              priority
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-black/20"></div>
-          </div>
-          <div className="relative z-10 p-8 md:p-12 text-white max-w-3xl">
-            <Badge className="mb-4 bg-primary hover:bg-primary/80 text-white">
-              {t(`categories.${featuredPost.category}`)}
-            </Badge>
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">{featuredPost.title}</h2>
-            <p className="text-lg mb-6 text-white/80">{featuredPost.excerpt}</p>
-            <div className="flex items-center gap-6 mb-6">
-              <div className="flex items-center">
-                <User className="mr-2 h-4 w-4" />
-                <span>{featuredPost.author.name}</span>
+      <div className="flex flex-col md:flex-row gap-8">
+        <div className="md:w-3/4 space-y-12">
+          {featuredPost && (
+            <div className="relative rounded-xl overflow-hidden">
+              <div className="relative aspect-video">
+                <Image
+                  src="/images/default.webp"
+                  alt={featuredPost.title}
+                  fill
+                  sizes="(max-width: 768px) 100vw, 75vw"
+                  className="object-cover"
+                />
               </div>
-              <div className="flex items-center">
-                <Calendar className="mr-2 h-4 w-4" />
-                <span>{featuredPost.publishedAt}</span>
-              </div>
-              <div className="flex items-center">
-                <Clock className="mr-2 h-4 w-4" />
-                <span>{featuredPost.readTime}</span>
+              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent flex flex-col justify-end p-6 text-white">
+                <Badge className="mb-2 self-start">{featuredPost.category}</Badge>
+                <h2 className="text-2xl md:text-3xl font-bold mb-2">{featuredPost.title}</h2>
+                <p className="text-white/80 mb-4 max-w-2xl">{featuredPost.excerpt}</p>
+                <div className="flex items-center gap-4">
+                  <div className="flex items-center gap-2">
+                    <div className="relative w-10 h-10 rounded-full overflow-hidden">
+                      <Image
+                        src="/images/default.webp"
+                        alt={featuredPost.author.name}
+                        fill
+                        sizes="40px"
+                        className="object-cover"
+                      />
+                    </div>
+                    <span>{featuredPost.author.name}</span>
+                  </div>
+                  <div className="flex items-center gap-1">
+                    <Clock className="h-4 w-4" />
+                    <span>{featuredPost.readTime} {t('readTime')}</span>
+                  </div>
+                  <div>{featuredPost.publishedAt}</div>
+                </div>
               </div>
             </div>
-            <Button asChild variant="secondary">
-              <Link href={`/blog/${featuredPost.slug}`}>
-                {t('readMore')} <ArrowRight className="ml-2 h-4 w-4" />
-              </Link>
-            </Button>
+          )}
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {filteredPosts.map((post: BlogPost) => (
+              <div key={post.id} className="group">
+                <Link href={`/blog/${post.slug}`} className="space-y-4">
+                  <div className="relative aspect-video rounded-lg overflow-hidden">
+                    <Image
+                      src="/images/default.webp"
+                      alt={post.title}
+                      fill
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                      className="object-cover transition-transform duration-300 group-hover:scale-105"
+                    />
+                  </div>
+                  <div>
+                    <Badge className="mb-2">{t(`categories.${post.category}`)}</Badge>
+                    <h3 className="text-xl font-bold mb-2 group-hover:text-primary transition-colors">{post.title}</h3>
+                    <p className="text-muted-foreground mb-4">{post.excerpt}</p>
+                    <div className="flex items-center gap-4">
+                      <div className="flex items-center gap-2">
+                        <div className="relative w-8 h-8 rounded-full overflow-hidden">
+                          <Image
+                            src="/images/default.webp"
+                            alt={post.author.name}
+                            fill
+                            sizes="32px"
+                            className="object-cover"
+                          />
+                        </div>
+                        <span className="text-sm">{post.author.name}</span>
+                      </div>
+                      <div className="flex items-center gap-1 text-sm text-muted-foreground">
+                        <Clock className="h-3 w-3" />
+                        <span>{post.readTime} {t('readTime')}</span>
+                      </div>
+                    </div>
+                  </div>
+                </Link>
+              </div>
+            ))}
           </div>
+
+          <Button variant="outline" className="w-full">
+            {t('loadMore')}
+          </Button>
         </div>
-      )}
 
-      {/* 分类过滤器 */}
-      <div className="flex flex-wrap gap-2 justify-center">
-        {categories.map(category => (
-          <Link 
-            key={category.id} 
-            href={`/blog${category.id === 'allPosts' ? '' : `?category=${category.id}`}`}
-            className={`px-4 py-2 rounded-full text-sm font-medium ${
-              selectedCategory === category.id 
-                ? 'bg-primary text-primary-foreground' 
-                : 'bg-muted hover:bg-muted/80'
-            }`}
-          >
-            {t(`categories.${category.id}`)}
-          </Link>
-        ))}
-      </div>
-
-      {/* 博客文章列表 */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {filteredPosts.map(post => (
-          <Card key={post.id} className="flex flex-col h-full overflow-hidden">
-            <div className="relative aspect-video">
-              <Image
-                src={post.imageUrl}
-                alt={post.title}
-                fill
-                className="object-cover"
+        <div className="md:w-1/4 space-y-8">
+          <div>
+            <div className="relative">
+              <Search className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
+              <input
+                type="search"
+                placeholder={t('searchPlaceholder')}
+                className="w-full pl-9 pr-4 py-2 border rounded-md"
               />
             </div>
-            <CardHeader>
-              <div className="flex items-center justify-between mb-2">
-                <Badge variant="outline">
-                  {t(`categories.${post.category}`)}
-                </Badge>
-                <div className="text-sm text-muted-foreground">{post.publishedAt}</div>
-              </div>
-              <CardTitle className="line-clamp-2">{post.title}</CardTitle>
-              <CardDescription className="line-clamp-3">{post.excerpt}</CardDescription>
-            </CardHeader>
-            <CardContent className="flex-grow">
-              <div className="flex items-center gap-2">
-                <div className="relative h-8 w-8 rounded-full overflow-hidden">
-                  <Image
-                    src={post.author.avatar}
-                    alt={post.author.name}
-                    fill
-                    className="object-cover"
-                  />
-                </div>
-                <span className="text-sm font-medium">{post.author.name}</span>
-                <span className="text-sm text-muted-foreground ml-auto flex items-center">
-                  <Clock className="mr-1 h-3 w-3" /> {post.readTime}
-                </span>
-              </div>
-            </CardContent>
-            <CardFooter>
-              <Button variant="ghost" className="w-full" asChild>
-                <Link href={`/blog/${post.slug}`}>
-                  {t('readArticle')}
-                </Link>
-              </Button>
-            </CardFooter>
-          </Card>
-        ))}
-      </div>
+          </div>
 
-      {/* 订阅区域 */}
-      <div className="bg-muted rounded-lg p-8 md:p-12 text-center">
-        <h2 className="text-2xl font-bold mb-4">{t('subscribe.title')}</h2>
-        <p className="text-muted-foreground mb-6 max-w-2xl mx-auto">{t('subscribe.description')}</p>
-        <div className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
-          <input
-            type="email"
-            placeholder={t('subscribe.placeholder')}
-            className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
-          />
-          <Button type="submit">
-            {t('subscribe.button')}
-          </Button>
+          <div>
+            <h3 className="font-medium mb-4">{t('categoriesName')}</h3>
+            <div className="flex flex-wrap gap-2">
+              <Button
+                variant={selectedCategory === 'allPosts' ? 'default' : 'outline'}
+                size="sm"
+                onClick={() => setSelectedCategory('allPosts')}
+              >
+                {t('allPosts')}
+              </Button>
+              {categories.map((category: Category) => (
+                <Button
+                  key={category.id}
+                  variant={selectedCategory === category.id ? 'default' : 'outline'}
+                  size="sm"
+                  onClick={() => setSelectedCategory(category.id)}
+                >
+                  {t(`categories.${category.id}`)}
+                </Button>
+              ))}
+            </div>
+          </div>
+
+          <div>
+            <h3 className="font-medium mb-4">{t('recentPosts')}</h3>
+            <div className="space-y-4">
+              {recentPosts.map((post: BlogPost) => (
+                <Link key={post.id} href={`/blog/${post.slug}`} className="flex gap-3 group">
+                  <div className="relative w-16 h-16 rounded overflow-hidden flex-shrink-0">
+                    <Image
+                      src="/images/default.webp"
+                      alt={post.title}
+                      fill
+                      sizes="64px"
+                      className="object-cover"
+                    />
+                  </div>
+                  <div>
+                    <h4 className="font-medium group-hover:text-primary transition-colors">{post.title}</h4>
+                    <p className="text-sm text-muted-foreground">{post.publishedAt}</p>
+                  </div>
+                </Link>
+              ))}
+            </div>
+          </div>
         </div>
       </div>
     </div>

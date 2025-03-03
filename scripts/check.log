@@ -1,5 +1,5 @@
 开始检查翻译...
-找到 29 个文件需要扫描
+找到 30 个文件需要扫描
 在文件 src/components/marketing/hero-section.tsx 中找到以下信息:
   命名空间变量映射:
     - t => common.buttons
@@ -32,6 +32,9 @@
   命名空间变量映射:
     - t => common.footer
   翻译键:
+    - common.footer.subscribeTitle
+    - common.footer.subscribeText
+    - common.footer.subscribe
     - common.footer.products
     - common.footer.resources
     - common.footer.company
@@ -247,16 +250,25 @@
   翻译键:
     - blog.hero.title
     - blog.hero.subtitle
-    - blog.readMore
-    - blog.readArticle
-    - blog.subscribe.title
-    - blog.subscribe.description
-    - blog.subscribe.placeholder
-    - blog.subscribe.button
+    - blog.readTime
+    - blog.readTime
+    - blog.loadMore
+    - blog.searchPlaceholder
+    - blog.categories
+    - blog.allPosts
+    - blog.recentPosts
 在文件 src/app/[locale]/(marketing)/about/page.tsx 中找到以下信息:
   命名空间变量映射:
     - t => about
   翻译键:
+    - about.values.value1.title
+    - about.values.value1.description
+    - about.values.value2.title
+    - about.values.value2.description
+    - about.values.value3.title
+    - about.values.value3.description
+    - about.values.value4.title
+    - about.values.value4.description
     - about.team.member1.name
     - about.team.member1.role
     - about.team.member1.bio
@@ -269,43 +281,29 @@
     - about.team.member4.name
     - about.team.member4.role
     - about.team.member4.bio
-    - about.values.value1.title
-    - about.values.value1.description
-    - about.values.value2.title
-    - about.values.value2.description
-    - about.values.value3.title
-    - about.values.value3.description
-    - about.values.value4.title
-    - about.values.value4.description
+    - about.timeline.event1.title
+    - about.timeline.event1.description
+    - about.timeline.event2.title
+    - about.timeline.event2.description
+    - about.timeline.event3.title
+    - about.timeline.event3.description
+    - about.timeline.event4.title
+    - about.timeline.event4.description
     - about.hero.title
     - about.hero.subtitle
     - about.story.title
     - about.story.paragraph1
     - about.story.paragraph2
-    - about.story.paragraph3
-    - about.story.imageAlt
     - about.values.title
     - about.values.subtitle
     - about.team.title
     - about.team.subtitle
     - about.timeline.title
     - about.timeline.subtitle
-    - about.timeline.event1.year
-    - about.timeline.event1.title
-    - about.timeline.event1.description
-    - about.timeline.event2.year
-    - about.timeline.event2.title
-    - about.timeline.event2.description
-    - about.timeline.event3.year
-    - about.timeline.event3.title
-    - about.timeline.event3.description
-    - about.timeline.event4.year
-    - about.timeline.event4.title
-    - about.timeline.event4.description
     - about.cta.title
-    - about.cta.description
-    - about.cta.primaryButton
-    - about.cta.secondaryButton
+    - about.cta.subtitle
+    - about.cta.contactButton
+    - about.cta.careersButton
 在文件 src/app/[locale]/(dashboard)/layout.tsx 中找到以下信息:
   命名空间变量映射:
     - t => dashboard
@@ -448,9 +446,9 @@
     - dashboard.welcome
 
 检查翻译文件中的键...
-英文翻译文件中有 410 个键
-中文翻译文件中有 410 个键
-在代码中找到 331 个使用的键
+英文翻译文件中有 425 个键
+中文翻译文件中有 425 个键
+在代码中找到 328 个使用的键
 
 === 翻译检查报告 ===
 

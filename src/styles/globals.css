@@ -4,65 +4,76 @@
 
 @layer base {
   :root {
+    /* JetBrains风格的亮色主题 */
     --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    --foreground: 225 6% 13%;
 
     --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card-foreground: 225 6% 13%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover-foreground: 225 6% 13%;
 
-    --primary: 221.2 83.2% 53.3%;
-    --primary-foreground: 210 40% 98%;
+    /* JetBrains蓝色 */
+    --primary: 212 100% 50%; /* #087CFA */
+    --primary-foreground: 0 0% 100%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    /* 浅灰色背景 */
+    --secondary: 220 14% 96%;
+    --secondary-foreground: 225 6% 13%;
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    --muted: 220 14% 96%;
+    --muted-foreground: 220 8% 46%;
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    /* 浅色强调 */
+    --accent: 231 48% 96%;
+    --accent-foreground: 212 100% 50%;
 
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 221.2 83.2% 53.3%;
+    /* 边框和输入框 */
+    --border: 220 13% 91%;
+    --input: 220 13% 91%;
+    --ring: 212 100% 50%;
 
-    --radius: 0.5rem;
+    /* JetBrains使用更小的圆角 */
+    --radius: 0.25rem;
   }
 
   .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
+    /* JetBrains风格的暗色主题 */
+    --background: 225 6% 13%;
+    --foreground: 0 0% 100%;
 
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
+    --card: 225 10% 16%;
+    --card-foreground: 0 0% 100%;
 
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
+    --popover: 225 10% 16%;
+    --popover-foreground: 0 0% 100%;
 
-    --primary: 217.2 91.2% 59.8%;
-    --primary-foreground: 222.2 47.4% 11.2%;
+    /* JetBrains亮蓝色 */
+    --primary: 212 100% 50%;
+    --primary-foreground: 0 0% 100%;
 
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
+    /* 深色次要背景 */
+    --secondary: 225 10% 22%;
+    --secondary-foreground: 0 0% 100%;
 
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
+    --muted: 225 10% 22%;
+    --muted-foreground: 220 8% 70%;
 
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
+    /* 深色强调 */
+    --accent: 231 48% 30%;
+    --accent-foreground: 0 0% 100%;
 
     --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive-foreground: 0 0% 100%;
 
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 224.3 76.3% 48%;
+    /* 暗色边框 */
+    --border: 225 10% 24%;
+    --input: 225 10% 24%;
+    --ring: 212 100% 50%;
   }
 }
 
@@ -74,4 +85,336 @@
     @apply bg-background text-foreground;
     font-feature-settings: "rlig" 1, "calt" 1;
   }
+}
+
+/* JetBrains风格的渐变背景 */
+.gradient-bg {
+  background: linear-gradient(135deg, #6B57FF 0%, #8A7CFF 50%, #6B57FF 100%);
+}
+
+/* JetBrains风格的彩色渐变 */
+.jetbrains-gradient {
+  background: linear-gradient(90deg, #21D789 0%, #087CFA 50%, #FE2857 100%);
+}
+
+/* JetBrains风格的动态背景动画 */
+@keyframes gradientShift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* JetBrains风格的动态光效 */
+.jetbrains-animated-bg {
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  right: -50%;
+  bottom: -50%;
+  width: 200%;
+  height: 200%;
+  background: transparent url('data:image/svg+xml;charset=utf8,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"%3E%3Cpath fill="rgba(255, 255, 255, 0.05)" d="M256,0C114.6,0,0,114.6,0,256s114.6,256,256,256s256-114.6,256-256S397.4,0,256,0z M256,464c-114.7,0-208-93.31-208-208S141.3,48,256,48s208,93.31,208,208S370.7,464,256,464z"%3E%3C/path%3E%3C/svg%3E') repeat;
+  animation: jetbrainsLightEffect 60s linear infinite;
+  transform: rotate(0deg);
+}
+
+@keyframes jetbrainsLightEffect {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* 光线效果 */
+.jetbrains-light-beam {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(45deg, rgba(33,215,137,0) 0%, rgba(33,215,137,0.1) 50%, rgba(33,215,137,0) 100%);
+  animation: lightBeam 8s ease-in-out infinite alternate;
+  transform-origin: top left;
+}
+
+@keyframes lightBeam {
+  0% {
+    transform: rotate(0deg) scale(1);
+    opacity: 0.5;
+  }
+  100% {
+    transform: rotate(5deg) scale(1.2);
+    opacity: 0.8;
+  }
+}
+
+/* 3D几何图形背景 */
+.geometric-bg {
+  position: relative;
+  overflow: hidden;
+}
+
+.geometric-bg::before {
+  content: '';
+  position: absolute;
+  top: -10%;
+  right: -5%;
+  width: 60%;
+  height: 120%;
+  background: radial-gradient(circle at center, rgba(33,215,137,0.2) 0%, rgba(33,215,137,0) 70%);
+  z-index: 0;
+  animation: pulse 8s infinite alternate ease-in-out;
+}
+
+.geometric-bg::after {
+  content: '';
+  position: absolute;
+  bottom: -10%;
+  left: -5%;
+  width: 60%;
+  height: 120%;
+  background: radial-gradient(circle at center, rgba(8,124,250,0.2) 0%, rgba(8,124,250,0) 70%);
+  z-index: 0;
+  animation: pulse 8s infinite alternate-reverse ease-in-out;
+}
+
+@keyframes pulse {
+  0% {
+    opacity: 0.5;
+    transform: scale(1);
+  }
+  100% {
+    opacity: 0.8;
+    transform: scale(1.1);
+  }
+}
+
+/* 浮动粒子效果 */
+.jetbrains-particles {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  z-index: 0;
+}
+
+.jetbrains-particle {
+  position: absolute;
+  display: block;
+  background-color: rgba(255, 255, 255, 0.1);
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  animation: particleFloat 15s infinite linear;
+}
+
+@keyframes particleFloat {
+  0% {
+    transform: translateY(0) rotate(0deg);
+    opacity: 0.8;
+    border-radius: 50%;
+  }
+  100% {
+    transform: translateY(-1000px) rotate(720deg);
+    opacity: 0;
+    border-radius: 50%;
+  }
+}
+
+/* JetBrains风格的卡片悬停效果 */
+.jetbrains-card {
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+  border-bottom: 3px solid transparent;
+}
+
+.jetbrains-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.08);
+  border-bottom-color: #21D789;
+}
+
+/* JetBrains风格的按钮 */
+.jetbrains-button {
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  transition: all 0.2s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+/* 确保按钮文字在各种背景下都清晰可见 */
+.jetbrains-button.bg-white .text-primary {
+  color: hsl(var(--primary)) !important;
+  font-weight: 600;
+}
+
+.jetbrains-button.border-white .text-white {
+  color: white !important;
+  font-weight: 600;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.jetbrains-button::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 5px;
+  height: 5px;
+  background: rgba(255, 255, 255, 0.5);
+  opacity: 0;
+  border-radius: 100%;
+  transform: scale(1, 1) translate(-50%, -50%);
+  transform-origin: 50% 50%;
+}
+
+.jetbrains-button:hover::after {
+  animation: ripple 0.6s ease-out;
+}
+
+@keyframes ripple {
+  0% {
+    transform: scale(0, 0);
+    opacity: 0.5;
+  }
+  100% {
+    transform: scale(20, 20);
+    opacity: 0;
+  }
+}
+
+/* JetBrains风格的导航链接悬停效果 */
+.nav-link {
+  position: relative;
+}
+
+/* 确保导航文字在透明背景下清晰可见 */
+header:not(.bg-white) .nav-link {
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+  font-weight: 600;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: #21D789;
+  transition: width 0.2s ease;
+}
+
+.nav-link:hover::after {
+  width: 100%;
+}
+
+/* JetBrains风格的滚动条 */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #2B2B2B;
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #3C3F41;
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #4E5254;
+}
+
+/* JetBrains风格的选择文本 */
+::selection {
+  background-color: rgba(8, 124, 250, 0.3);
+  color: white;
+}
+
+/* JetBrains风格的输入框聚焦效果 */
+input:focus, textarea:focus, select:focus {
+  box-shadow: 0 0 0 2px rgba(33, 215, 137, 0.2);
+  border-color: #21D789;
+}
+
+/* JetBrains风格的过渡效果 */
+.jetbrains-transition {
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+/* JetBrains风格的阴影效果 */
+.jetbrains-shadow {
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  transition: box-shadow 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.jetbrains-shadow:hover {
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+}
+
+/* JetBrains风格的标签 */
+.jetbrains-tag {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.25rem 0.5rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  border-radius: 0.25rem;
+  background-color: #1a1a1a;
+  color: white;
+  border: 1px solid rgba(33, 215, 137, 0.3);
+  transition: all 0.2s ease;
+}
+
+.jetbrains-tag:hover {
+  background-color: #2B2B2B;
+  border-color: #21D789;
+}
+
+/* JetBrains风格的代码块 */
+.jetbrains-code {
+  font-family: 'JetBrains Mono', monospace;
+  background-color: #2B2B2B;
+  color: #A9B7C6;
+  border-radius: 0.25rem;
+  padding: 1rem;
+  border-left: 3px solid #21D789;
+  overflow-x: auto;
+}
+
+/* JetBrains风格的引用块 */
+.jetbrains-quote {
+  border-left: 4px solid #087CFA;
+  padding-left: 1rem;
+  font-style: italic;
+  color: #A9B7C6;
+  background-color: #2B2B2B;
+}
+
+/* JetBrains顶部彩条 */
+.jetbrains-rainbow-top {
+  height: 3px;
+  background: linear-gradient(90deg, #21D789 0%, #087CFA 50%, #FE2857 100%);
+}
+
+/* 确保半透明背景上的文字清晰可见 */
+.bg-white\/10 .text-white,
+.bg-white\/20 .text-white,
+.bg-emerald-500\/20 .text-emerald-100 {
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+  font-weight: 500;
 } 

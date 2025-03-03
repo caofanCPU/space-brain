@@ -21,6 +21,9 @@
       "contactUs": "联系我们"
     },
     "footer": {
+      "subscribeTitle": "订阅我们",
+      "subscribeText": "获取最新资讯和更新",
+      "subscribe": "订阅",
       "products": "产品",
       "resources": "资源",
       "company": "公司",
@@ -410,13 +413,21 @@
       "title": "加入我们的团队",
       "description": "我们一直在寻找有才华的个人加入我们的使命。",
       "primaryButton": "查看职位空缺",
-      "secondaryButton": "了解福利待遇"
+      "secondaryButton": "了解福利待遇",
+      "subtitle": "加入我们，共同创造未来",
+      "contactButton": "联系我们",
+      "careersButton": "查看职位空缺"
     }
   },
   "blog": {
     "title": "博客",
     "subtitle": "最新消息、更新和见解",
+    "categoriesName": "文章分类", 
     "readMore": "阅读更多",
+    "readTime": "阅读时长",
+    "loadMore": "加载更多",
+    "searchPlaceholder": "搜索文章...",
+    "recentPosts": "最近文章",
     "categories": {
       "allPosts": "所有文章",
       "productUpdates": "产品更新",

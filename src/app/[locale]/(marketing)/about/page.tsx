@@ -10,81 +10,138 @@
 import { getTranslations } from 'next-intl/server';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
-import { ArrowRight, Github, Linkedin, Twitter } from 'lucide-react';
+import { ArrowRight, Github, Linkedin, Twitter, Heart, Shield, Zap } from 'lucide-react';
 import Link from 'next/link';
 import Image from 'next/image';
+import { LucideIcon } from 'lucide-react';
+
+// 定义类型
+interface ValueItem {
+  title: string;
+  description: string;
+  icon: LucideIcon;
+}
+
+interface SocialLink {
+  icon: LucideIcon;
+  url: string;
+}
+
+interface TeamMember {
+  name: string;
+  role: string;
+  bio: string;
+  imageUrl: string;
+  socialLinks: SocialLink[];
+}
+
+interface TimelineEvent {
+  year: string;
+  title: string;
+  description: string;
+}
 
 export default async function AboutPage() {
   const t = await getTranslations('about');
 
-  const teamMembers = [
+  // 添加图标类型
+  const values: ValueItem[] = [
+    {
+      title: t('values.value1.title'),
+      description: t('values.value1.description'),
+      icon: Heart
+    },
+    {
+      title: t('values.value2.title'),
+      description: t('values.value2.description'),
+      icon: Shield
+    },
+    {
+      title: t('values.value3.title'),
+      description: t('values.value3.description'),
+      icon: Zap
+    },
+    {
+      title: t('values.value4.title'),
+      description: t('values.value4.description'),
+      icon: Twitter
+    }
+  ];
+
+  // 修改团队成员数据结构，添加socialLinks
+  const teamMembers: TeamMember[] = [
     {
       name: t('team.member1.name'),
       role: t('team.member1.role'),
       bio: t('team.member1.bio'),
       imageUrl: '/images/default.webp',
-      social: {
-        twitter: 'https://twitter.com/member1',
-        linkedin: 'https://linkedin.com/in/member1',
-        github: 'https://github.com/member1'
-      }
+      socialLinks: [
+        { icon: Twitter, url: 'https://twitter.com/member1' },
+        { icon: Linkedin, url: 'https://linkedin.com/in/member1' },
+        { icon: Github, url: 'https://github.com/member1' }
+      ]
     },
     {
       name: t('team.member2.name'),
       role: t('team.member2.role'),
       bio: t('team.member2.bio'),
       imageUrl: '/images/default.webp',
-      social: {
-        twitter: 'https://twitter.com/member2',
-        linkedin: 'https://linkedin.com/in/member2',
-        github: 'https://github.com/member2'
-      }
+      socialLinks: [
+        { icon: Twitter, url: 'https://twitter.com/member2' },
+        { icon: Linkedin, url: 'https://linkedin.com/in/member2' },
+        { icon: Github, url: 'https://github.com/member2' }
+      ]
     },
     {
       name: t('team.member3.name'),
       role: t('team.member3.role'),
       bio: t('team.member3.bio'),
       imageUrl: '/images/default.webp',
-      social: {
-        twitter: 'https://twitter.com/member3',
-        linkedin: 'https://linkedin.com/in/member3',
-        github: 'https://github.com/member3'
-      }
+      socialLinks: [
+        { icon: Twitter, url: 'https://twitter.com/member3' },
+        { icon: Linkedin, url: 'https://linkedin.com/in/member3' },
+        { icon: Github, url: 'https://github.com/member3' }
+      ]
     },
     {
       name: t('team.member4.name'),
       role: t('team.member4.role'),
       bio: t('team.member4.bio'),
       imageUrl: '/images/default.webp',
-      social: {
-        twitter: 'https://twitter.com/member4',
-        linkedin: 'https://linkedin.com/in/member4',
-        github: 'https://github.com/member4'
-      }
+      socialLinks: [
+        { icon: Twitter, url: 'https://twitter.com/member4' },
+        { icon: Linkedin, url: 'https://linkedin.com/in/member4' },
+        { icon: Github, url: 'https://github.com/member4' }
+      ]
     }
   ];
 
-  const values = [
+  // 添加时间线数据
+  const timeline: TimelineEvent[] = [
     {
-      title: t('values.value1.title'),
-      description: t('values.value1.description')
+      year: '2020',
+      title: t('timeline.event1.title'),
+      description: t('timeline.event1.description')
     },
     {
-      title: t('values.value2.title'),
-      description: t('values.value2.description')
+      year: '2021',
+      title: t('timeline.event2.title'),
+      description: t('timeline.event2.description')
     },
     {
-      title: t('values.value3.title'),
-      description: t('values.value3.description')
+      year: '2022',
+      title: t('timeline.event3.title'),
+      description: t('timeline.event3.description')
     },
     {
-      title: t('values.value4.title'),
-      description: t('values.value4.description')
+      year: '2023',
+      title: t('timeline.event4.title'),
+      description: t('timeline.event4.description')
     }
   ];
 
   return (
-    <div className="container mx-auto py-12 space-y-20">
+    <div className="container mx-auto py-12 space-y-16">
       {/* Hero Section */}
       <div className="text-center space-y-4 max-w-3xl mx-auto">
         <h1 className="text-4xl font-bold tracking-tight">{t('hero.title')}</h1>
@@ -94,16 +151,16 @@ export default async function AboutPage() {
       {/* Story Section */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
         <div className="space-y-6">
-          <h2 className="text-3xl font-bold">{t('story.title')}</h2>
-          <p className="text-lg">{t('story.paragraph1')}</p>
-          <p className="text-lg">{t('story.paragraph2')}</p>
-          <p className="text-lg">{t('story.paragraph3')}</p>
+          <h2 className="text-3xl font-bold tracking-tight">{t('story.title')}</h2>
+          <p className="text-lg text-muted-foreground">{t('story.paragraph1')}</p>
+          <p className="text-lg text-muted-foreground">{t('story.paragraph2')}</p>
         </div>
-        <div className="relative aspect-video rounded-lg overflow-hidden shadow-xl">
-          <Image
-            src="/images/office.webp"
-            alt={t('story.imageAlt')}
+        <div className="relative aspect-video rounded-xl overflow-hidden">
+          <Image 
+            src="/images/default.webp" 
+            alt="Our office" 
             fill
+            sizes="(max-width: 768px) 100vw, 50vw"
             className="object-cover"
           />
         </div>
@@ -112,17 +169,18 @@ export default async function AboutPage() {
       {/* Values Section */}
       <div className="space-y-8">
         <div className="text-center max-w-3xl mx-auto">
-          <h2 className="text-3xl font-bold mb-4">{t('values.title')}</h2>
-          <p className="text-lg text-muted-foreground">{t('values.subtitle')}</p>
+          <h2 className="text-3xl font-bold tracking-tight">{t('values.title')}</h2>
+          <p className="text-lg text-muted-foreground mt-4">{t('values.subtitle')}</p>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {values.map((value, index) => (
-            <Card key={index} className="bg-muted/50">
-              <CardContent className="pt-6">
-                <h3 className="text-xl font-bold mb-2">{value.title}</h3>
-                <p>{value.description}</p>
-              </CardContent>
-            </Card>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          {values.map((value: ValueItem, index: number) => (
+            <div key={index} className="bg-muted/50 p-6 rounded-lg space-y-4">
+              <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center">
+                <value.icon className="h-6 w-6 text-primary" />
+              </div>
+              <h3 className="text-xl font-bold">{value.title}</h3>
+              <p className="text-muted-foreground">{value.description}</p>
+            </div>
           ))}
         </div>
       </div>
@@ -130,33 +188,36 @@ export default async function AboutPage() {
       {/* Team Section */}
       <div className="space-y-8">
         <div className="text-center max-w-3xl mx-auto">
-          <h2 className="text-3xl font-bold mb-4">{t('team.title')}</h2>
-          <p className="text-lg text-muted-foreground">{t('team.subtitle')}</p>
+          <h2 className="text-3xl font-bold tracking-tight">{t('team.title')}</h2>
+          <p className="text-lg text-muted-foreground mt-4">{t('team.subtitle')}</p>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {teamMembers.map((member, index) => (
-            <div key={index} className="flex flex-col items-center text-center">
-              <div className="relative w-40 h-40 rounded-full overflow-hidden mb-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+          {teamMembers.map((member: TeamMember, index: number) => (
+            <div key={index} className="group">
+              <div className="aspect-square relative rounded-xl overflow-hidden mb-4">
                 <Image
-                  src={member.imageUrl}
+                  src="/images/default.webp"
                   alt={member.name}
                   fill
-                  className="object-cover"
+                  sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
+                  className="object-cover transition-transform duration-300 group-hover:scale-105"
                 />
               </div>
               <h3 className="text-xl font-bold">{member.name}</h3>
-              <p className="text-primary font-medium mb-2">{member.role}</p>
-              <p className="text-sm text-muted-foreground mb-4">{member.bio}</p>
-              <div className="flex space-x-3">
-                <Link href={member.social.twitter} className="text-muted-foreground hover:text-primary">
-                  <Twitter className="h-5 w-5" />
-                </Link>
-                <Link href={member.social.linkedin} className="text-muted-foreground hover:text-primary">
-                  <Linkedin className="h-5 w-5" />
-                </Link>
-                <Link href={member.social.github} className="text-muted-foreground hover:text-primary">
-                  <Github className="h-5 w-5" />
-                </Link>
+              <p className="text-primary">{member.role}</p>
+              <p className="text-muted-foreground mt-2">{member.bio}</p>
+              <div className="flex gap-2 mt-4">
+                {member.socialLinks.map((link: SocialLink, linkIndex: number) => (
+                  <a
+                    key={linkIndex}
+                    href={link.url}
+                    className="text-muted-foreground hover:text-primary transition-colors"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <link.icon className="h-5 w-5" />
+                  </a>
+                ))}
               </div>
             </div>
           ))}
@@ -166,52 +227,38 @@ export default async function AboutPage() {
       {/* Timeline Section */}
       <div className="space-y-8">
         <div className="text-center max-w-3xl mx-auto">
-          <h2 className="text-3xl font-bold mb-4">{t('timeline.title')}</h2>
-          <p className="text-lg text-muted-foreground">{t('timeline.subtitle')}</p>
+          <h2 className="text-3xl font-bold tracking-tight">{t('timeline.title')}</h2>
+          <p className="text-lg text-muted-foreground mt-4">{t('timeline.subtitle')}</p>
         </div>
-        <div className="relative border-l border-muted-foreground/20 pl-8 ml-4 space-y-12">
-          <div className="relative">
-            <div className="absolute -left-12 mt-1.5 h-6 w-6 rounded-full border-4 border-background bg-primary"></div>
-            <h3 className="text-xl font-bold">{t('timeline.event1.year')}</h3>
-            <h4 className="text-lg font-medium mb-2">{t('timeline.event1.title')}</h4>
-            <p className="text-muted-foreground">{t('timeline.event1.description')}</p>
-          </div>
-          <div className="relative">
-            <div className="absolute -left-12 mt-1.5 h-6 w-6 rounded-full border-4 border-background bg-primary"></div>
-            <h3 className="text-xl font-bold">{t('timeline.event2.year')}</h3>
-            <h4 className="text-lg font-medium mb-2">{t('timeline.event2.title')}</h4>
-            <p className="text-muted-foreground">{t('timeline.event2.description')}</p>
-          </div>
-          <div className="relative">
-            <div className="absolute -left-12 mt-1.5 h-6 w-6 rounded-full border-4 border-background bg-primary"></div>
-            <h3 className="text-xl font-bold">{t('timeline.event3.year')}</h3>
-            <h4 className="text-lg font-medium mb-2">{t('timeline.event3.title')}</h4>
-            <p className="text-muted-foreground">{t('timeline.event3.description')}</p>
-          </div>
-          <div className="relative">
-            <div className="absolute -left-12 mt-1.5 h-6 w-6 rounded-full border-4 border-background bg-primary"></div>
-            <h3 className="text-xl font-bold">{t('timeline.event4.year')}</h3>
-            <h4 className="text-lg font-medium mb-2">{t('timeline.event4.title')}</h4>
-            <p className="text-muted-foreground">{t('timeline.event4.description')}</p>
-          </div>
+        <div className="relative border-l border-primary/30 pl-8 ml-4 space-y-12">
+          {timeline.map((item: TimelineEvent, index: number) => (
+            <div key={index} className="relative">
+              <div className="absolute w-6 h-6 bg-primary rounded-full -left-11 flex items-center justify-center">
+                <div className="w-3 h-3 bg-white rounded-full"></div>
+              </div>
+              <div className="bg-muted/30 p-6 rounded-lg">
+                <div className="text-primary font-bold mb-2">{item.year}</div>
+                <h3 className="text-xl font-bold mb-2">{item.title}</h3>
+                <p className="text-muted-foreground">{item.description}</p>
+              </div>
+            </div>
+          ))}
         </div>
       </div>
 
       {/* CTA Section */}
-      <div className="bg-muted rounded-lg p-8 md:p-12 text-center">
-        <h2 className="text-3xl font-bold mb-4">{t('cta.title')}</h2>
-        <p className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto">{t('cta.description')}</p>
-        <div className="flex flex-col sm:flex-row gap-4 justify-center">
-          <Button asChild size="lg">
-            <Link href="/careers">
-              {t('cta.primaryButton')}
-            </Link>
-          </Button>
-          <Button variant="outline" asChild size="lg">
-            <Link href="/contact">
-              {t('cta.secondaryButton')} <ArrowRight className="ml-2 h-4 w-4" />
-            </Link>
-          </Button>
+      <div className="bg-primary text-primary-foreground rounded-xl p-8 md:p-12">
+        <div className="max-w-3xl mx-auto text-center space-y-6">
+          <h2 className="text-3xl font-bold tracking-tight">{t('cta.title')}</h2>
+          <p className="text-xl opacity-90">{t('cta.subtitle')}</p>
+          <div className="flex flex-wrap gap-4 justify-center">
+            <Button variant="secondary" size="lg" asChild>
+              <Link href="/contact">{t('cta.contactButton')}</Link>
+            </Button>
+            <Button variant="outline" size="lg" className="bg-transparent text-primary-foreground border-primary-foreground hover:bg-primary-foreground/10" asChild>
+              <Link href="/careers">{t('cta.careersButton')}</Link>
+            </Button>
+          </div>
         </div>
       </div>
     </div>
