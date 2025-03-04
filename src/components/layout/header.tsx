@@ -16,6 +16,7 @@ import { useTranslations } from 'next-intl';
 import { Menu, X, ChevronDown, Search, User, Globe } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
+import { locales } from '@/i18n';
 
 export default function Header() {
   const t = useTranslations('common');
@@ -62,12 +63,24 @@ export default function Header() {
   const handleLanguageChange = (newLocale: string) => {
     if (newLocale === locale) return;
     
-    // 构建新的URL路径
-    const pathWithoutLocale = pathname.replace(`/${locale}`, '');
-    const newPath = `/${newLocale}${pathWithoutLocale || ''}`;
+    // 构建新的URL路径 - 改进的方法
+    let pathSegments = pathname.split('/');
+    if (pathSegments.length > 1 && locales.includes(pathSegments[1])) {
+      // 如果第一个路径段是有效的语言代码，替换它
+      pathSegments[1] = newLocale;
+    } else {
+      // 如果第一个路径段不是语言代码，在路径前添加语言代码
+      pathSegments = ['', newLocale, ...pathSegments.slice(1)];
+    }
+    
+    const newPath = pathSegments.join('/');
     
     // 使用window.location进行硬刷新
     window.location.href = newPath;
+    
+    // 可选：添加调试日志
+    console.log(`Switching language from ${locale} to ${newLocale}, new path: ${newPath}`);
+    console.log(pathSegments);
   };
 
   const navigation = [
