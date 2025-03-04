@@ -29,6 +29,70 @@
       "company": "公司",
       "legal": "法律",
       "copyright": "© 2024 Space-Brain. 保留所有权利。"
+    },
+    "products": {
+      "feature": {
+        "primary": {
+          "title": "JetBrains IDEs",
+          "description": "让编码成为可能。用代码实现。"
+        },
+        "secondary": {
+          "title": "Qodana",
+          "description": "与JetBrains IDEs一样智能的代码质量平台"
+        }
+      },
+      "sections": {
+        "ides": "JETBRAINS IDEs",
+        "plugins": "插件与服务",
+        "dotnet": ".NET与VISUAL STUDIO",
+        "languages": "语言与框架"
+      },
+      "footer": {
+        "question": "不确定哪个工具最适合您？",
+        "cta": "查找您的工具"
+      },
+      "ide": {
+        "shortDesc": "具有AI辅助功能的智能编码环境",
+        "description": "我们的旗舰集成开发环境，满足您所有的编码需求。"
+      },
+      "cloud": {
+        "shortDesc": "无缝云开发和部署解决方案",
+        "description": "基于云的开发平台，用于协作编码和部署。"
+      },
+      "mobile": {
+        "shortDesc": "随时随地使用我们的移动解决方案编码",
+        "description": "移动开发环境，随时随地编码。"
+      },
+      "ai": {
+        "shortDesc": "智能AI编码助手，提升开发效率"
+      },
+      "themes": {
+        "shortDesc": "个性化您的开发环境"
+      },
+      "codewithme": {
+        "shortDesc": "实时协作编码"
+      },
+      "rider": {
+        "shortDesc": ".NET跨平台IDE"
+      },
+      "resharper": {
+        "shortDesc": "Visual Studio扩展"
+      },
+      "dotcover": {
+        "shortDesc": ".NET代码覆盖工具"
+      },
+      "kotlin": {
+        "shortDesc": "现代JVM语言"
+      },
+      "mps": {
+        "shortDesc": "语言工作台"
+      },
+      "compose": {
+        "shortDesc": "跨平台UI框架"
+      },
+      "spaceProfiler": {
+        "description": "高级性能分析工具，优化您的应用程序。"
+      }
     }
   },
   "home": {

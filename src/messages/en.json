@@ -29,6 +29,70 @@
       "company": "Company",
       "legal": "Legal",
       "copyright": "© 2024 Space-Brain. All rights reserved."
+    },
+    "products": {
+      "feature": {
+        "primary": {
+          "title": "JetBrains IDEs",
+          "description": "Make it happen. With code."
+        },
+        "secondary": {
+          "title": "Qodana",
+          "description": "The only code quality platform as smart as JetBrains IDEs"
+        }
+      },
+      "sections": {
+        "ides": "JETBRAINS IDEs",
+        "plugins": "PLUGINS & SERVICES",
+        "dotnet": ".NET & VISUAL STUDIO",
+        "languages": "LANGUAGES & FRAMEWORKS"
+      },
+      "footer": {
+        "question": "Not sure which tool is best for you?",
+        "cta": "Find your tool"
+      },
+      "ide": {
+        "shortDesc": "Intelligent coding environment with AI assistance",
+        "description": "Our flagship integrated development environment for all your coding needs."
+      },
+      "cloud": {
+        "shortDesc": "Seamless cloud development and deployment",
+        "description": "Cloud-based development platform for collaborative coding and deployment."
+      },
+      "mobile": {
+        "shortDesc": "Code on the go with our mobile solution",
+        "description": "Mobile development environment for coding anywhere, anytime."
+      },
+      "ai": {
+        "shortDesc": "Intelligent AI coding assistant to boost productivity"
+      },
+      "themes": {
+        "shortDesc": "Personalize your development environment"
+      },
+      "codewithme": {
+        "shortDesc": "Real-time collaborative coding"
+      },
+      "rider": {
+        "shortDesc": "Cross-platform IDE for .NET"
+      },
+      "resharper": {
+        "shortDesc": "Visual Studio extension"
+      },
+      "dotcover": {
+        "shortDesc": ".NET code coverage tool"
+      },
+      "kotlin": {
+        "shortDesc": "Modern JVM language"
+      },
+      "mps": {
+        "shortDesc": "Language workbench"
+      },
+      "compose": {
+        "shortDesc": "Cross-platform UI framework"
+      },
+      "spaceProfiler": {
+        "description": "Advanced performance profiling tool to optimize your applications."
+      }
     }
   },
   "home": {

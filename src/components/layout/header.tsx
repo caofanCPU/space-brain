@@ -28,6 +28,7 @@ export default function Header() {
   const dropdownRef = useRef<HTMLDivElement>(null);
   const languageDropdownRef = useRef<HTMLDivElement>(null);
   const [isLanguageDropdownOpen, setIsLanguageDropdownOpen] = useState(false);
+  const dropdownTimerRef = useRef<NodeJS.Timeout | null>(null);
 
   // 监听滚动事件，用于导航栏背景变化
   useEffect(() => {
@@ -42,18 +43,20 @@ export default function Header() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // 处理点击外部关闭下拉菜单
+  // 处理点击外部区域关闭菜单
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
         setActiveDropdown(null);
       }
+      
       if (languageDropdownRef.current && !languageDropdownRef.current.contains(event.target as Node)) {
         setIsLanguageDropdownOpen(false);
       }
     };
-
+    
     document.addEventListener('mousedown', handleClickOutside);
+    
     return () => {
       document.removeEventListener('mousedown', handleClickOutside);
     };
@@ -83,16 +86,141 @@ export default function Header() {
     console.log(pathSegments);
   };
 
+  // 处理菜单项点击 - 确保点击后菜单关闭
+  const handleMenuItemClick = () => {
+    setActiveDropdown(null);
+  };
+
+  // 处理菜单悬停延迟
+  const handleMenuEnter = (itemName: string) => {
+    if (dropdownTimerRef.current) {
+      clearTimeout(dropdownTimerRef.current);
+    }
+    setActiveDropdown(itemName);
+  };
+
+  const handleMenuLeave = () => {
+    if (dropdownTimerRef.current) {
+      clearTimeout(dropdownTimerRef.current);
+    }
+    dropdownTimerRef.current = setTimeout(() => {
+      setActiveDropdown(null);
+    }, 150); // 150ms延迟关闭
+  };
+
   const navigation = [
     { name: t('nav.home'), href: `/${locale}` },
     { 
       name: t('nav.products'), 
       href: `/${locale}/products`,
       dropdown: true,
-      items: [
-        { name: 'Space-Brain IDE', href: `/${locale}/products/ide` },
-        { name: 'Space-Brain Cloud', href: `/${locale}/products/cloud` },
-        { name: 'Space-Brain Mobile', href: `/${locale}/products/mobile` },
+      feature: {
+        primary: {
+          icon: '🧠',
+          title: t('products.feature.primary.title'),
+          description: t('products.feature.primary.description'),
+          href: `/${locale}/products/ide`
+        },
+        secondary: {
+          icon: 'QD',
+          title: t('products.feature.secondary.title'),
+          description: t('products.feature.secondary.description'),
+          href: `/${locale}/products/quality`
+        }
+      },
+      sections: [
+        {
+          title: t('products.sections.ides'),
+          items: [
+            { 
+              name: 'Space-Brain IDE', 
+              href: `/${locale}/products/ide`,
+              description: t('products.ide.shortDesc'),
+              icon: '🧠'
+            },
+            { 
+              name: 'Space-Brain Cloud', 
+              href: `/${locale}/products/cloud`,
+              description: t('products.cloud.shortDesc'),
+              icon: '☁️'
+            },
+            { 
+              name: 'Space-Brain Mobile', 
+              href: `/${locale}/products/mobile`,
+              description: t('products.mobile.shortDesc'),
+              icon: '📱'
+            },
+          ]
+        },
+        {
+          title: t('products.sections.plugins'),
+          items: [
+            { 
+              name: 'AI Assistant', 
+              href: `/${locale}/products/ai-assistant`,
+              description: t('products.ai.shortDesc'),
+              icon: '🤖'
+            },
+            { 
+              name: 'IDE Themes', 
+              href: `/${locale}/products/themes`,
+              description: t('products.themes.shortDesc'),
+              icon: '🎨'
+            },
+            { 
+              name: 'Code With Me', 
+              href: `/${locale}/products/code-with-me`,
+              description: t('products.codewithme.shortDesc'),
+              icon: '👥'
+            },
+          ]
+        },
+        {
+          title: t('products.sections.dotnet'),
+          items: [
+            { 
+              name: 'Rider', 
+              href: `/${locale}/products/rider`,
+              description: t('products.rider.shortDesc'),
+              icon: '🏍️'
+            },
+            { 
+              name: 'ReSharper', 
+              href: `/${locale}/products/resharper`,
+              description: t('products.resharper.shortDesc'),
+              icon: '♯'
+            },
+            { 
+              name: 'dotCover', 
+              href: `/${locale}/products/dotcover`,
+              description: t('products.dotcover.shortDesc'),
+              icon: '🛡️'
+            },
+          ]
+        },
+        {
+          title: t('products.sections.languages'),
+          items: [
+            { 
+              name: 'Kotlin', 
+              href: `/${locale}/products/kotlin`,
+              description: t('products.kotlin.shortDesc'),
+              icon: 'K'
+            },
+            { 
+              name: 'MPS', 
+              href: `/${locale}/products/mps`,
+              description: t('products.mps.shortDesc'),
+              icon: 'M'
+            },
+            { 
+              name: 'Compose Multiplatform', 
+              href: `/${locale}/products/compose`,
+              description: t('products.compose.shortDesc'),
+              icon: '🎭'
+            },
+          ]
+        }
       ]
     },
     { name: t('nav.solutions'), href: `/${locale}/solutions` },
@@ -105,7 +233,7 @@ export default function Header() {
   return (
     <header className={cn(
       "absolute top-0 left-0 right-0 z-50 transition-all duration-300",
-      "bg-[#1a1a1a]" // 始终使用深色背景
+      isScrolled ? "bg-white shadow-sm" : "bg-[#1a1a1a]"
     )}>
       {/* JetBrains风格的顶部彩条 */}
       <div className="h-1 w-full bg-gradient-to-r from-[#21D789] via-[#087CFA] to-[#FE2857]"></div>
@@ -117,7 +245,10 @@ export default function Header() {
               <div className="w-8 h-8 mr-2 bg-[#087CFA] rounded-md flex items-center justify-center text-white font-bold">
                 SB
               </div>
-              <span className="text-xl font-bold text-white">
+              <span className={cn(
+                "text-xl font-bold",
+                isScrolled ? "text-[#1a1a1a]" : "text-white"
+              )}>
                 {t('appName')}
               </span>
             </Link>
@@ -130,16 +261,17 @@ export default function Header() {
                 {item.dropdown ? (
                   <div 
                     className="group" 
-                    onMouseEnter={() => setActiveDropdown(item.name)}
-                    onMouseLeave={() => setActiveDropdown(null)}
+                    onMouseEnter={() => handleMenuEnter(item.name)}
+                    onMouseLeave={handleMenuLeave}
                   >
                     <button
                       className={cn(
-                        "nav-link px-3 py-2 text-sm font-medium transition-colors duration-200 flex items-center",
+                        "nav-link h-[56px] px-3 py-2 text-sm font-medium transition-colors duration-200 flex items-center",
                         pathname.startsWith(item.href)
-                          ? "text-[#21D789] font-bold" 
-                          : "text-white hover:text-[#21D789]"
+                          ? "nav-link-active" 
+                          : isScrolled ? "text-[#1a1a1a] hover:text-[#087CFA]" : "text-white hover:text-[#087CFA]"
                       )}
+                      onClick={() => setActiveDropdown(activeDropdown === item.name ? null : item.name)}
                     >
                       {item.name}
                       <ChevronDown className={cn(
@@ -148,39 +280,96 @@ export default function Header() {
                       )} />
                     </button>
                     
-                    {/* 下拉菜单 */}
-                    <div 
-                      className={cn(
-                          "absolute left-0 mt-1 w-48 rounded-md bg-[#2B2B2B] shadow-lg ring-1 ring-black ring-opacity-5 transition-all duration-200 origin-top-left",
-                          "border border-[#3C3F41]",
+                    {/* JetBrains风格多列下拉菜单 - 居中显示 */}
+                    {activeDropdown === item.name && (
+                      <div 
+                        className={cn(
+                          "jetbrains-dropdown",
                           activeDropdown === item.name 
-                            ? "opacity-100 scale-100" 
-                            : "opacity-0 scale-95 pointer-events-none"
-                        )}>
-                        <div className="py-1 grid grid-cols-2 gap-2">
-                        {item.items?.map((subItem) => (
-                          <Link
-                            key={subItem.name}
-                            href={subItem.href}
-                            className="group flex items-center px-4 py-2 text-sm hover:bg-[#3C3F41] transition-colors duration-150"
-                          >
-                            <span className="text-gray-200 group-hover:text-[#21D789] transition-colors">
-                              {subItem.name}
-                            </span>
-                            <ChevronRight className="ml-auto h-4 w-4 text-[#21D789] opacity-0 group-hover:opacity-100 transition-opacity" />
-                          </Link>
-                        ))}
+                            ? "jetbrains-dropdown-visible" 
+                            : "jetbrains-dropdown-hidden"
+                        )}
+                      >
+                        {/* 左侧特色区域 */}
+                        {item.feature && (
+                          <div className="jetbrains-dropdown-feature">
+                            <div className="jetbrains-feature-item jetbrains-feature-item-primary">
+                              <div className="jetbrains-feature-icon">
+                                <span>{item.feature.primary.icon}</span>
+                              </div>
+                              <h3 className="jetbrains-feature-title">{item.feature.primary.title}</h3>
+                              <p className="jetbrains-feature-description">{item.feature.primary.description}</p>
+                              <Link href={item.feature.primary.href} className="jetbrains-feature-button" onClick={handleMenuItemClick}>
+                                <ChevronRight className="h-5 w-5" />
+                              </Link>
+                            </div>
+                            <div className="jetbrains-feature-item jetbrains-feature-item-secondary">
+                              <div className="jetbrains-feature-icon">
+                                <span>{item.feature.secondary.icon}</span>
+                              </div>
+                              <h3 className="jetbrains-feature-title">{item.feature.secondary.title}</h3>
+                              <p className="jetbrains-feature-description">{item.feature.secondary.description}</p>
+                              <Link href={item.feature.secondary.href} className="jetbrains-feature-button" onClick={handleMenuItemClick}>
+                                <ChevronRight className="h-5 w-5" />
+                              </Link>
+                            </div>
+                          </div>
+                        )}
+                        
+                        {/* 右侧内容区域 */}
+                        <div className="jetbrains-dropdown-content">
+                          <div className="jetbrains-dropdown-sections">
+                            {item.sections?.map((section, index) => (
+                              <div key={index} className="jetbrains-dropdown-section">
+                                <h3 className="jetbrains-dropdown-section-title">{section.title}</h3>
+                                <div className="jetbrains-dropdown-section-content">
+                                  {section.items.map((subItem) => (
+                                    <Link
+                                      key={subItem.name}
+                                      href={subItem.href}
+                                      className="jetbrains-menu-item"
+                                      onClick={handleMenuItemClick}
+                                    >
+                                      <div className="jetbrains-menu-item-icon">
+                                        <span>{subItem.icon}</span>
+                                      </div>
+                                      <div className="jetbrains-menu-item-content">
+                                        <p className="jetbrains-menu-item-title">
+                                          {subItem.name}
+                                        </p>
+                                        <p className="jetbrains-menu-item-description">
+                                          {subItem.description}
+                                        </p>
+                                      </div>
+                                      <ChevronRight className="jetbrains-menu-item-arrow h-4 w-4" />
+                                    </Link>
+                                  ))}
+                                </div>
+                              </div>
+                            ))}
+                          </div>
+                          
+                          {/* 底部引导区域 */}
+                          <div className="jetbrains-dropdown-footer">
+                            <p className="jetbrains-dropdown-footer-text">
+                              {t('products.footer.question')}
+                            </p>
+                            <Link href={`/${locale}/products/finder`} className="jetbrains-dropdown-footer-button">
+                              {t('products.footer.cta')}
+                            </Link>
+                          </div>
+                        </div>
                       </div>
-                    </div>
+                    )}
                   </div>
                 ) : (
                   <Link
                     href={item.href}
                     className={cn(
-                      "nav-link px-3 py-2 text-sm font-medium transition-colors duration-200 block",
+                      "nav-link h-[56px] px-3 py-2 text-sm font-medium transition-colors duration-200 flex items-center",
                       pathname === item.href
-                        ? "text-[#21D789] font-bold" 
-                        : "text-white hover:text-[#21D789]"
+                        ? "nav-link-active" 
+                        : isScrolled ? "text-[#1a1a1a] hover:text-[#087CFA]" : "text-white hover:text-[#087CFA]"
                     )}
                   >
                     {item.name}
@@ -191,14 +380,20 @@ export default function Header() {
           </nav>
           
           <div className="hidden md:flex md:items-center md:space-x-4">
-            <button className="p-2 rounded-full text-white hover:bg-[#3C3F41] transition-colors duration-200">
+            <button className={cn(
+              "p-2 rounded-full transition-colors duration-200",
+              isScrolled ? "text-[#1a1a1a] hover:bg-gray-100" : "text-white hover:bg-[#3C3F41]"
+            )}>
               <Search className="h-5 w-5" />
             </button>
             
             {/* 语言切换下拉菜单 */}
             <div className="relative" ref={languageDropdownRef}>
               <button 
-                className="p-2 rounded-full text-white hover:bg-[#3C3F41] transition-colors duration-200 flex items-center"
+                className={cn(
+                  "p-2 rounded-full transition-colors duration-200 flex items-center",
+                  isScrolled ? "text-[#1a1a1a] hover:bg-gray-100" : "text-white hover:bg-[#3C3F41]"
+                )}
                 onClick={() => setIsLanguageDropdownOpen(!isLanguageDropdownOpen)}
                 aria-expanded={isLanguageDropdownOpen}
                 aria-haspopup="true"
@@ -213,7 +408,7 @@ export default function Header() {
               
               <div 
                 className={cn(
-                  "absolute right-0 mt-1 w-32 rounded-md bg-[#2B2B2B] shadow-lg ring-1 ring-black ring-opacity-5 transition-all duration-200 origin-top-right z-50",
+                  "absolute right-0 mt-1 w-32 rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 transition-all duration-200 origin-top-right z-50",
                   isLanguageDropdownOpen 
                     ? "opacity-100 scale-100" 
                     : "opacity-0 scale-95 pointer-events-none"
@@ -226,8 +421,8 @@ export default function Header() {
                   <button
                     onClick={() => handleLanguageChange('en')}
                     className={cn(
-                      "block w-full text-left px-4 py-2 text-sm hover:bg-[#3C3F41]",
-                      locale === 'en' ? "text-[#21D789] font-medium" : "text-gray-200"
+                      "block w-full text-left px-4 py-2 text-sm hover:bg-gray-100",
+                      locale === 'en' ? "text-[#087CFA] font-medium" : "text-gray-700"
                     )}
                     role="menuitem"
                   >
@@ -236,8 +431,8 @@ export default function Header() {
                   <button
                     onClick={() => handleLanguageChange('zh')}
                     className={cn(
-                      "block w-full text-left px-4 py-2 text-sm hover:bg-[#3C3F41]",
-                      locale === 'zh' ? "text-[#21D789] font-medium" : "text-gray-200"
+                      "block w-full text-left px-4 py-2 text-sm hover:bg-gray-100",
+                      locale === 'zh' ? "text-[#087CFA] font-medium" : "text-gray-700"
                     )}
                     role="menuitem"
                   >
@@ -255,7 +450,7 @@ export default function Header() {
               {t('buttons.signIn')}
             </Button>
             <Button 
-              className="jetbrains-button bg-[#21D789] hover:bg-[#21D789]/90 text-white"
+              className="jetbrains-button bg-[#087CFA] hover:bg-[#0066cc] text-white"
               size="sm"
             >
               {t('buttons.getStarted')}
@@ -266,7 +461,10 @@ export default function Header() {
           <div className="flex md:hidden">
             <button
               type="button"
-              className="inline-flex items-center justify-center rounded-md p-2 text-white hover:bg-[#3C3F41] focus:outline-none focus:ring-2 focus:ring-inset focus:ring-[#21D789]"
+              className={cn(
+                "inline-flex items-center justify-center rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-[#087CFA]",
+                isScrolled ? "text-[#1a1a1a] hover:bg-gray-100" : "text-white hover:bg-[#3C3F41]"
+              )}
               onClick={() => setIsMenuOpen(!isMenuOpen)}
             >
               <span className="sr-only">Open main menu</span>
@@ -282,7 +480,7 @@ export default function Header() {
       
       {/* Mobile menu */}
       {isMenuOpen && (
-        <div className="md:hidden bg-[#2B2B2B] shadow-lg">
+        <div className="md:hidden bg-white shadow-lg">
           <div className="space-y-1 px-2 pb-3 pt-2 sm:px-3">
             {navigation.map((item) => (
               <div key={item.name}>
@@ -293,8 +491,8 @@ export default function Header() {
                       className={cn(
                         "w-full flex justify-between items-center rounded-md px-3 py-2 text-base font-medium transition-colors duration-200",
                         pathname.startsWith(item.href)
-                          ? "bg-[#3C3F41] text-[#21D789]"
-                          : "text-gray-200 hover:bg-[#3C3F41] hover:text-[#21D789]"
+                          ? "bg-gray-100 text-[#087CFA]"
+                          : "text-gray-700 hover:bg-gray-100 hover:text-[#087CFA]"
                       )}
                     >
                       {item.name}
@@ -306,15 +504,56 @@ export default function Header() {
                     
                     {activeDropdown === item.name && (
                       <div className="pl-4 space-y-1 mt-1">
-                        {item.items?.map((subItem) => (
-                          <Link
-                            key={subItem.name}
-                            href={subItem.href}
-                            className="block rounded-md px-3 py-2 text-sm font-medium text-gray-200 hover:bg-[#3C3F41] hover:text-[#21D789]"
-                            onClick={() => setIsMenuOpen(false)}
-                          >
-                            {subItem.name}
-                          </Link>
+                        {item.feature && (
+                          <>
+                            <div className="mt-3">
+                              <h4 className="text-xs font-semibold text-gray-500 px-3 mb-1">{item.feature.primary.title}</h4>
+                              <Link
+                                href={item.feature.primary.href}
+                                className="flex items-center rounded-md px-3 py-2 text-sm font-medium text-gray-700 hover:bg-gray-100 hover:text-[#087CFA]"
+                                onClick={handleMenuItemClick}
+                              >
+                                <span className="mr-2">{item.feature.primary.icon}</span>
+                                <div>
+                                  <div>{item.feature.primary.title}</div>
+                                  <div className="text-xs text-gray-500">{item.feature.primary.description}</div>
+                                </div>
+                              </Link>
+                            </div>
+                            <div className="mt-3">
+                              <h4 className="text-xs font-semibold text-gray-500 px-3 mb-1">{item.feature.secondary.title}</h4>
+                              <Link
+                                href={item.feature.secondary.href}
+                                className="flex items-center rounded-md px-3 py-2 text-sm font-medium text-gray-700 hover:bg-gray-100 hover:text-[#087CFA]"
+                                onClick={handleMenuItemClick}
+                              >
+                                <span className="mr-2">{item.feature.secondary.icon}</span>
+                                <div>
+                                  <div>{item.feature.secondary.title}</div>
+                                  <div className="text-xs text-gray-500">{item.feature.secondary.description}</div>
+                                </div>
+                              </Link>
+                            </div>
+                          </>
+                        )}
+                        {item.sections?.map((section) => (
+                          <div key={section.title} className="mt-3">
+                            <h4 className="text-xs font-semibold text-gray-500 px-3 mb-1">{section.title}</h4>
+                            {section.items.map((subItem) => (
+                              <Link
+                                key={subItem.name}
+                                href={subItem.href}
+                                className="flex items-center rounded-md px-3 py-2 text-sm font-medium text-gray-700 hover:bg-gray-100 hover:text-[#087CFA]"
+                                onClick={handleMenuItemClick}
+                              >
+                                <span className="mr-2">{subItem.icon}</span>
+                                <div>
+                                  <div>{subItem.name}</div>
+                                  <div className="text-xs text-gray-500">{subItem.description}</div>
+                                </div>
+                              </Link>
+                            ))}
+                          </div>
                         ))}
                       </div>
                     )}
@@ -325,10 +564,10 @@ export default function Header() {
                     className={cn(
                       "block rounded-md px-3 py-2 text-base font-medium transition-colors duration-200",
                       pathname === item.href
-                        ? "bg-[#3C3F41] text-[#21D789]"
-                        : "text-gray-200 hover:bg-[#3C3F41] hover:text-[#21D789]"
+                        ? "bg-gray-100 text-[#087CFA]"
+                        : "text-gray-700 hover:bg-gray-100 hover:text-[#087CFA]"
                     )}
-                    onClick={() => setIsMenuOpen(false)}
+                    onClick={handleMenuItemClick}
                   >
                     {item.name}
                   </Link>
@@ -336,7 +575,7 @@ export default function Header() {
               </div>
             ))}
           </div>
-          <div className="border-t border-[#3C3F41] pb-3 pt-4">
+          <div className="border-t border-gray-200 pb-3 pt-4">
             <div className="flex items-center justify-between px-4">
               <Button 
                 variant="outline" 
@@ -345,22 +584,22 @@ export default function Header() {
                 {t('buttons.signIn')}
               </Button>
               <Button 
-                className="w-full ml-2 jetbrains-button bg-[#21D789] hover:bg-[#21D789]/90 text-white"
+                className="w-full ml-2 jetbrains-button bg-[#087CFA] hover:bg-[#0066cc] text-white"
               >
                 {t('buttons.getStarted')}
               </Button>
             </div>
             
             <div className="mt-3 flex justify-center space-x-4 px-4">
-              <button className="p-2 rounded-full text-gray-200 hover:bg-[#3C3F41]">
+              <button className="p-2 rounded-full text-gray-700 hover:bg-gray-100">
                 <Search className="h-5 w-5" />
               </button>
               <div className="flex items-center space-x-2">
                 <button
                   onClick={() => handleLanguageChange('en')}
                   className={cn(
-                    "px-3 py-1 text-sm rounded-md hover:bg-[#3C3F41]",
-                    locale === 'en' ? "text-[#21D789] font-medium" : "text-gray-200"
+                    "px-3 py-1 text-sm rounded-md hover:bg-gray-100",
+                    locale === 'en' ? "text-[#087CFA] font-medium" : "text-gray-700"
                   )}
                 >
                   English
@@ -368,8 +607,8 @@ export default function Header() {
                 <button
                   onClick={() => handleLanguageChange('zh')}
                   className={cn(
-                    "px-3 py-1 text-sm rounded-md hover:bg-[#3C3F41]",
-                    locale === 'zh' ? "text-[#21D789] font-medium" : "text-gray-200"
+                    "px-3 py-1 text-sm rounded-md hover:bg-gray-100",
+                    locale === 'zh' ? "text-[#087CFA] font-medium" : "text-gray-700"
                   )}
                 >
                   中文
