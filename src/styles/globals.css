@@ -418,3 +418,28 @@ input:focus, textarea:focus, select:focus {
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
   font-weight: 500;
 } 
+
+/* 导航栏渐变效果 */
+.navbar-gradient {
+  background: linear-gradient(135deg, rgba(22, 125, 255, 0.1) 0%, rgba(255, 255, 255, 0) 100%);
+  backdrop-filter: blur(8px);
+  transition: background 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* 增强3D卡片效果 */
+.jetbrains-card {
+  transform: translateZ(0);
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.2s ease;
+}
+
+.jetbrains-card:hover {
+  transform: translateZ(10px);
+  box-shadow: 0 12px 24px rgba(22, 125, 255, 0.1);
+}
+
+@media (max-width: 640px) {
+  .jetbrains-card:hover {
+    transform: none;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+}
