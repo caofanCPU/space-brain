@@ -96,6 +96,64 @@
   - 桌面端：显示完整3D效果
   - 移动端：简化悬停动效
 
+### 4.7 下拉菜单
+#### 结构分层
+1. 一级菜单（主导航项）：
+   - 高度：56px
+   - 激活状态：底部3px品牌色边框
+   - 文字间距：0.5px字距
+
+2. 二级面板（浮动层）：
+   - 尺寸：最小宽度320px，高度自适应
+   - 定位：距顶部8px偏移，左侧对齐主菜单项
+   - 边框：1px solid hsl(var(--border))，4px圆角
+   - 投影：0 12px 24px rgba(0, 0, 0, 0.08)
+
+#### 动态效果
+```css
+/* 展开动画 */
+@keyframes menuSlide {
+  0% { 
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.menu-panel {
+  animation: menuSlide 0.2s cubic-bezier(0.23, 1, 0.32, 1);
+  transition: opacity 0.1s, transform 0.2s;
+}
+```
+
+#### 内容布局
+- 网格系统：采用4列布局（示例）：
+  ```html
+  <div class="grid grid-cols-4 gap-8 p-6">
+    <div class="space-y-4">
+      <h3 class="text-sm font-semibold tracking-wide">开发者工具</h3>
+      <!-- 子菜单项 -->
+    </div>
+  </div>
+  ```
+- 图标规范：
+  - 尺寸：20x20px（主图标），16x16px（辅助图标）
+  - 颜色：hsl(var(--muted-foreground))
+
+#### 交互逻辑
+- 悬停延迟：300ms后展开二级菜单
+- 失焦关闭：失去焦点后150ms渐隐
+- 键盘导航：支持方向键切换焦点项
+
+#### 响应式处理
+- 移动端：
+  - 转换为全屏覆盖式菜单
+  - 增加背景遮罩（rgba(0,0,0,0.4)）
+  - 滑动关闭交互
+
 ### 4.4 表单元素
 - 简洁的输入框设计
 - 明确的焦点状态

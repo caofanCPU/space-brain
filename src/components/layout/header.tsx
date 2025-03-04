@@ -13,7 +13,7 @@ import { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useTranslations } from 'next-intl';
-import { Menu, X, ChevronDown, Search, User, Globe } from 'lucide-react';
+import { Menu, X, ChevronDown, Search, User, Globe, ChevronRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 import { locales } from '@/i18n';
@@ -151,20 +151,23 @@ export default function Header() {
                     {/* 下拉菜单 */}
                     <div 
                       className={cn(
-                        "absolute left-0 mt-1 w-48 rounded-md bg-[#2B2B2B] shadow-lg ring-1 ring-black ring-opacity-5 transition-all duration-200 origin-top-left",
-                        activeDropdown === item.name 
-                          ? "opacity-100 scale-100" 
-                          : "opacity-0 scale-95 pointer-events-none"
-                      )}
-                    >
-                      <div className="py-1">
+                          "absolute left-0 mt-1 w-48 rounded-md bg-[#2B2B2B] shadow-lg ring-1 ring-black ring-opacity-5 transition-all duration-200 origin-top-left",
+                          "border border-[#3C3F41]",
+                          activeDropdown === item.name 
+                            ? "opacity-100 scale-100" 
+                            : "opacity-0 scale-95 pointer-events-none"
+                        )}>
+                        <div className="py-1 grid grid-cols-2 gap-2">
                         {item.items?.map((subItem) => (
                           <Link
                             key={subItem.name}
                             href={subItem.href}
-                            className="block px-4 py-2 text-sm text-gray-200 hover:bg-[#3C3F41] hover:text-[#21D789]"
+                            className="group flex items-center px-4 py-2 text-sm hover:bg-[#3C3F41] transition-colors duration-150"
                           >
-                            {subItem.name}
+                            <span className="text-gray-200 group-hover:text-[#21D789] transition-colors">
+                              {subItem.name}
+                            </span>
+                            <ChevronRight className="ml-auto h-4 w-4 text-[#21D789] opacity-0 group-hover:opacity-100 transition-opacity" />
                           </Link>
                         ))}
                       </div>
@@ -378,4 +381,4 @@ export default function Header() {
       )}
     </header>
   );
-} 
+}
