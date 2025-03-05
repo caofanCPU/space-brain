@@ -9,8 +9,7 @@
 
 import { getTranslations } from 'next-intl/server';
 import { Button } from '@/components/ui/button';
-import { Card, CardContent } from '@/components/ui/card';
-import { ArrowRight, Github, Linkedin, Twitter, Heart, Shield, Zap } from 'lucide-react';
+import { Github, Linkedin, Twitter, Heart, Shield, Zap } from 'lucide-react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { LucideIcon } from 'lucide-react';

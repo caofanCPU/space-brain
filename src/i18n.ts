@@ -17,12 +17,13 @@ export default getRequestConfig(async ({
 }) => {
   // 这通常对应于由中间件匹配的 [locale] 段
   let locale = await requestLocale;
-  
+
   // 确保传入的区域设置有效
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   if (!locale || !locales.includes(locale as any)) {
     locale = defaultLocale;
   }
-  
+
   return {
     locale,
     messages: (await import(`./messages/${locale}.json`)).default

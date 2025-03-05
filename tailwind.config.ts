@@ -1,5 +1,7 @@
-/** @type {import('tailwindcss').Config} */
-module.exports = {
+import type { Config } from "tailwindcss";
+import animate from "tailwindcss-animate";
+
+export default {
   darkMode: ["class"],
   content: [
     './src/pages/**/*.{js,ts,jsx,tsx,mdx}',
@@ -57,20 +59,20 @@ module.exports = {
       },
       keyframes: {
         "accordion-down": {
-          from: { height: 0 },
+          from: { height: "0" },
           to: { height: "var(--radix-accordion-content-height)" },
         },
         "accordion-up": {
           from: { height: "var(--radix-accordion-content-height)" },
-          to: { height: 0 },
+          to: { height: "0" },
         },
         "menuSlide": {
-          "0%": { 
-            opacity: 0,
+          "0%": {
+            opacity: "0",
             transform: "translateY(-10px)"
           },
           "100%": {
-            opacity: 1,
+            opacity: "1",
             transform: "translateY(0)"
           }
         }
@@ -82,5 +84,5 @@ module.exports = {
       },
     },
   },
-  plugins: [require("tailwindcss-animate")],
-} 
+  plugins: [animate],
+} satisfies Config;

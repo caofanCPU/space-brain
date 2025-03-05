@@ -7,15 +7,10 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { getTranslations } from 'next-intl/server';
 import { notFound } from 'next/navigation';
-import Image from 'next/image';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { ArrowRight, Download, Check } from 'lucide-react';
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { Badge } from '@/components/ui/badge';
 
 // 产品ID类型
 type ProductId = 'ide' | 'tools' | 'plugins';
@@ -25,18 +20,16 @@ function isValidProductId(id: string): id is ProductId {
   return ['ide', 'tools', 'plugins'].includes(id);
 }
 
-export default async function ProductPage({ 
-  params: { locale, productId } 
-}: { 
-  params: { locale: string; productId: string } 
+export default async function ProductPage({
+  params: { locale, productId }
+}: {
+  params: { locale: string; productId: string }
 }) {
   // 验证产品ID
   if (!isValidProductId(productId)) {
     notFound();
   }
 
-  const t = await getTranslations('products');
-  
   // 根据产品ID获取产品信息
   const productInfo = {
     ide: {

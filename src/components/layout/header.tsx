@@ -13,7 +13,7 @@ import { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useTranslations } from 'next-intl';
-import { Menu, X, ChevronDown, Search, User, Globe, ChevronRight } from 'lucide-react';
+import { Menu, X, ChevronDown, Search, Globe, ChevronRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 import { locales } from '@/i18n';

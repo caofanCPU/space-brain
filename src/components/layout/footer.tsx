@@ -12,7 +12,7 @@
 import Link from 'next/link';
 import { useTranslations } from 'next-intl';
 import { usePathname } from 'next/navigation';
-import { Github, Twitter, Linkedin, Facebook, Youtube, Instagram, Mail, ArrowRight } from 'lucide-react';
+import { Github, Twitter, Linkedin, Youtube, Instagram, ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 

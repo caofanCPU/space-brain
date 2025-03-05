@@ -10,7 +10,7 @@
 import { getTranslations } from 'next-intl/server';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Download, ArrowRight, Apple, MonitorIcon, TerminalIcon } from 'lucide-react';
+import { ArrowRight, Apple, MonitorIcon, TerminalIcon } from 'lucide-react';
 import Link from 'next/link';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Badge } from '@/components/ui/badge';
@@ -73,8 +73,6 @@ export default async function DownloadPage({ searchParams }: { searchParams: { p
       ]
     }
   };
-
-  const product = products[selectedProduct as keyof typeof products];
 
   return (
     <div className="container mx-auto py-12 space-y-12">
