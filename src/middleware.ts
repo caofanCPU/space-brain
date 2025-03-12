@@ -6,8 +6,8 @@ export default createMiddleware({
   locales,
   // 默认语言
   defaultLocale,
-  // 可选：如果访问不支持的语言路径，重定向到默认语言
-  localeDetection: true,
+  // 禁用自动语言检测，确保使用defaultLocale作为默认语言
+  localeDetection: false,
   // 设置为 'always'，确保所有路径都有语言前缀
   localePrefix: 'always'
 });

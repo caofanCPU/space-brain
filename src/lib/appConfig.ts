@@ -9,11 +9,17 @@
 
 export const appConfig = {
   i18n: {
-    locales: ['en', 'zh'] as const,
+    locales: ['en', 'zh', 'ko', 'ja', 'de', 'fr', 'zh-Hant', 'it'] as const,
     defaultLocale: 'en' as const,
     localeLabels: {
       en: 'English',
-      zh: '简体中文'
+      zh: '简体中文',
+      ko: '한국어',
+      ja: '日本語',
+      de: 'Deutsch',
+      fr: 'Français',
+      'zh-Hant': '繁體中文',
+      it: 'Italiano'
     },
     timeZone: 'America/New_York'
   }

@@ -1,6 +1,6 @@
 'use client';
 
-import { useRef, useState } from 'react';
+import { useRef, useState, useEffect } from 'react';
 import { Globe, ChevronDown } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { locales } from '@/i18n';
@@ -15,6 +15,22 @@ interface LanguageSwitcherProps {
 export function LanguageSwitcher({ currentLocale, isScrolled, onLanguageChange }: LanguageSwitcherProps) {
   const [isOpen, setIsOpen] = useState(false);
   const languageDropdownRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (languageDropdownRef.current && !languageDropdownRef.current.contains(event.target as Node)) {
+        setIsOpen(false);
+      }
+    };
+
+    if (isOpen) {
+      document.addEventListener('mousedown', handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [isOpen]);
 
   return (
     <div className="relative" ref={languageDropdownRef}>
@@ -48,7 +64,13 @@ export function LanguageSwitcher({ currentLocale, isScrolled, onLanguageChange }
           {locales.map((locale) => (
             <button
               key={locale}
-              onClick={() => onLanguageChange(locale)}
+              onClick={() => {
+                if (locale === currentLocale) {
+                  setIsOpen(false);
+                  return;
+                }
+                onLanguageChange(locale);
+              }}
               className={cn(
                 "block w-full text-left px-4 py-2 text-sm hover:bg-gray-100",
                 currentLocale === locale ? "text-[#087CFA] font-medium" : "text-gray-700"

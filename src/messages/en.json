@@ -100,6 +100,12 @@
       }
     }
   },
+  "languageDetection": {
+    "title": "Language Detection",
+    "description": "Would you like to switch to",
+    "close": "No, thanks",
+    "changeAction": "Yes, switch"
+  },
   "home": {
     "hero": {
       "title": "Intelligent Tools Platform for Developers",

@@ -10,7 +10,9 @@
     "lint": "eslint --fix . && next lint",
     "format": "prettier --write .",
     "postinstall": "prisma generate",
-    "check-translations": "ts-node --project tsconfig.node.json scripts/check-translations.ts"
+    "check-translations": "ts-node --project tsconfig.node.json scripts/check-translations.ts",
+    "clean-translations": "ts-node --project tsconfig.node.json scripts/clean-translations.ts",
+    "remove-translations": "ts-node --project tsconfig.node.json scripts/clean-translations.ts --remove"
   },
   "dependencies": {
     "@prisma/client": "^5.10.0",
