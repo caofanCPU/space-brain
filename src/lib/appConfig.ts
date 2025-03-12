@@ -21,7 +21,13 @@ export const appConfig = {
       'zh-Hant': '繁體中文',
       it: 'Italiano'
     },
-    timeZone: 'America/New_York'
+    timeZone: 'America/New_York',
+    detector: {
+      storageKey: 'language-preference-status',
+      autoCloseTimeout: 10000,
+      expirationDays: 30,
+      storagePrefix: 'space-brain'
+    }
   }
 };
 
