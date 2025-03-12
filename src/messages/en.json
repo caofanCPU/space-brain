@@ -20,6 +20,11 @@
       "signUp": "Sign Up",
       "contactUs": "Contact Us"
     },
+    "search": {
+      "placeholder": "Search all...",
+      "recentSearches": "Recent Searches ",
+      "searching": "Searching..."
+    },
     "footer": {
       "subscribeTitle": "Subscribe to our newsletter",
       "subscribeText": "Get the latest news and updates",
@@ -579,10 +584,7 @@
   "settings": {
     "title": "Account Settings",
     "subtitle": "Manage your account preferences",
-   
     "security": "Security",
-   
-   
     "saveChanges": "Save Changes",
     "personalInfo": "Personal Information",
     "name": "Name",

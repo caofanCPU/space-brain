@@ -20,6 +20,11 @@
       "signUp": "注册",
       "contactUs": "联系我们"
     },
+    "search": {
+      "placeholder": "搜索所有内容...",
+      "recentSearches": "最近搜索",
+      "searching": "正在搜索"
+    },
     "footer": {
       "subscribeTitle": "订阅我们",
       "subscribeText": "获取最新资讯和更新",
@@ -486,7 +491,7 @@
   "blog": {
     "title": "博客",
     "subtitle": "最新消息、更新和见解",
-    "categoriesName": "文章分类", 
+    "categoriesName": "文章分类",
     "readMore": "阅读更多",
     "readTime": "阅读时长",
     "loadMore": "加载更多",

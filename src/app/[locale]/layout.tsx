@@ -14,12 +14,13 @@ import { getMessages, getTranslations } from 'next-intl/server';
 
 import '@/styles/globals.css';
 import { locales } from '@/i18n';
+import { Locale } from '@/lib/appConfig';
 
 const inter = Inter({ subsets: ['latin'] });
 
 export async function generateMetadata({ params: { locale } }: { params: { locale: string } }) {
   const t = await getTranslations({ locale, namespace: 'common' });
-  
+
   return {
     title: {
       default: t('appName'),
@@ -34,7 +35,7 @@ export default async function RootLayout({
   params: { locale },
 }: {
   children: React.ReactNode;
-  params: { locale: string };
+  params: { locale: Locale };
 }) {
   // Validate that the incoming `locale` parameter is valid
   if (!locales.includes(locale)) notFound();

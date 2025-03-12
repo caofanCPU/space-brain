@@ -160,19 +160,19 @@ export default function BlogPage() {
   const t = useTranslations('blog');
   const searchParams = useSearchParams();
   const categoryParam = searchParams.get('category') || 'allPosts';
-  
+
   const [posts] = useState<BlogPost[]>(getBlogPosts());
   const [categories] = useState<Category[]>(getCategories());
   const [selectedCategory, setSelectedCategory] = useState<string>(categoryParam);
-  
+
   // 根据选中的分类过滤文章
-  const filteredPosts = selectedCategory === 'allPosts' 
-    ? posts 
+  const filteredPosts = selectedCategory === 'allPosts'
+    ? posts
     : posts.filter(post => post.category === selectedCategory);
 
   // 获取特色文章，并确保它存在
   const featuredPost = posts.find(post => post.featured) || posts[0];
-  
+
   // 获取最近的文章
   const recentPosts = [...posts]
     .sort((a, b) => new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime())
@@ -201,7 +201,7 @@ export default function BlogPage() {
             className="w-full pl-10 pr-4 py-3 border rounded-md"
           />
         </div>
-        
+
         <div className="flex flex-wrap justify-center gap-2 mt-6">
           <Button
             variant={selectedCategory === 'allPosts' ? 'default' : 'outline'}
@@ -236,6 +236,7 @@ export default function BlogPage() {
                 fill
                 sizes="100vw"
                 className="object-cover"
+                priority
               />
             </div>
             <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent flex flex-col justify-end p-6 md:p-10 text-white">
@@ -251,6 +252,7 @@ export default function BlogPage() {
                       fill
                       sizes="40px"
                       className="object-cover"
+                      priority
                     />
                   </div>
                   <span>{featuredPost.author.name}</span>
@@ -280,6 +282,7 @@ export default function BlogPage() {
                       fill
                       sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                       className="object-cover transition-transform duration-300 group-hover:scale-105"
+                      priority
                     />
                   </div>
                   <div className="p-4 flex-grow flex flex-col">
@@ -295,6 +298,7 @@ export default function BlogPage() {
                             fill
                             sizes="32px"
                             className="object-cover"
+                            priority
                           />
                         </div>
                         <span className="text-sm">{post.author.name}</span>
@@ -331,6 +335,7 @@ export default function BlogPage() {
                       fill
                       sizes="80px"
                       className="object-cover"
+                      priority
                     />
                   </div>
                   <div className="flex-1">

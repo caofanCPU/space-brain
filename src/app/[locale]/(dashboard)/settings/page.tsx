@@ -141,9 +141,10 @@ export default async function SettingsPage() {
                 <div className="space-y-2">
                   <label className="text-sm font-medium">{t('profile.preferences.timezoneLabel')}</label>
                   <select className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50">
-                    <option value="Asia/Shanghai">Asia/Shanghai (GMT+8)</option>
                     <option value="America/New_York">America/New_York (GMT-5)</option>
-                    <option value="Europe/London">Europe/London (GMT+0)</option>
+                    <option value="America/Los_Angeles">America/Los_Angeles (GMT-8)</option>
+                    <option value="America/Chicago">America/Chicago (GMT-6)</option>
+                    <option value="America/Denver">America/Denver (GMT-7)</option>
                   </select>
                 </div>
               </CardContent>
@@ -440,4 +441,4 @@ export default async function SettingsPage() {
       </Tabs>
     </div>
   );
-} 
+}

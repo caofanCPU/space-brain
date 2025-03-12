@@ -9,23 +9,16 @@
 
 import { getRequestConfig } from 'next-intl/server';
 
-export const locales = ['en', 'zh'];
-export const defaultLocale = 'zh';
+import { appConfig, validateLocale } from '@/lib/appConfig';
 
-export default getRequestConfig(async ({
-  requestLocale
-}) => {
-  // 这通常对应于由中间件匹配的 [locale] 段
-  let locale = await requestLocale;
+export const locales = appConfig.i18n.locales;
+export const defaultLocale = appConfig.i18n.defaultLocale;
 
-  // 确保传入的区域设置有效
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  if (!locale || !locales.includes(locale as any)) {
-    locale = defaultLocale;
-  }
-
+export default getRequestConfig(async ({ locale }) => {
+  const validLocale = validateLocale(locale);
   return {
-    locale,
-    messages: (await import(`./messages/${locale}.json`)).default
+    locale: validLocale,
+    messages: (await import(`./messages/${validLocale}.json`)).default,
+    timeZone: appConfig.i18n.timeZone
   };
 });

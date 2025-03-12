@@ -13,6 +13,8 @@ export default createMiddleware({
 });
 
 export const config = {
-  // 匹配所有路径，但排除静态资源、API路由和已有语言前缀的路径
-  matcher: ['/((?!api|_next|.*\\..*|zh|en).*)']
-}; 
+  // 匹配所有路径，但排除静态资源和API路由
+  matcher: [
+    "/((?!api|_next|.*\\..*).*)"
+  ],
+};
