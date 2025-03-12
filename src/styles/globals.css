@@ -653,10 +653,6 @@ input:focus, textarea:focus, select:focus {
   pointer-events: auto;
 }
 
-.jetbrains-menu-item:active + .jetbrains-dropdown {
-  /* 移除可能导致问题的样式 */
-}
-
 .jetbrains-menu-item:hover {
   background-color: #f4f4f4;
 }
@@ -704,6 +700,7 @@ input:focus, textarea:focus, select:focus {
   line-height: 1.3;
   display: -webkit-box;
   -webkit-line-clamp: 2;
+  line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
   height: 32px; /* 固定描述文本高度 */
@@ -821,4 +818,190 @@ input:focus, textarea:focus, select:focus {
   .jetbrains-dropdown-section:last-child {
     border-bottom: none;
   }
+}
+
+/* 博客分类标签样式 */
+.blog-category-badge {
+  @apply text-sm font-medium text-white;
+  background: linear-gradient(135deg, #6B57FF 0%, #8A7CFF 50%, #6B57FF 100%);
+  background-size: 200% 100%;
+  animation: gradientFlow 3s linear infinite;
+  transition: all 0.3s ease;
+}
+
+.blog-category-badge:hover {
+  background: linear-gradient(135deg, #7B67FF 0%, #9A8CFF 50%, #7B67FF 100%);
+  transform: translateY(-1px);
+}
+
+@keyframes gradientFlow {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* 代码块容器 */
+.code-block-wrapper {
+  @apply relative my-6 rounded-lg overflow-hidden;
+  background: #2B2B2B; /* JetBrains Dark主题背景色 */
+}
+
+/* 代码块顶部栏 */
+.code-block-header {
+  @apply flex items-center justify-between px-4 py-2;
+  background: #3C3F41; /* JetBrains Dark主题稍亮的背景色 */
+  border-bottom: 1px solid #323232;
+}
+
+/* 语言标识徽章 */
+.code-block-language {
+  @apply px-2 py-1 rounded text-xs font-mono font-medium;
+  background: linear-gradient(135deg, #6B57FF 0%, #8A7CFF 100%);
+  color: white;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+/* 代码块工具栏 */
+.code-block-toolbar {
+  @apply flex items-center gap-2;
+}
+
+/* 复制按钮 */
+.code-block-copy-button {
+  @apply p-1 rounded-md transition-colors duration-200;
+  background: rgba(255, 255, 255, 0.1);
+  color: #A9B7C6;
+}
+
+.code-block-copy-button:hover {
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+}
+
+/* 代码内容区域 */
+.code-block-content {
+  @apply p-4 overflow-x-auto;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+/* 行号样式 */
+.code-block-line-numbers {
+  @apply absolute left-0 top-0 bottom-0 w-12 flex flex-col items-end pr-3 pt-4 select-none;
+  background: rgba(0, 0, 0, 0.2);
+  color: #606366;
+  border-right: 1px solid #323232;
+}
+
+.code-block-line-number {
+  @apply text-xs leading-6;
+}
+
+/* 代码内容 */
+.code-block-main {
+  @apply pl-16; /* 为行号留出空间 */
+}
+
+/* 语法高亮 - JetBrains Darcula主题风格 */
+.token.comment,
+.token.prolog,
+.token.doctype,
+.token.cdata {
+  color: #808080;
+  font-style: italic;
+}
+
+.token.function {
+  color: #FFC66D;
+}
+
+.token.keyword {
+  color: #CC7832;
+}
+
+.token.string {
+  color: #6A8759;
+}
+
+.token.number {
+  color: #6897BB;
+}
+
+.token.boolean {
+  color: #CC7832;
+}
+
+.token.constant {
+  color: #9876AA;
+}
+
+.token.class-name {
+  color: #A9B7C6;
+}
+
+.token.operator {
+  color: #A9B7C6;
+}
+
+.token.punctuation {
+  color: #A9B7C6;
+}
+
+.token.property {
+  color: #9876AA;
+}
+
+.token.parameter {
+  color: #A9B7C6;
+}
+
+/* 代码块悬停效果 */
+.code-block-wrapper:hover .code-block-line-numbers {
+  color: #808080;
+}
+
+/* 选中效果 */
+.code-block-content ::selection {
+  background: rgba(106, 135, 89, 0.4);
+}
+
+/* 滚动条样式 */
+.code-block-content::-webkit-scrollbar {
+  height: 8px;
+}
+
+.code-block-content::-webkit-scrollbar-track {
+  background: #2B2B2B;
+}
+
+.code-block-content::-webkit-scrollbar-thumb {
+  background: #3C3F41;
+  border-radius: 4px;
+}
+
+.code-block-content::-webkit-scrollbar-thumb:hover {
+  background: #4E5254;
+}
+
+/* 代码块动画效果 */
+@keyframes codeBlockFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.code-block-wrapper {
+  animation: codeBlockFadeIn 0.3s ease-out;
 }

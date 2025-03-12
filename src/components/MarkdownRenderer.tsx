@@ -10,14 +10,10 @@ import rehypePrism from 'rehype-prism';
 import mermaid from 'mermaid';
 import 'katex/dist/katex.min.css';
 import 'prismjs/themes/prism-tomorrow.css';
+import { mdComponents, CodeBlockProps } from './MdCoder';
 
 // 定义代码组件的props类型
-type CodeProps = {
-  inline?: boolean;
-  className?: string;
-  children?: React.ReactNode;
-  style?: React.CSSProperties;
-};
+type CodeProps = CodeBlockProps;
 
 // 定义标题结构
 export interface TableOfContents {
@@ -46,9 +42,9 @@ const removeEmoji = (text: string): string => {
 // 辅助函数：移除数学公式
 const removeMathFormula = (text: string): string => {
   // 移除行内公式 $...$
-  text = text.replace(/\$([^\$]+)\$/g, '');
+  text = text.replace(/\$([^$]+)\$/g, '');
   // 移除块级公式 $$...$$
-  text = text.replace(/\$\$([^\$]+)\$\$/g, '');
+  text = text.replace(/\$\$([^$]+)\$\$/g, '');
   return text;
 };
 
@@ -60,7 +56,7 @@ const generateValidId = (text: string): string => {
   }
 
   // 预处理文本
-  let processedText = text
+  const processedText = text
     .trim()
     // 移除 emoji
     .pipe(removeEmoji)
@@ -196,8 +192,10 @@ export function MarkdownRenderer({ content, onTocChange }: {
   }, [isMounted, content]);
 
   const components: Partial<Components> = {
-    code: ({ inline, className, children, ...props }: CodeProps) => {
-      const match = /language-(\w+)/.exec(className || '');
+    ...mdComponents,
+    // 保留mermaid相关的特殊处理
+    code: (props: CodeProps) => {
+      const match = /language-(\w+)/.exec(props.className || '');
       const lang = match ? match[1] : '';
       
       if (lang === 'mermaid') {
@@ -207,32 +205,17 @@ export function MarkdownRenderer({ content, onTocChange }: {
               ref={mermaidRef}
               className="mermaid bg-card dark:bg-card rounded-lg p-6"
             >
-              {String(children).replace(/\n$/, '')}
+              {String(props.children || '').replace(/\n$/, '')}
             </div>
           </div>
         );
       }
       
-      if (inline) {
-        return (
-          <code className="bg-muted px-1.5 py-0.5 rounded text-sm font-jetbrains" {...props}>
-            {children}
-          </code>
-        );
-      }
-
-      // 保持与服务端一致的 className
-      const finalClassName = [
-        'font-jetbrains',
-        'text-sm',
-        className
-      ].filter(Boolean).join(' ');
-
-      return (
-        <pre className="rounded-lg bg-muted p-4">
-          <code className={finalClassName}>{children}</code>
-        </pre>
-      );
+      // 使用新的代码块组件，确保所有属性都传递
+      return mdComponents.code?.({
+        ...props,
+        children: props.children || ''
+      });
     },
     // 修改标题组件处理，添加原始文本保存
     h1: ({ children }) => {

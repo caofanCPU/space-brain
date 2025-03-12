@@ -2,7 +2,6 @@ import fs from 'fs/promises';
 import path from 'path';
 import { notFound } from 'next/navigation';
 import BlogPostClient from './BlogPostClient';
-import Image from 'next/image';
 
 async function getBlogPost(slug: string, locale: string) {
   try {
