@@ -10,10 +10,7 @@ import rehypePrism from 'rehype-prism';
 import mermaid from 'mermaid';
 import 'katex/dist/katex.min.css';
 import 'prismjs/themes/prism-tomorrow.css';
-import { mdComponents, CodeBlockProps } from './MdCoder';
-
-// 定义代码组件的props类型
-type CodeProps = CodeBlockProps;
+import { mdComponents, CodeBlockProps } from '@/components/MdCoder';
 
 // 定义标题结构
 export interface TableOfContents {
@@ -83,7 +80,7 @@ const generateValidId = (text: string): string => {
 
   // 获取当前ID的计数
   const count = idCountMap.get(baseId) || 0;
-  
+
   // 生成最终ID，不再添加额外的连字符
   const finalId = count === 0 ? baseId : `${baseId}${count}`;
 
@@ -91,7 +88,7 @@ const generateValidId = (text: string): string => {
   idCountMap.set(baseId, count + 1);
 
   // 打印生成的ID信息用于调试
-  console.log('Generated ID:', { text, baseId, finalId });
+  // console.log('Generated ID:', { text, baseId, finalId });
 
   return finalId;
 };
@@ -103,11 +100,11 @@ declare global {
   }
 }
 
-String.prototype.pipe = function(fn) {
+String.prototype.pipe = function (fn) {
   return fn(this.toString());
 };
 
-export function MarkdownRenderer({ content, onTocChange }: { 
+export function MarkdownRenderer({ content, onTocChange }: {
   content: string;
   onTocChange?: (toc: TableOfContents[]) => void;
 }) {
@@ -126,11 +123,11 @@ export function MarkdownRenderer({ content, onTocChange }: {
 
     // 更新处理的内容标记
     processedRef.current = content;
-    
+
     // 重置ID映射
     headingIdsRef.current.clear();
     idCountMap.clear();
-    
+
     const headingRegex = /^(#{1,6})\s+(.+)$/gm;
     const headings: TableOfContents[] = [];
     let match;
@@ -149,10 +146,10 @@ export function MarkdownRenderer({ content, onTocChange }: {
 
     // 缓存结果
     headingsRef.current = headings;
-    
+
     // 只在内容真正变化时才触发回调
     onTocChange?.(headings);
-    
+
     return headings;
   }, [onTocChange]);
 
@@ -192,16 +189,42 @@ export function MarkdownRenderer({ content, onTocChange }: {
   }, [isMounted, content]);
 
   const components: Partial<Components> = {
-    ...mdComponents,
-    // 保留mermaid相关的特殊处理
-    code: (props: CodeProps) => {
+    // 不要直接展开 mdComponents，而是有选择地使用其中的组件
+    // ...mdComponents,
+
+    // 自定义代码处理逻辑
+    code: (props: CodeBlockProps & {
+      node?: {
+        tagName?: string;
+        position?: {
+          start: { line: number };
+          end: { line: number }
+        }
+      }
+    }) => {
+      // 通过检查 node 属性来确定是否为行内代码
+      const isInlineCode = props.inline === true ||
+        (props.node && props.node.tagName === 'code' &&
+          props.node.position &&
+          props.node.position.start.line === props.node.position.end.line);
+
+      // 如果是行内代码，直接返回简单的 code 标签
+      if (isInlineCode) {
+        return (
+          <code className="bg-muted px-1.5 py-0.5 rounded text-sm font-jetbrains">
+            {props.children}
+          </code>
+        );
+      }
+
+      // 如果是 mermaid 代码块
       const match = /language-(\w+)/.exec(props.className || '');
       const lang = match ? match[1] : '';
-      
+
       if (lang === 'mermaid') {
         return (
           <div className="my-8">
-            <div 
+            <div
               ref={mermaidRef}
               className="mermaid bg-card dark:bg-card rounded-lg p-6"
             >
@@ -210,14 +233,15 @@ export function MarkdownRenderer({ content, onTocChange }: {
           </div>
         );
       }
-      
-      // 使用新的代码块组件，确保所有属性都传递
+
+      // 对于其他代码块，使用 MdCoder 中的 CodeBlock 组件
       return mdComponents.code?.({
         ...props,
         children: props.children || ''
       });
     },
-    // 修改标题组件处理，添加原始文本保存
+
+    // 标题组件处理，添加原始文本保存
     h1: ({ children }) => {
       const text = String(children).trim();
       const id = getHeadingId(text);
@@ -257,4 +281,4 @@ export function MarkdownRenderer({ content, onTocChange }: {
       </ReactMarkdown>
     </div>
   );
-} 
+}

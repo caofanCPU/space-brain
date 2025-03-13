@@ -11,18 +11,8 @@ export interface CodeBlockProps {
 }
 
 // 代码块组件
-const CodeBlock = ({ children = '', className, inline = false, style }: CodeBlockProps) => {
+const CodeBlock = ({ children = '', className, style }: CodeBlockProps) => {
   const [copied, setCopied] = useState(false);
-  
-  // 如果是内联代码，使用简单的code标签
-  if (inline) {
-    return (
-      <code className="bg-muted px-1.5 py-0.5 rounded text-sm font-jetbrains" style={style}>
-        {children}
-      </code>
-    );
-  }
-
   const match = /language-(\w+)/.exec(className || '');
   const language = match ? match[1] : 'plaintext';
   const codeString = String(children).replace(/\n$/, '');
@@ -33,52 +23,52 @@ const CodeBlock = ({ children = '', className, inline = false, style }: CodeBloc
     setTimeout(() => setCopied(false), 2000);
   };
 
+  // 修改返回结构，使用 pre 作为最外层元素，避免在 p 标签内嵌套 div
   return (
-    <div className="code-block-wrapper group">
-      <div className="code-block-header">
-        <span className="code-block-language">
+    <pre className="relative my-4 rounded-lg overflow-hidden">
+      {/* 语言标签和复制按钮 */}
+      <div className="absolute top-2 right-2 flex items-center gap-2 z-10">
+        <span className="text-xs font-medium bg-muted/80 px-2 py-1 rounded">
           {language}
         </span>
-        <div className="code-block-toolbar">
-          <button
-            onClick={copyCode}
-            className="code-block-copy-button"
-            title="复制代码"
-            aria-label="复制代码"
-          >
-            {copied ? <Check size={16} /> : <Copy size={16} />}
-          </button>
-        </div>
-      </div>
-      <div className="code-block-content relative">
-        <SyntaxHighlighter
-          language={language}
-          style={oneDark}
-          showLineNumbers
-          wrapLines
-          customStyle={{
-            margin: 0,
-            background: 'transparent',
-            padding: '1rem 0',
-            ...style
-          }}
-          lineNumberStyle={{
-            minWidth: '2.5em',
-            paddingRight: '1em',
-            color: '#606366',
-            textAlign: 'right',
-          }}
-          codeTagProps={{
-            className: 'font-jetbrains text-sm',
-          }}
+        <button
+          onClick={copyCode}
+          className="p-1 rounded bg-muted/80 hover:bg-muted transition-colors"
+          title="复制代码"
+          aria-label="复制代码"
         >
-          {codeString}
-        </SyntaxHighlighter>
+          {copied ? <Check size={16} /> : <Copy size={16} />}
+        </button>
       </div>
-    </div>
+
+      {/* 代码高亮 */}
+      <SyntaxHighlighter
+        language={language}
+        style={oneDark}
+        showLineNumbers
+        wrapLines
+        customStyle={{
+          margin: 0,
+          background: 'transparent',
+          padding: '2rem 0 1rem',
+          ...style
+        }}
+        lineNumberStyle={{
+          minWidth: '2.5em',
+          paddingRight: '1em',
+          color: '#606366',
+          textAlign: 'right',
+        }}
+        codeTagProps={{
+          className: 'font-jetbrains text-sm',
+        }}
+      >
+        {codeString}
+      </SyntaxHighlighter>
+    </pre>
   );
 };
 
 export const mdComponents = {
   code: CodeBlock,
-}; 
+};
