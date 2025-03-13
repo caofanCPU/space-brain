@@ -1,7 +1,7 @@
-=== Markdown Metadata Check Log (2025-03-13T10:10:12.952Z) ===
+=== Markdown Metadata Check Log (2025-03-13T13:04:54.983Z) ===
 
 === Validation Summary ===
-Total Files Processed: 12
+Total Files Processed: 14
 Files with Image Issues: 11
 Files with Tag Issues: 10
 
@@ -40,44 +40,48 @@ Tag Issues in:
   ⚠️ [en::代码生成规则]::Post image not found: /images/code-rules.webp
 
 === Processing [en::space-ide-2-5-release] ===
-  ⚠️ Invalid tags replaced: development -> insights, troubleshooting -> roadOverSea
+
+=== Processing [en::markdown-module] ===
+  ⚠️ Invalid tags replaced: development -> insights, troubleshooting -> makeMoney
 
 === Processing [en::AI编辑器问题集锦] ===
-  ⚠️ Invalid tags replaced: development -> makeMoney, architecture -> tutorials
+  ⚠️ Invalid tags replaced: development -> productUpdates, architecture -> tutorials
 
 === Processing [en::code-architecture] ===
-  ⚠️ Invalid tags replaced: product -> productUpdates, design -> tutorials
+  ⚠️ Invalid tags replaced: product -> roadOverSea, design -> makeMoney
 
 === Processing [en::product-design] ===
-  ⚠️ Invalid tags replaced: design -> insights, documentation -> roadOverSea
+  ⚠️ Invalid tags replaced: design -> makeMoney, documentation -> productUpdates
 
 === Processing [en::ui-design] ===
-  ⚠️ Invalid tags replaced: development -> productUpdates, guidelines -> tutorials
+  ⚠️ Invalid tags replaced: development -> productUpdates, guidelines -> roadOverSea
 
 === Processing [en::代码生成规则] ===
 
 === Processing locale: zh ===
+  ⚠️ [zh::space-ide-2-5-release]::Post image not configured
   ⚠️ [zh::AI编辑器问题集锦]::Post image not found: /images/troubleshooting.webp
   ⚠️ [zh::code-architecture]::Post image not found: /images/code-architecture.webp
   ⚠️ [zh::product-design]::Post image not found: /images/product-design.webp
   ⚠️ [zh::ui-design]::Post image not found: /images/ui-design.webp
-  ⚠️ [zh::space-ide-2-5-release]::Post image not configured
   ⚠️ [zh::代码生成规则]::Post image not found: /images/code-rules.webp
+
+=== Processing [zh::markdown-module] ===
+
+=== Processing [zh::space-ide-2-5-release] ===
   ⚠️ Too many tags (6), limiting to 5
 
 === Processing [zh::AI编辑器问题集锦] ===
-  ⚠️ Invalid tags replaced: development -> productUpdates, architecture -> tutorials
+  ⚠️ Invalid tags replaced: development -> roadOverSea, architecture -> makeMoney
 
 === Processing [zh::code-architecture] ===
   ⚠️ Invalid tags replaced: product -> makeMoney, design -> tutorials
 
 === Processing [zh::product-design] ===
-  ⚠️ Invalid tags replaced: design -> roadOverSea, documentation -> tutorials
+  ⚠️ Invalid tags replaced: design -> productUpdates, documentation -> tutorials
 
 === Processing [zh::ui-design] ===
-
-=== Processing [zh::space-ide-2-5-release] ===
-  ⚠️ Invalid tags replaced: development -> roadOverSea, guidelines -> productUpdates
+  ⚠️ Invalid tags replaced: development -> insights, guidelines -> roadOverSea
 
 === Processing [zh::代码生成规则] ===
 

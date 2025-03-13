@@ -10,7 +10,7 @@ author:
 publishedAt: "2024-01-22"
 readTime: "15 min"
 imageUrl: "/images/code-architecture.webp"
-featured: true
+featured: false
 ---
 
 # Space-Brain 代码架构设计文档

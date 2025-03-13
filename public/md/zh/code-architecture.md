@@ -10,7 +10,7 @@ author:
 publishedAt: "2024-01-22"
 readTime: "15 min"
 imageUrl: "/images/code-architecture.webp"
-featured: true
+featured: false
 ---
 
 # Space-Brain 代码架构设计文档
@@ -36,7 +36,9 @@ featured: true
 - **代码规范**: ESLint, Prettier
 - **测试**: Jest, React Testing Library
 
-## 2. 项目结构 
+## 2. 项目结构
+
+```plaintext 
 space-brain/
 ├── .github/ # GitHub 工作流配置
 ├── docs/ # 项目文档
@@ -74,6 +76,7 @@ space-brain/
 ├── postcss.config.js # PostCSS 配置
 ├── tailwind.config.js # Tailwind CSS 配置
 └── tsconfig.json # TypeScript 配置
+```
 
 ## 3. 核心模块设计
 

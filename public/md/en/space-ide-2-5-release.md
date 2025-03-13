@@ -10,7 +10,7 @@ author:
 publishedAt: "2024-01-20"
 readTime: "5 min"
 imageUrl: "/images/case-study.webp"
-featured: true
+featured: false
 ---
 
 # Wonderful Markdown🍎🍏🍎🍏🍺🍎🍏🍎🍏🍺
