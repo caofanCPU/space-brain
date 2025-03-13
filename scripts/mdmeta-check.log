@@ -1,4 +1,4 @@
-=== Markdown Metadata Check Log (2025-03-13T13:04:54.983Z) ===
+=== Markdown Metadata Check Log (2025-03-13T17:29:11.542Z) ===
 
 === Validation Summary ===
 Total Files Processed: 14
@@ -39,22 +39,22 @@ Tag Issues in:
   ⚠️ [en::ui-design]::Post image not found: /images/ui-design.webp
   ⚠️ [en::代码生成规则]::Post image not found: /images/code-rules.webp
 
-=== Processing [en::space-ide-2-5-release] ===
-
 === Processing [en::markdown-module] ===
-  ⚠️ Invalid tags replaced: development -> insights, troubleshooting -> makeMoney
+
+=== Processing [en::space-ide-2-5-release] ===
+  ⚠️ Invalid tags replaced: development -> insights, troubleshooting -> productUpdates
 
 === Processing [en::AI编辑器问题集锦] ===
-  ⚠️ Invalid tags replaced: development -> productUpdates, architecture -> tutorials
+  ⚠️ Invalid tags replaced: development -> productUpdates, architecture -> insights
 
 === Processing [en::code-architecture] ===
-  ⚠️ Invalid tags replaced: product -> roadOverSea, design -> makeMoney
+  ⚠️ Invalid tags replaced: product -> roadOverSea, design -> insights
 
 === Processing [en::product-design] ===
-  ⚠️ Invalid tags replaced: design -> makeMoney, documentation -> productUpdates
+  ⚠️ Invalid tags replaced: design -> roadOverSea, documentation -> makeMoney
 
 === Processing [en::ui-design] ===
-  ⚠️ Invalid tags replaced: development -> productUpdates, guidelines -> roadOverSea
+  ⚠️ Invalid tags replaced: development -> tutorials, guidelines -> productUpdates
 
 === Processing [en::代码生成规则] ===
 
@@ -72,16 +72,16 @@ Tag Issues in:
   ⚠️ Too many tags (6), limiting to 5
 
 === Processing [zh::AI编辑器问题集锦] ===
-  ⚠️ Invalid tags replaced: development -> roadOverSea, architecture -> makeMoney
+  ⚠️ Invalid tags replaced: development -> productUpdates, architecture -> tutorials
 
 === Processing [zh::code-architecture] ===
-  ⚠️ Invalid tags replaced: product -> makeMoney, design -> tutorials
+  ⚠️ Invalid tags replaced: product -> productUpdates, design -> insights
 
 === Processing [zh::product-design] ===
-  ⚠️ Invalid tags replaced: design -> productUpdates, documentation -> tutorials
+  ⚠️ Invalid tags replaced: design -> roadOverSea, documentation -> makeMoney
 
 === Processing [zh::ui-design] ===
-  ⚠️ Invalid tags replaced: development -> insights, guidelines -> roadOverSea
+  ⚠️ Invalid tags replaced: development -> insights, guidelines -> productUpdates
 
 === Processing [zh::代码生成规则] ===
 

@@ -34,8 +34,8 @@ const CodeBlock = ({ children = '', className, style }: CodeBlockProps) => {
         <button
           onClick={copyCode}
           className="p-1 rounded bg-muted/80 hover:bg-muted transition-colors"
-          title="复制代码"
-          aria-label="复制代码"
+          title="Copy"
+          aria-label="Copy"
         >
           {copied ? <Check size={16} /> : <Copy size={16} />}
         </button>

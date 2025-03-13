@@ -15,7 +15,7 @@
           "avatar": "/images/default.webp"
         },
         "publishedAt": "2024-03-13",
-        "readTime": "3 min",
+        "readTime": "4 min",
         "imageUrl": "/images/default.webp",
         "featured": true
       },
@@ -26,7 +26,7 @@
         "excerpt": "常见开发问题的解决方案集合，包括 ESLint 配置、国际化检查等实用技巧。",
         "tags": [
           "insights",
-          "makeMoney"
+          "productUpdates"
         ],
         "author": {
           "name": "帝八哥",
@@ -44,7 +44,7 @@
         "excerpt": "详细的技术架构设计，包括技术栈选型、项目结构、核心模块设计等完整开发指南。",
         "tags": [
           "productUpdates",
-          "tutorials"
+          "insights"
         ],
         "author": {
           "name": "帝八哥",
@@ -61,8 +61,8 @@
         "slug": "代码生成规则",
         "excerpt": "项目代码规范指南，包括项目架构、Git提交规范、LICENSE声明等开发标准。",
         "tags": [
-          "productUpdates",
-          "roadOverSea"
+          "tutorials",
+          "productUpdates"
         ],
         "author": {
           "name": "帝八哥",
@@ -80,7 +80,7 @@
         "excerpt": "Space-Brain 产品的完整设计方案，包括产品定位、目标用户、核心功能及路线图规划。",
         "tags": [
           "roadOverSea",
-          "makeMoney"
+          "insights"
         ],
         "author": {
           "name": "帝八哥",
@@ -97,8 +97,8 @@
         "slug": "ui-design",
         "excerpt": "详细的UI设计规范，包括设计原则、排版、组件库使用等完整指南。",
         "tags": [
-          "makeMoney",
-          "productUpdates"
+          "roadOverSea",
+          "makeMoney"
         ],
         "author": {
           "name": "帝八哥",
@@ -130,10 +130,10 @@
     ],
     "tags": [
       "insights",
-      "makeMoney",
       "productUpdates",
       "tutorials",
-      "roadOverSea"
+      "roadOverSea",
+      "makeMoney"
     ]
   },
   "zh": {
@@ -183,8 +183,8 @@
         "slug": "code-architecture",
         "excerpt": "详细的技术架构设计，包括技术栈选型、项目结构、核心模块设计等完整开发指南。",
         "tags": [
-          "roadOverSea",
-          "makeMoney"
+          "productUpdates",
+          "tutorials"
         ],
         "author": {
           "name": "帝八哥",
@@ -202,7 +202,7 @@
         "excerpt": "项目代码规范指南，包括项目架构、Git提交规范、LICENSE声明等开发标准。",
         "tags": [
           "insights",
-          "roadOverSea"
+          "productUpdates"
         ],
         "author": {
           "name": "帝八哥",
@@ -219,8 +219,8 @@
         "slug": "product-design",
         "excerpt": "Space-Brain 产品的完整设计方案，包括产品定位、目标用户、核心功能及路线图规划。",
         "tags": [
-          "makeMoney",
-          "tutorials"
+          "productUpdates",
+          "insights"
         ],
         "author": {
           "name": "帝八哥",
@@ -237,8 +237,8 @@
         "slug": "ui-design",
         "excerpt": "详细的UI设计规范，包括设计原则、排版、组件库使用等完整指南。",
         "tags": [
-          "productUpdates",
-          "tutorials"
+          "roadOverSea",
+          "makeMoney"
         ],
         "author": {
           "name": "帝八哥",
