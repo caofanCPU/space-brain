@@ -40,7 +40,11 @@ space-brain/
     │   └── blog/
     │       ├── BlogHeader.tsx                   # 头部组件
     │       ├── BlogFooter.tsx                   # 底部组件
-    │       └── BlogSidebar.tsx                  # 侧边栏组件
+    │       └── BlogSidebar.tsx                  # 目录悬浮球组件
+    │       └── card.tsx                         # 目录定位卡片组件
+    │       └── separator.tsx                    # 分隔线组件
+    │   └── MdCoder.tsx                          # Markdown代码块组件
+    │   └── MarkdownRenderer.tsx                 # Markdown渲染组件
     └── types/
     │   └── blog-data.d.ts                       # 数据类型定义
     └── lib/
@@ -57,6 +61,15 @@ pnpm add next-mdx-remote    # MDX 支持
 
 # 开发工具相关
 pnpm add -D @types/node fs-extra @types/fs-extra
+
+# Markdown 渲染相关
+pnpm add @tailwindcss/typography react-markdown remark-math remark-gfm rehype-katex rehype-prism mermaid katex
+# Markdown 代码块高亮相关
+pnpm add react-syntax-highlighter @types/react-syntax-highlighter
+
+# UI组件相关
+pnpm add framer-motion
+pnpm install @radix-ui/react-separator
 ```
 
 ## 2.实现流程
