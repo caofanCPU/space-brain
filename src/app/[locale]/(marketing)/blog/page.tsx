@@ -114,8 +114,8 @@ export default function BlogPage({ params: { locale } }: { params: { locale: str
             <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent flex flex-col justify-end p-6 md:p-10 text-white">
               <div className="flex gap-2 mb-2">
                 {featuredPost.tags.map(tag => (
-                  <Badge 
-                    key={tag} 
+                  <Badge
+                    key={tag}
                     variant="secondary"
                     className="px-2 py-0.5 text-xs font-normal bg-gradient-to-br from-purple-500 via-purple-600 to-indigo-700 text-white hover:from-purple-400 hover:via-purple-500 hover:to-indigo-600 transition-all duration-300"
                   >
@@ -123,7 +123,7 @@ export default function BlogPage({ params: { locale } }: { params: { locale: str
                   </Badge>
                 ))}
               </div>
-              <h2 className="text-2xl md:text-4xl font-bold mb-2 max-w-3xl group-hover:text-primary transition-colors">{featuredPost.title}</h2>
+              <h2 className="text-2xl md:text-4xl font-bold mb-2 max-w-3xl">{featuredPost.title}</h2>
               <p className="text-white/80 mb-4 max-w-2xl md:text-lg">{featuredPost.excerpt}</p>
               <div className="flex items-center gap-4 flex-wrap">
                 <div className="flex items-center gap-2">
@@ -155,7 +155,7 @@ export default function BlogPage({ params: { locale } }: { params: { locale: str
         <div className="lg:w-3/4">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {filteredPosts.map((post: BlogPost) => (
-              <div key={post.id} className="group bg-card rounded-lg overflow-hidden border shadow-sm hover:shadow-md transition-all duration-200">
+              <div key={post.id} className="group relative bg-card rounded-lg overflow-hidden border-2 border-transparent hover:border-[#8B5CF6] shadow-sm hover:shadow-purple-500/50 transition-all duration-200 before:absolute before:inset-0 before:rounded-lg before:p-[2px] before:bg-gradient-to-br before:from-purple-500 before:via-purple-600 before:to-indigo-700 before:opacity-0 hover:before:opacity-100 before:transition-opacity before:duration-200 before:-z-10">
                 {/* Banner图区域移到外部 */}
                 <div className="relative aspect-[1.91/1]">
                   <Image
@@ -166,6 +166,7 @@ export default function BlogPage({ params: { locale } }: { params: { locale: str
                     className="object-cover transition-transform duration-300 group-hover:scale-105"
                     priority
                   />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent transition-opacity duration-300 group-hover:opacity-90"></div>
                 </div>
 
                 {/* 标签区域 */}
@@ -184,7 +185,7 @@ export default function BlogPage({ params: { locale } }: { params: { locale: str
                         ))}
                         {post.tags.length > appConfig.blog.getTagDisplayCount(locale) && (
                           <div className="relative group/tags">
-                            <Badge 
+                            <Badge
                               variant="secondary"
                               className="px-2 py-0.5 text-xs font-normal bg-gradient-to-br from-purple-500 via-purple-600 to-indigo-700 text-white hover:from-purple-400 hover:via-purple-500 hover:to-indigo-600 transition-all duration-300 cursor-pointer"
                             >
@@ -194,7 +195,7 @@ export default function BlogPage({ params: { locale } }: { params: { locale: str
                             <div className="hidden group-hover/tags:block absolute top-full left-0 mt-1 p-2 bg-popover rounded-md shadow-md z-50">
                               <div className="flex flex-col items-start gap-1.5">
                                 {post.tags.slice(appConfig.blog.getTagDisplayCount(locale)).map(tag => (
-                                  <Badge 
+                                  <Badge
                                     key={tag}
                                     variant="secondary"
                                     className="px-2 py-0.5 text-xs font-normal bg-gradient-to-br from-purple-500 via-purple-600 to-indigo-700 text-white hover:from-purple-400 hover:via-purple-500 hover:to-indigo-600 transition-all duration-300 whitespace-nowrap"
@@ -218,8 +219,6 @@ export default function BlogPage({ params: { locale } }: { params: { locale: str
                 >
                   {/* 内容区域 */}
                   <div className="p-4 flex-grow flex flex-col">
-                    {/* 其他内容保持不变... */}
-                    {/* 标题区域 - 单行截断 */}
                     <h3 className="text-base font-semibold mb-2 line-clamp-1 group-hover:text-primary transition-colors">
                       <span className={`${post.title.length > 30 ? 'cursor-help' : ''}`} title={post.title.length > 30 ? post.title : undefined}>
                         {post.title}
@@ -227,7 +226,7 @@ export default function BlogPage({ params: { locale } }: { params: { locale: str
                     </h3>
 
                     {/* 描述区域 - 固定高度三行 */}
-                    <p className="text-muted-foreground text-sm mb-4 line-clamp-3 h-[4.5rem]">
+                    <p className="text-muted-foreground text-sm mb-4 line-clamp-3 min-h-[4rem]">
                       <span className={`${post.excerpt.length > 150 ? 'cursor-help' : ''}`} title={post.excerpt.length > 150 ? post.excerpt : undefined}>
                         {post.excerpt}
                       </span>
