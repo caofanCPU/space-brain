@@ -1,3 +1,18 @@
+---
+id: "space-ide-2-5-release"
+title: "Wonderful Markdown🍎🍏🍎🍏🍺🍎🍏🍎🍏🍺"
+slug: "space-ide-2-5-release"
+excerpt: "各种 Markdown 语法，包括 KateX 公式、Mermaid 图表以及代码支持示例。"
+tags: ["tutorials", "roadOverSea"]
+author:
+  name: "帝八哥"
+  avatar: "/images/office.webp"
+publishedAt: "2024-01-20"
+readTime: "5 min"
+imageUrl: "/images/case-study.webp"
+featured: true
+---
+
 # Wonderful Markdown🍎🍏🍎🍏🍺🍎🍏🍎🍏🍺
 
 Markdown内容渲染样例
@@ -12,7 +27,9 @@ $$
 \frac{n!}{k!(n-k)!} = \binom{n}{k}
 $$
 
-$$\tag{hi} x+y^{2x}$$
+$$
+x+y^{2x} \tag{hi}
+$$
 
 $$\fcolorbox{red}{yellow}{$复习\approx度蜜月$}$$
 

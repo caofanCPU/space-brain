@@ -497,19 +497,17 @@
   "blog": {
     "title": "博客",
     "subtitle": "最新消息、更新和见解",
-    "categoriesName": "文章分类",
     "readMore": "阅读更多",
     "readTime": "阅读时长",
     "loadMore": "加载更多",
     "searchPlaceholder": "搜索文章...",
     "recentPosts": "最近文章",
-    "categories": {
-      "allPosts": "所有文章",
+    "tags": {
       "productUpdates": "产品更新",
-      "tutorials": "教程",
-      "insights": "见解",
-      "caseStudies": "案例研究",
-      "community": "社区"
+      "tutorials": "工具教程",
+      "makeMoney": "专心搞钱",
+      "roadOverSea": "出海之路",
+      "insights": "真知灼见"
     },
     "allPosts": "所有文章",
     "development": "开发",

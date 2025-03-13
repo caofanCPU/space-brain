@@ -28,6 +28,27 @@ export const appConfig = {
       expirationDays: 30,
       storagePrefix: 'space-brain'
     }
+  },
+  blog: {
+    // 博客相关路径
+    dir: 'public/md',
+    config: 'public/md/blog-config.json',
+    // 标签定义: 决定了翻译文件字段
+    tags: [
+      'productUpdates',
+      'tutorials',
+      'makeMoney',
+      'roadOverSea',
+      'insights'
+    ],
+    // 图片资源路径
+    images: {
+      default: '/images/default.webp',
+      defaultAvatar: '/images/avatars/default.webp'
+    },
+    getTagDisplayCount: (_locale: string) => {
+      return 2;
+    },
   }
 };
 

@@ -1,36 +1,37 @@
 'use client';
 
-import Image from 'next/image';
-import { Clock, Calendar } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
+import type { BlogPost, BlogData } from '@/types/blog-data';
+import blogData from '@/../../public/md/blog-config.json';
+import { Calendar, Clock } from 'lucide-react';
+import { useTranslations } from 'next-intl';
+import Image from 'next/image';
+import { useState } from 'react';
+
+const typedBlogData = blogData as BlogData;
 
 interface BlogHeaderProps {
-  title: string;
-  author: {
-    name: string;
-    avatar: string;
-  };
-  publishDate: string;
-  readTime: string;
-  category: string;
-  bannerImage?: string;
+  slug: string;
+  locale: string;
 }
 
-export function BlogHeader({
-  title,
-  author,
-  publishDate,
-  readTime,
-  category,
-  bannerImage = '/images/default.webp'
-}: BlogHeaderProps) {
+export function BlogHeader({ slug, locale }: BlogHeaderProps) {
+  const t = useTranslations('blog');
+
+  // 直接使用生成的静态数据
+  const [posts] = useState<BlogPost[]>(typedBlogData[locale].posts);
+  // 找到当前文章
+  const post = posts.find(post => post.slug === slug);
+  // 如果文章不存在，返回空
+  if (!post) {
+    return null;
+  }
   return (
     <div className="relative">
-      {/* Banner 图片 */}
       <div className="relative h-[400px] overflow-hidden">
         <Image
-          src={bannerImage}
-          alt={title}
+          src={post.imageUrl}
+          alt={post.title}
           fill
           className="object-cover"
           sizes="100vw"
@@ -51,15 +52,20 @@ export function BlogHeader({
         <div className="container mx-auto px-8 py-6">
           <div className="space-y-4">
             <div className="space-y-3">
-              <Badge 
-                variant="secondary" 
-                className="blog-category-badge"
-              >
-                {category}
-              </Badge>
-              
+              <div className="flex flex-wrap gap-2">
+                {post.tags.map((id: string) => (
+                  <Badge
+                    key={id}
+                    variant="secondary"
+                    className="px-2 py-0.5 text-xs font-normal bg-gradient-to-br from-purple-500 via-purple-600 to-indigo-700 text-white hover:from-purple-400 hover:via-purple-500 hover:to-indigo-600 transition-all duration-300 cursor-pointer"
+                  >
+                    {t(`tags.${id}`)}
+                  </Badge>
+                ))}
+              </div>
+
               <h1 className="text-4xl font-bold tracking-tight font-jetbrains">
-                {title}
+                {post.title}
               </h1>
             </div>
 
@@ -67,25 +73,25 @@ export function BlogHeader({
               <div className="flex items-center gap-2">
                 <div className="relative h-10 w-10 rounded-full overflow-hidden ring-2 ring-border">
                   <Image
-                    src={author.avatar}
-                    alt={author.name}
+                    src={post.author.avatar}
+                    alt={post.author.name}
                     fill
                     className="object-cover"
                     sizes="40px"
                     priority
                   />
                 </div>
-                <span className="font-medium">{author.name}</span>
+                <span className="font-medium">{post.author.name}</span>
               </div>
-              
+
               <div className="flex items-center gap-2">
                 <Calendar className="h-4 w-4" />
-                <span>{publishDate}</span>
+                <span>{post.publishedAt}</span>
               </div>
-              
+
               <div className="flex items-center gap-2">
                 <Clock className="h-4 w-4" />
-                <span>{readTime}</span>
+                <span>{post.readTime}</span>
               </div>
             </div>
           </div>
@@ -100,4 +106,4 @@ export function BlogHeader({
       </div>
     </div>
   );
-} 
+}

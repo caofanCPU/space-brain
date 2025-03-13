@@ -17,158 +17,26 @@ import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Clock, Search } from 'lucide-react';
 import { useSearchParams } from 'next/navigation';
+import blogData from '@/../../public/md/blog-config.json';
+import type { BlogPost, BlogData } from '@/types/blog-data';
+import { appConfig } from '@/lib/appConfig';
 
-// 定义类型
-interface Author {
-  name: string;
-  avatar: string;
-}
+const typedBlogData = blogData as BlogData;
 
-interface BlogPost {
-  id: string;
-  title: string;
-  slug: string;
-  excerpt: string;
-  content: string;
-  category: string;
-  author: Author;
-  publishedAt: string;
-  readTime: string;
-  imageUrl: string;
-  featured: boolean;
-}
-
-interface Category {
-  id: string;
-  name: string;
-}
-
-// 模拟博客文章数据，实际项目中应从数据库获取
-const getBlogPosts = (): BlogPost[] => {
-  return [
-    {
-      id: '1',
-      title: 'Space IDE 2.5 发布：新特性与改进',
-      slug: 'space-ide-2-5-release',
-      excerpt: '我们很高兴地宣布 Space IDE 2.5 的发布，带来了多项新特性和性能改进，提升您的开发体验。',
-      content: '',
-      category: 'productUpdates',
-      author: {
-        name: '张明',
-        avatar: '/images/default.webp'
-      },
-      publishedAt: '2023-12-15',
-      readTime: '5 min',
-      imageUrl: '/images/default.webp',
-      featured: true
-    },
-    {
-      id: '2',
-      title: '如何使用 Space Profiler 优化应用性能',
-      slug: 'optimize-app-performance-with-space-profiler',
-      excerpt: '本教程将指导您如何使用 Space Profiler 工具识别和解决应用中的性能瓶颈。',
-      content: '',
-      category: 'tutorials',
-      author: {
-        name: '李华',
-        avatar: '/images/default.webp'
-      },
-      publishedAt: '2023-11-28',
-      readTime: '8 min',
-      imageUrl: '/images/default.webp',
-      featured: false
-    },
-    {
-      id: '3',
-      title: '开发者工具的未来趋势',
-      slug: 'future-trends-in-developer-tools',
-      excerpt: '探索开发者工具的未来发展方向，以及这些趋势将如何影响软件开发流程。',
-      content: '',
-      category: 'insights',
-      author: {
-        name: '王芳',
-        avatar: '/images/default.webp'
-      },
-      publishedAt: '2023-11-15',
-      readTime: '6 min',
-      imageUrl: '/images/default.webp',
-      featured: false
-    },
-    {
-      id: '4',
-      title: 'Space Brain 如何帮助企业提升开发效率',
-      slug: 'how-space-brain-helps-enterprises',
-      excerpt: '了解 Space Brain 工具套件如何帮助企业团队提高开发效率，减少错误，加速产品上市。',
-      content: '',
-      category: 'caseStudies',
-      author: {
-        name: '赵伟',
-        avatar: '/images/default.webp'
-      },
-      publishedAt: '2023-10-30',
-      readTime: '7 min',
-      imageUrl: '/images/default.webp',
-      featured: false
-    },
-    {
-      id: '5',
-      title: '使用 Space IDE 进行高效前端开发',
-      slug: 'efficient-frontend-development-with-space-ide',
-      excerpt: '探索如何利用 Space IDE 的特性和插件生态系统来提升前端开发效率。',
-      content: '',
-      category: 'tutorials',
-      author: {
-        name: '张明',
-        avatar: '/images/default.webp'
-      },
-      publishedAt: '2023-10-18',
-      readTime: '9 min',
-      imageUrl: '/images/default.webp',
-      featured: false
-    },
-    {
-      id: '6',
-      title: '开源贡献：为什么以及如何参与',
-      slug: 'open-source-contributions',
-      excerpt: '了解为什么参与开源项目对开发者职业发展很重要，以及如何开始您的开源贡献之旅。',
-      content: '',
-      category: 'community',
-      author: {
-        name: '李华',
-        avatar: '/images/default.webp'
-      },
-      publishedAt: '2023-10-05',
-      readTime: '6 min',
-      imageUrl: '/images/default.webp',
-      featured: false
-    }
-  ];
-};
-
-// 获取所有分类
-const getCategories = (): Category[] => {
-  return [
-    { id: 'productUpdates', name: 'Product Updates' },
-    { id: 'tutorials', name: 'Tutorials' },
-    { id: 'insights', name: 'Insights' },
-    { id: 'caseStudies', name: 'Case Studies' },
-    { id: 'community', name: 'Community' }
-  ];
-};
-
-export default function BlogPage() {
+export default function BlogPage({ params: { locale } }: { params: { locale: string } }) {
   const t = useTranslations('blog');
   const searchParams = useSearchParams();
-  const categoryParam = searchParams.get('category') || 'allPosts';
+  const tagParam = searchParams.get('tag') || 'all';
 
-  const [posts] = useState<BlogPost[]>(getBlogPosts());
-  const [categories] = useState<Category[]>(getCategories());
-  const [selectedCategory, setSelectedCategory] = useState<string>(categoryParam);
+  // 直接使用生成的静态数据
+  const [posts] = useState<BlogPost[]>(typedBlogData[locale].posts);
+  const [tags] = useState<string[]>(typedBlogData[locale].tags);
+  const [selectedTag, setSelectedTag] = useState<string>(tagParam);
 
-  // 根据选中的分类过滤文章
-  const filteredPosts = selectedCategory === 'allPosts'
+  // 根据选中的标签过滤文章
+  const filteredPosts = selectedTag === 'all'
     ? posts
-    : posts.filter(post => post.category === selectedCategory);
+    : posts.filter(post => post.tags.includes(selectedTag));
 
   // 获取特色文章，并确保它存在
   const featuredPost = posts.find(post => post.featured) || posts[0];
@@ -178,10 +46,10 @@ export default function BlogPage() {
     .sort((a, b) => new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime())
     .slice(0, 3);
 
-  // 当URL参数变化时更新选中的分类
+  // 当URL参数变化时更新选中的标签
   useEffect(() => {
-    setSelectedCategory(categoryParam);
-  }, [categoryParam]);
+    setSelectedTag(tagParam);
+  }, [tagParam]);
 
   return (
     <div className="container mx-auto py-12">
@@ -191,7 +59,7 @@ export default function BlogPage() {
         <p className="text-xl text-muted-foreground">{t('hero.subtitle')}</p>
       </div>
 
-      {/* 搜索和分类筛选 - 放在顶部，宽度占满 */}
+      {/* 搜索和标签筛选 - 放在顶部，宽度占满 */}
       <div className="mb-12 space-y-6">
         <div className="relative max-w-xl mx-auto">
           <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
@@ -204,22 +72,22 @@ export default function BlogPage() {
 
         <div className="flex flex-wrap justify-center gap-2 mt-6">
           <Button
-            variant={selectedCategory === 'allPosts' ? 'default' : 'outline'}
+            variant={selectedTag === 'all' ? 'default' : 'outline'}
             size="sm"
-            onClick={() => setSelectedCategory('allPosts')}
+            onClick={() => setSelectedTag('all')}
             className="px-4 py-2 text-sm"
           >
             {t('allPosts')}
           </Button>
-          {categories.map((category: Category) => (
+          {tags.map((id: string) => (
             <Button
-              key={category.id}
-              variant={selectedCategory === category.id ? 'default' : 'outline'}
+              key={id}
+              variant={selectedTag === id ? 'default' : 'outline'}
               size="sm"
-              onClick={() => setSelectedCategory(category.id)}
+              onClick={() => setSelectedTag(id)}
               className="px-4 py-2 text-sm"
             >
-              {t(`categories.${category.id}`)}
+              {t(`tags.${id}`)}
             </Button>
           ))}
         </div>
@@ -227,7 +95,11 @@ export default function BlogPage() {
 
       {/* 特色文章 - 全宽展示 */}
       {featuredPost && (
-        <div className="mb-12">
+        <Link
+          href={`/blog/${featuredPost.slug}`}
+          className="block mb-12 group"
+          prefetch={false}
+        >
           <div className="relative rounded-xl overflow-hidden">
             <div className="relative aspect-[21/9]">
               <Image
@@ -235,19 +107,29 @@ export default function BlogPage() {
                 alt={featuredPost.title}
                 fill
                 sizes="100vw"
-                className="object-cover"
+                className="object-cover transition-transform duration-300 group-hover:scale-105"
                 priority
               />
             </div>
             <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent flex flex-col justify-end p-6 md:p-10 text-white">
-              <Badge className="mb-2 self-start">{t(`categories.${featuredPost.category}`)}</Badge>
-              <h2 className="text-2xl md:text-4xl font-bold mb-2 max-w-3xl">{featuredPost.title}</h2>
+              <div className="flex gap-2 mb-2">
+                {featuredPost.tags.map(tag => (
+                  <Badge 
+                    key={tag} 
+                    variant="secondary"
+                    className="px-2 py-0.5 text-xs font-normal bg-gradient-to-br from-purple-500 via-purple-600 to-indigo-700 text-white hover:from-purple-400 hover:via-purple-500 hover:to-indigo-600 transition-all duration-300"
+                  >
+                    {t(`tags.${tag}`)}
+                  </Badge>
+                ))}
+              </div>
+              <h2 className="text-2xl md:text-4xl font-bold mb-2 max-w-3xl group-hover:text-primary transition-colors">{featuredPost.title}</h2>
               <p className="text-white/80 mb-4 max-w-2xl md:text-lg">{featuredPost.excerpt}</p>
               <div className="flex items-center gap-4 flex-wrap">
                 <div className="flex items-center gap-2">
                   <div className="relative w-10 h-10 rounded-full overflow-hidden">
                     <Image
-                      src="/images/default.webp"
+                      src={featuredPost.author.avatar}
                       alt={featuredPost.author.name}
                       fill
                       sizes="40px"
@@ -265,7 +147,7 @@ export default function BlogPage() {
               </div>
             </div>
           </div>
-        </div>
+        </Link>
       )}
 
       <div className="flex flex-col lg:flex-row gap-12">
@@ -273,37 +155,102 @@ export default function BlogPage() {
         <div className="lg:w-3/4">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {filteredPosts.map((post: BlogPost) => (
-              <div key={post.id} className="group bg-white dark:bg-gray-800 rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-200">
-                <Link href={`/blog/${post.slug}`} className="flex flex-col h-full">
-                  <div className="relative aspect-video">
-                    <Image
-                      src="/images/default.webp"
-                      alt={post.title}
-                      fill
-                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                      className="object-cover transition-transform duration-300 group-hover:scale-105"
-                      priority
-                    />
+              <div key={post.id} className="group bg-card rounded-lg overflow-hidden border shadow-sm hover:shadow-md transition-all duration-200">
+                {/* Banner图区域移到外部 */}
+                <div className="relative aspect-[1.91/1]">
+                  <Image
+                    src={post.imageUrl}
+                    alt={post.title}
+                    fill
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                    className="object-cover transition-transform duration-300 group-hover:scale-105"
+                    priority
+                  />
+                </div>
+
+                {/* 标签区域 */}
+                <div className="p-4 pb-0">
+                  <div className="flex items-center gap-1.5 mb-3 h-6 overflow-visible relative">
+                    {post.tags.length > 0 && (
+                      <div className="flex items-center gap-1.5">
+                        {post.tags.slice(0, appConfig.blog.getTagDisplayCount(locale)).map(tag => (
+                          <Badge
+                            key={tag}
+                            variant="secondary"
+                            className="px-2 py-0.5 text-xs font-normal bg-gradient-to-br from-purple-500 via-purple-600 to-indigo-700 text-white hover:from-purple-400 hover:via-purple-500 hover:to-indigo-600 transition-all duration-300"
+                          >
+                            {t(`tags.${tag}`)}
+                          </Badge>
+                        ))}
+                        {post.tags.length > appConfig.blog.getTagDisplayCount(locale) && (
+                          <div className="relative group/tags">
+                            <Badge 
+                              variant="secondary"
+                              className="px-2 py-0.5 text-xs font-normal bg-gradient-to-br from-purple-500 via-purple-600 to-indigo-700 text-white hover:from-purple-400 hover:via-purple-500 hover:to-indigo-600 transition-all duration-300 cursor-pointer"
+                            >
+                              +{post.tags.length - appConfig.blog.getTagDisplayCount(locale)}
+                            </Badge>
+                            {/* 悬浮显示剩余标签 */}
+                            <div className="hidden group-hover/tags:block absolute top-full left-0 mt-1 p-2 bg-popover rounded-md shadow-md z-50">
+                              <div className="flex flex-col items-start gap-1.5">
+                                {post.tags.slice(appConfig.blog.getTagDisplayCount(locale)).map(tag => (
+                                  <Badge 
+                                    key={tag}
+                                    variant="secondary"
+                                    className="px-2 py-0.5 text-xs font-normal bg-gradient-to-br from-purple-500 via-purple-600 to-indigo-700 text-white hover:from-purple-400 hover:via-purple-500 hover:to-indigo-600 transition-all duration-300 whitespace-nowrap"
+                                  >
+                                    {t(`tags.${tag}`)}
+                                  </Badge>
+                                ))}
+                              </div>
+                            </div>
+                          </div>
+                        )}
+                      </div>
+                    )}
                   </div>
+                </div>
+
+                <Link
+                  href={`/blog/${post.slug}`}
+                  className="flex flex-col"
+                  prefetch={false}
+                >
+                  {/* 内容区域 */}
                   <div className="p-4 flex-grow flex flex-col">
-                    <Badge className="self-start mb-2">{t(`categories.${post.category}`)}</Badge>
-                    <h3 className="text-lg font-bold mb-2 group-hover:text-primary transition-colors line-clamp-2">{post.title}</h3>
-                    <p className="text-muted-foreground mb-4 text-sm line-clamp-3">{post.excerpt}</p>
-                    <div className="mt-auto flex items-center gap-4">
-                      <div className="flex items-center gap-2">
-                        <div className="relative w-8 h-8 rounded-full overflow-hidden">
+                    {/* 其他内容保持不变... */}
+                    {/* 标题区域 - 单行截断 */}
+                    <h3 className="text-base font-semibold mb-2 line-clamp-1 group-hover:text-primary transition-colors">
+                      <span className={`${post.title.length > 30 ? 'cursor-help' : ''}`} title={post.title.length > 30 ? post.title : undefined}>
+                        {post.title}
+                      </span>
+                    </h3>
+
+                    {/* 描述区域 - 固定高度三行 */}
+                    <p className="text-muted-foreground text-sm mb-4 line-clamp-3 h-[4.5rem]">
+                      <span className={`${post.excerpt.length > 150 ? 'cursor-help' : ''}`} title={post.excerpt.length > 150 ? post.excerpt : undefined}>
+                        {post.excerpt}
+                      </span>
+                    </p>
+
+                    {/* 底部信息区域保持不变 */}
+                    <div className="mt-auto pt-3 border-t flex items-center justify-between gap-2">
+                      <div className="flex items-center gap-2 min-w-0">
+                        <div className="relative w-6 h-6 rounded-full overflow-hidden flex-shrink-0">
                           <Image
-                            src="/images/default.webp"
+                            src={post.author.avatar}
                             alt={post.author.name}
                             fill
-                            sizes="32px"
+                            sizes="24px"
                             className="object-cover"
                             priority
                           />
                         </div>
-                        <span className="text-sm">{post.author.name}</span>
+                        <span className="text-xs text-muted-foreground truncate" title={post.author.name}>
+                          {post.author.name}
+                        </span>
                       </div>
-                      <div className="flex items-center gap-1 text-xs text-muted-foreground ml-auto">
+                      <div className="flex items-center gap-1 text-xs text-muted-foreground flex-shrink-0">
                         <Clock className="h-3 w-3" />
                         <span>{post.readTime}</span>
                       </div>
@@ -327,10 +274,15 @@ export default function BlogPage() {
             <h3 className="font-medium mb-4 text-lg border-b pb-2">{t('recentPosts')}</h3>
             <div className="space-y-4">
               {recentPosts.map((post: BlogPost) => (
-                <Link key={post.id} href={`/blog/${post.slug}`} className="flex gap-3 group">
+                <Link
+                  key={post.id}
+                  href={`/blog/${post.slug}`}
+                  className="flex gap-3 group"
+                  prefetch={false}  // 这里也添加
+                >
                   <div className="relative w-20 h-20 rounded overflow-hidden flex-shrink-0">
                     <Image
-                      src="/images/default.webp"
+                      src={post.imageUrl}
                       alt={post.title}
                       fill
                       sizes="80px"

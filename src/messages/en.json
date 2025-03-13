@@ -497,19 +497,17 @@
   "blog": {
     "title": "Blog",
     "subtitle": "Latest news, updates, and insights",
-    "categoriesName": "Article Categories",
     "readMore": "Read More",
     "readTime": "Read Time",
     "loadMore": "Load More",
     "searchPlaceholder": "Search articles...",
     "recentPosts": "Recent Posts",
-    "categories": {
-      "allPosts": "All Posts",
+    "tags": {
       "productUpdates": "Product Updates",
       "tutorials": "Tutorials",
-      "insights": "Insights",
-      "caseStudies": "Case Studies",
-      "community": "Community"
+      "makeMoney": "Make Money",
+      "roadOverSea": "Road Over Sea",
+      "insights": "Insights"
     },
     "allPosts": "All Posts",
     "development": "Development",

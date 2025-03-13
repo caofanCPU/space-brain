@@ -1,3 +1,18 @@
+---
+id: "product-design"
+title: "Space-Brain 产品设计文档"
+slug: "product-design"
+excerpt: "Space-Brain 产品的完整设计方案，包括产品定位、目标用户、核心功能及路线图规划。"
+tags: ["product", "design"]
+author:
+  name: "帝八哥"
+  avatar: "/images/default.webp"
+publishedAt: "2024-01-21"
+readTime: "8 min"
+imageUrl: "/images/product-design.webp"
+featured: false
+---
+
 # Space-Brain 产品设计文档
 
 ## 1. 产品概述
@@ -96,4 +111,4 @@ Space-Brain 是一个面向开发者的综合性工具平台，类似于 JetBrai
 
 ## 9. 产品愿景
 
-成为开发者首选的工具平台，通过提供卓越的开发体验，帮助开发者创造更好的软件。 
+成为开发者首选的工具平台，通过提供卓越的开发体验，帮助开发者创造更好的软件。

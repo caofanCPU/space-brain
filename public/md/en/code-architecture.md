@@ -1,3 +1,18 @@
+---
+id: "code-architecture"
+title: "Space-Brain 代码架构设计文档"
+slug: "code-architecture"
+excerpt: "详细的技术架构设计，包括技术栈选型、项目结构、核心模块设计等完整开发指南。"
+tags: ["development", "architecture"]
+author:
+  name: "帝八哥"
+  avatar: "/images/default.webp"
+publishedAt: "2024-01-22"
+readTime: "15 min"
+imageUrl: "/images/code-architecture.webp"
+featured: true
+---
+
 # Space-Brain 代码架构设计文档
 
 ## 1. 技术栈概述

@@ -1,3 +1,18 @@
+---
+id: "ui-design"
+title: "Space-Brain UI设计文档"
+slug: "ui-design"
+excerpt: "详细的UI设计规范，包括设计原则、排版、组件库使用等完整指南。"
+tags: ["design", "documentation"]
+author:
+  name: "帝八哥"
+  avatar: "/images/default.webp"
+publishedAt: "2024-01-21"
+readTime: "10 min"
+imageUrl: "/images/ui-design.webp"
+featured: false
+---
+
 # Space-Brain UI设计文档
 
 ## 1. 设计原则

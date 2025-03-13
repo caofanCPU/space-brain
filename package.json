@@ -3,8 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "predev": "pnpm run lint",
+    "predev": "pnpm run lint && pnpm run generate-blog-data",
     "dev": "next dev",
+    "generate-blog-data": "ts-node --project tsconfig.node.json scripts/generate-blog-data.ts",
     "build": "next build",
     "start": "next start",
     "lint": "eslint --fix . && next lint",
@@ -53,6 +54,7 @@
     "eslint-config-prettier": "^10.0.2",
     "eslint-plugin-unused-imports": "^4.1.4",
     "glob": "^11.0.1",
+    "gray-matter": "^4.0.3",
     "postcss": "^8.5.3",
     "prettier": "^3.2.5",
     "prettier-plugin-tailwindcss": "^0.5.11",
