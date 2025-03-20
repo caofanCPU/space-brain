@@ -38,7 +38,7 @@ const translations: Record<string, Record<string, any>> = {}
 // 动态加载所有语言的翻译文件
 appConfig.i18n.locales.forEach(locale => {
   try {
-    const filePath = path.join(process.cwd(), `./src/messages/${locale}.json`)
+    const filePath = path.join(process.cwd(), `${appConfig.i18n.messageRoot}/${locale}.json`)
     translations[locale] = JSON.parse(fs.readFileSync(filePath, 'utf8'))
   } catch (error) {
     logError(`无法读取语言文件 ${locale}: ${error}`)
@@ -118,20 +118,86 @@ function extractTranslationsInfo(content: string, filePath: string): Translation
   }
 
   // 匹配 t('key') 或 t("key")，并检查 t 是否与已知命名空间关联
-  const tPattern = /(\w+)\(\s*['"]([^'"]+)['"]\s*\)/g
-  while ((match = tPattern.exec(content)) !== null) {
-    const funcName = match[1]
-    const key = match[2]
+  // 修改 t 函数调用的匹配模式
+  const tPatterns = [
+    // 普通字符串键: t('key') 或 t("key")
+    /(\w+)\(\s*['"]([^'"]+)['"]\s*\)/g,
 
-    // 过滤掉明显不是翻译函数的调用
-    if (key.includes('/') || key === '') continue
+    // 模板字符串键: t(`tags.${id}`) 或 t(`section.${key}`)
+    /(\w+)\(\s*`([^`]+)`\s*\)/g,
 
-    // 如果函数名与已知命名空间变量关联
-    if (result.namespaces.has(funcName)) {
-      const namespace = result.namespaces.get(funcName)
-      if (namespace) {
-        const fullKey = `${namespace}.${key}`
-        result.keys.push(fullKey)
+    // 变量形式的键: t(item.key) 或 t(item.id)
+    /(\w+)\(\s*(\w+)\.(\w+)\s*\)/g
+  ];
+
+  for (const pattern of tPatterns) {
+    let match;
+    while ((match = pattern.exec(content)) !== null) {
+      const funcName = match[1];
+
+      // 如果函数名与已知命名空间变量关联
+      if (result.namespaces.has(funcName)) {
+        const namespace = result.namespaces.get(funcName);
+        if (!namespace) continue;
+
+        if (pattern.source.includes('`')) {
+          // 处理模板字符串
+          const templateStr = match[2];
+          // 提取静态部分（变量前面的部分）
+          const staticPart = templateStr.split(/\${(?:id|key)}/)[0].trim();
+          if (staticPart && !staticPart.includes('/')) {
+            // 对于 tags.${id} 这样的形式，记录整个 tags 命名空间
+            const segments = staticPart.split('.');
+            if (segments.length > 0) {
+              // 记录基础路径
+              result.keys.push(`${namespace}.${segments[0]}`);
+              // 如果是多层级的，也记录完整路径
+              if (segments.length > 1) {
+                result.keys.push(`${namespace}.${segments.join('.')}`);
+              }
+
+              // 特殊处理 tags 命名空间
+              if (segments[0] === 'tags') {
+                // 添加所有已知的 tag 键
+                ['productUpdates', 'tutorials', 'makeMoney', 'roadOverSea', 'insights'].forEach(tag => {
+                  result.keys.push(`${namespace}.tags.${tag}`);
+                });
+              }
+            }
+            // 记录动态键使用情况
+            log(`  [动态键-模板] ${filePath}: ${namespace}.${templateStr}`);
+          }
+        } else if (pattern.source.includes('\\w+\\.\\w+')) {
+          // 处理变量形式键 t(item.key)
+          const varName = match[2];
+          const propName = match[3];
+
+          // 从文件内容中查找该变量的可能值
+          const varPattern = new RegExp(`${varName}\\s*=\\s*{[^}]*key:\\s*['"]([^'"]+)['"]`);
+          const varMatch = content.match(varPattern);
+
+          if (varMatch) {
+            // 如果找到了变量定义，添加实际的键
+            result.keys.push(`${namespace}.${varMatch[1]}`);
+          } else {
+            // 如果没找到具体定义，尝试从上下文推断
+            // 检查是否在 MenuItem 类型的数组或对象中使用
+            if (content.includes('MenuItem[]') || content.includes('MenuItem}')) {
+              // 添加所有可能的菜单键
+              ['journey'].forEach(menuKey => {
+                result.keys.push(`${namespace}.${menuKey}`);
+              });
+            }
+          }
+
+          log(`  [变量键] ${filePath}: ${namespace}.${varName}.${propName}`);
+        } else {
+          // 处理普通字符串键
+          const key = match[2];
+          if (!key.includes('/') && key !== '') {
+            result.keys.push(`${namespace}.${key}`);
+          }
+        }
       }
     }
   }
@@ -364,4 +430,4 @@ cleanTranslations().then(exitCode => {
 }).catch(error => {
   console.error('清理翻译时发生错误:', error)
   process.exit(1)
-}) 
+})

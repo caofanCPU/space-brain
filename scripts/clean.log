@@ -1,0 +1,777 @@
+开始检查未使用的翻译键...
+找到 42 个文件需要扫描
+在文件 src/components/ui/search-button.tsx 中找到以下信息:
+  翻译函数映射:
+    - t => common.search
+  翻译键:
+    - common.search.placeholder
+    - common.search.searching
+    - common.search.recentSearches
+在文件 src/components/ui/language-detector.tsx 中找到以下信息:
+  翻译函数映射:
+    - t => languageDetection
+  翻译键:
+    - languageDetection.title
+    - languageDetection.description
+    - languageDetection.close
+    - languageDetection.changeAction
+在文件 src/components/marketing/hero-section.tsx 中找到以下信息:
+  翻译函数映射:
+    - t => common.buttons
+  翻译键:
+    - common.buttons.download
+    - common.buttons.learnMore
+在文件 src/components/marketing/cta-section.tsx 中找到以下信息:
+  翻译函数映射:
+    - t => common.buttons
+  翻译键:
+    - common.buttons.download
+    - common.buttons.contactUs
+在文件 src/components/layout/header.tsx 中找到以下信息:
+  翻译函数映射:
+    - t => common
+  翻译键:
+    - common.nav.home
+    - common.nav.products
+    - common.products.feature.primary.title
+    - common.products.feature.primary.description
+    - common.products.feature.secondary.title
+    - common.products.feature.secondary.description
+    - common.products.sections.ides
+    - common.products.ide.shortDesc
+    - common.products.cloud.shortDesc
+    - common.products.mobile.shortDesc
+    - common.products.sections.plugins
+    - common.products.ai.shortDesc
+    - common.products.themes.shortDesc
+    - common.products.codewithme.shortDesc
+    - common.products.sections.dotnet
+    - common.products.rider.shortDesc
+    - common.products.resharper.shortDesc
+    - common.products.dotcover.shortDesc
+    - common.products.sections.languages
+    - common.products.kotlin.shortDesc
+    - common.products.mps.shortDesc
+    - common.products.compose.shortDesc
+    - common.nav.solutions
+    - common.nav.pricing
+    - common.nav.download
+    - common.nav.about
+    - common.nav.blog
+    - common.appName
+    - common.products.footer.question
+    - common.products.footer.cta
+    - common.buttons.signIn
+    - common.buttons.getStarted
+    - common.buttons.signIn
+    - common.buttons.getStarted
+在文件 src/components/layout/footer.tsx 中找到以下信息:
+  翻译函数映射:
+    - t => common.footer
+  翻译键:
+    - common.footer.subscribeTitle
+    - common.footer.subscribeText
+    - common.footer.subscribe
+    - common.footer.products
+    - common.footer.resources
+    - common.footer.company
+    - common.footer.legal
+    - common.footer.copyright
+  [动态键-模板] src/components/blog/BlogHeader.tsx: blog.tags.${id}
+在文件 src/components/blog/BlogHeader.tsx 中找到以下信息:
+  翻译函数映射:
+    - t => blog
+  翻译键:
+    - blog.tags
+    - blog.tags.
+    - blog.tags.productUpdates
+    - blog.tags.tutorials
+    - blog.tags.makeMoney
+    - blog.tags.roadOverSea
+    - blog.tags.insights
+在文件 src/app/[locale]/layout.tsx 中找到以下信息:
+  翻译函数映射:
+    - t => common
+  翻译键:
+    - common.appName
+    - common.appName
+在文件 src/app/[locale]/(marketing)/page.tsx 中找到以下信息:
+  翻译函数映射:
+    - t => home
+  翻译键:
+    - home.hero.title
+    - home.hero.subtitle
+    - home.features.title
+    - home.features.subtitle
+    - home.features.feature1.title
+    - home.features.feature1.description
+    - home.features.feature2.title
+    - home.features.feature2.description
+    - home.features.feature3.title
+    - home.features.feature3.description
+    - home.testimonials.title
+    - home.testimonials.subtitle
+    - home.cta.title
+    - home.cta.subtitle
+在文件 src/app/[locale]/(marketing)/layout.tsx 中找到以下信息:
+  翻译函数映射:
+    - t => common
+  翻译键:
+    - common.appName
+在文件 src/app/[locale]/(marketing)/solutions/page.tsx 中找到以下信息:
+  翻译函数映射:
+    - t => solutions
+  翻译键:
+    - solutions.development.title
+    - solutions.development.description
+    - solutions.development.features.feature1
+    - solutions.development.features.feature2
+    - solutions.development.features.feature3
+    - solutions.data.title
+    - solutions.data.description
+    - solutions.data.features.feature1
+    - solutions.data.features.feature2
+    - solutions.data.features.feature3
+    - solutions.cloud.title
+    - solutions.cloud.description
+    - solutions.cloud.features.feature1
+    - solutions.cloud.features.feature2
+    - solutions.cloud.features.feature3
+    - solutions.security.title
+    - solutions.security.description
+    - solutions.security.features.feature1
+    - solutions.security.features.feature2
+    - solutions.security.features.feature3
+    - solutions.team.title
+    - solutions.team.description
+    - solutions.team.features.feature1
+    - solutions.team.features.feature2
+    - solutions.team.features.feature3
+    - solutions.performance.title
+    - solutions.performance.description
+    - solutions.performance.features.feature1
+    - solutions.performance.features.feature2
+    - solutions.performance.features.feature3
+    - solutions.hero.title
+    - solutions.hero.subtitle
+    - solutions.caseStudy.title
+    - solutions.caseStudy.description
+    - solutions.caseStudy.point1
+    - solutions.caseStudy.point2
+    - solutions.caseStudy.point3
+    - solutions.caseStudy.cta
+    - solutions.caseStudy.title
+    - solutions.contact.title
+    - solutions.contact.description
+    - solutions.contact.primaryCta
+    - solutions.contact.secondaryCta
+在文件 src/app/[locale]/(marketing)/products/page.tsx 中找到以下信息:
+  翻译函数映射:
+    - t => products
+  翻译键:
+    - products.title
+    - products.subtitle
+    - products.categories.ide
+    - products.categories.tools
+    - products.categories.plugins
+    - products.title
+    - products.subtitle
+在文件 src/app/[locale]/(marketing)/pricing/page.tsx 中找到以下信息:
+  翻译函数映射:
+    - t => pricing
+  翻译键:
+    - pricing.plansA.personal.name
+    - pricing.plansA.personal.description
+    - pricing.monthly
+    - pricing.plansA.personal.features.feature1
+    - pricing.plansA.personal.features.feature2
+    - pricing.plansA.personal.features.feature3
+    - pricing.plansA.personal.features.feature4
+    - pricing.plansA.personal.features.feature5
+    - pricing.plansA.personal.cta
+    - pricing.plansA.professional.name
+    - pricing.plansA.professional.description
+    - pricing.monthly
+    - pricing.plansA.professional.features.feature1
+    - pricing.plansA.professional.features.feature2
+    - pricing.plansA.professional.features.feature3
+    - pricing.plansA.professional.features.feature4
+    - pricing.plansA.professional.features.feature5
+    - pricing.plansA.professional.features.feature6
+    - pricing.plansA.professional.cta
+    - pricing.plansA.enterprise.name
+    - pricing.plansA.enterprise.description
+    - pricing.plansA.enterprise.contactUs
+    - pricing.plansA.enterprise.features.feature1
+    - pricing.plansA.enterprise.features.feature2
+    - pricing.plansA.enterprise.features.feature3
+    - pricing.plansA.enterprise.features.feature4
+    - pricing.plansA.enterprise.features.feature5
+    - pricing.plansA.enterprise.features.feature6
+    - pricing.plansA.enterprise.features.feature7
+    - pricing.plansA.enterprise.cta
+    - pricing.plansA.personal.name
+    - pricing.plansA.personal.description
+    - pricing.annual
+    - pricing.plansA.personal.features.feature1
+    - pricing.plansA.personal.features.feature2
+    - pricing.plansA.personal.features.feature3
+    - pricing.plansA.personal.features.feature4
+    - pricing.plansA.personal.features.feature5
+    - pricing.plansA.personal.cta
+    - pricing.plansA.professional.name
+    - pricing.plansA.professional.description
+    - pricing.annual
+    - pricing.plansA.professional.features.feature1
+    - pricing.plansA.professional.features.feature2
+    - pricing.plansA.professional.features.feature3
+    - pricing.plansA.professional.features.feature4
+    - pricing.plansA.professional.features.feature5
+    - pricing.plansA.professional.features.feature6
+    - pricing.plansA.professional.cta
+    - pricing.plansA.enterprise.name
+    - pricing.plansA.enterprise.description
+    - pricing.plansA.enterprise.contactUs
+    - pricing.plansA.enterprise.features.feature1
+    - pricing.plansA.enterprise.features.feature2
+    - pricing.plansA.enterprise.features.feature3
+    - pricing.plansA.enterprise.features.feature4
+    - pricing.plansA.enterprise.features.feature5
+    - pricing.plansA.enterprise.features.feature6
+    - pricing.plansA.enterprise.features.feature7
+    - pricing.plansA.enterprise.cta
+    - pricing.hero.title
+    - pricing.hero.subtitle
+    - pricing.monthlyBilling
+    - pricing.annualBilling
+    - pricing.mostPopular
+    - pricing.plans.enterprise.name
+    - pricing.mostPopular
+    - pricing.saveText
+    - pricing.plans.enterprise.name
+    - pricing.faq.title
+    - pricing.faqA.description
+    - pricing.faqA.question1
+    - pricing.faqA.answer1
+    - pricing.faqA.question2
+    - pricing.faqA.answer2
+    - pricing.faqA.question3
+    - pricing.faqA.answer3
+    - pricing.faqA.question4
+    - pricing.faqA.answer4
+    - pricing.needHelp.title
+    - pricing.needHelp.description
+    - pricing.needHelp.cta
+在文件 src/app/[locale]/(marketing)/download/page.tsx 中找到以下信息:
+  翻译函数映射:
+    - t => download
+  翻译键:
+    - download.products.spaceIde.description
+    - download.products.spaceProfiler.description
+    - download.hero.title
+    - download.hero.subtitle
+    - download.version
+    - download.latest
+    - download.released
+    - download.size
+    - download.downloadFor
+    - download.sha256
+    - download.viewChangelog
+    - download.trial.title
+    - download.trial.description
+    - download.trial.point1
+    - download.trial.point2
+    - download.trial.point3
+    - download.trial.buyNow
+    - download.requirements.title
+    - download.requirements.os
+    - download.requirements.osRequirements
+    - download.requirements.memory
+    - download.requirements.memoryRequirements
+    - download.requirements.disk
+    - download.requirements.diskRequirements
+  [动态键-模板] src/app/[locale]/(marketing)/blog/page.tsx: blog.tags.${id}
+  [动态键-模板] src/app/[locale]/(marketing)/blog/page.tsx: blog.tags.${tag}
+  [动态键-模板] src/app/[locale]/(marketing)/blog/page.tsx: blog.tags.${tag}
+  [动态键-模板] src/app/[locale]/(marketing)/blog/page.tsx: blog.tags.${tag}
+在文件 src/app/[locale]/(marketing)/blog/page.tsx 中找到以下信息:
+  翻译函数映射:
+    - t => blog
+  翻译键:
+    - blog.hero.title
+    - blog.hero.subtitle
+    - blog.searchPlaceholder
+    - blog.allPosts
+    - blog.readTime
+    - blog.loadMore
+    - blog.recentPosts
+    - blog.tags
+    - blog.tags.
+    - blog.tags.productUpdates
+    - blog.tags.tutorials
+    - blog.tags.makeMoney
+    - blog.tags.roadOverSea
+    - blog.tags.insights
+    - blog.tags
+    - blog.tags.${tag}
+    - blog.tags.productUpdates
+    - blog.tags.tutorials
+    - blog.tags.makeMoney
+    - blog.tags.roadOverSea
+    - blog.tags.insights
+    - blog.tags
+    - blog.tags.${tag}
+    - blog.tags.productUpdates
+    - blog.tags.tutorials
+    - blog.tags.makeMoney
+    - blog.tags.roadOverSea
+    - blog.tags.insights
+    - blog.tags
+    - blog.tags.${tag}
+    - blog.tags.productUpdates
+    - blog.tags.tutorials
+    - blog.tags.makeMoney
+    - blog.tags.roadOverSea
+    - blog.tags.insights
+在文件 src/app/[locale]/(marketing)/about/page.tsx 中找到以下信息:
+  翻译函数映射:
+    - t => about
+  翻译键:
+    - about.values.value1.title
+    - about.values.value1.description
+    - about.values.value2.title
+    - about.values.value2.description
+    - about.values.value3.title
+    - about.values.value3.description
+    - about.values.value4.title
+    - about.values.value4.description
+    - about.team.member1.name
+    - about.team.member1.role
+    - about.team.member1.bio
+    - about.team.member2.name
+    - about.team.member2.role
+    - about.team.member2.bio
+    - about.team.member3.name
+    - about.team.member3.role
+    - about.team.member3.bio
+    - about.team.member4.name
+    - about.team.member4.role
+    - about.team.member4.bio
+    - about.timeline.event1.title
+    - about.timeline.event1.description
+    - about.timeline.event2.title
+    - about.timeline.event2.description
+    - about.timeline.event3.title
+    - about.timeline.event3.description
+    - about.timeline.event4.title
+    - about.timeline.event4.description
+    - about.hero.title
+    - about.hero.subtitle
+    - about.story.title
+    - about.story.paragraph1
+    - about.story.paragraph2
+    - about.values.title
+    - about.values.subtitle
+    - about.team.title
+    - about.team.subtitle
+    - about.timeline.title
+    - about.timeline.subtitle
+    - about.cta.title
+    - about.cta.subtitle
+    - about.cta.contactButton
+    - about.cta.careersButton
+在文件 src/app/[locale]/(dashboard)/layout.tsx 中找到以下信息:
+  翻译函数映射:
+    - t => dashboard
+  翻译键:
+    - dashboard.overview
+在文件 src/app/[locale]/(dashboard)/settings/page.tsx 中找到以下信息:
+  翻译函数映射:
+    - t => settings
+  翻译键:
+    - settings.title
+    - settings.description
+    - settings.tabs.profile
+    - settings.tabs.account
+    - settings.tabs.notifications
+    - settings.tabs.billing
+    - settings.tabs.api
+    - settings.profile.personalInfo.title
+    - settings.profile.personalInfo.description
+    - settings.profile.personalInfo.changeAvatar
+    - settings.profile.personalInfo.avatarRequirements
+    - settings.profile.personalInfo.nameLabel
+    - settings.profile.personalInfo.emailLabel
+    - settings.profile.personalInfo.bioLabel
+    - settings.profile.personalInfo.bioPlaceholder
+    - settings.profile.personalInfo.saveChanges
+    - settings.profile.preferences.title
+    - settings.profile.preferences.description
+    - settings.profile.preferences.languageLabel
+    - settings.profile.preferences.themeLabel
+    - settings.profile.preferences.themeSystem
+    - settings.profile.preferences.themeLight
+    - settings.profile.preferences.themeDark
+    - settings.profile.preferences.timezoneLabel
+    - settings.profile.preferences.saveChanges
+    - settings.account.security.title
+    - settings.account.security.description
+    - settings.account.security.currentPasswordLabel
+    - settings.account.security.newPasswordLabel
+    - settings.account.security.confirmPasswordLabel
+    - settings.account.security.updatePassword
+    - settings.account.twoFactor.title
+    - settings.account.twoFactor.description
+    - settings.account.twoFactor.status
+    - settings.account.twoFactor.statusDescription
+    - settings.account.twoFactor.enable
+    - settings.account.dangerZone.title
+    - settings.account.dangerZone.description
+    - settings.account.dangerZone.deleteAccount
+    - settings.account.dangerZone.deleteDescription
+    - settings.account.dangerZone.delete
+    - settings.notifications.preferences.title
+    - settings.notifications.preferences.description
+    - settings.notifications.preferences.emailNotifications
+    - settings.notifications.preferences.productUpdates
+    - settings.notifications.preferences.productUpdatesDescription
+    - settings.notifications.preferences.securityAlerts
+    - settings.notifications.preferences.securityAlertsDescription
+    - settings.notifications.preferences.accountActivity
+    - settings.notifications.preferences.accountActivityDescription
+    - settings.notifications.preferences.marketing
+    - settings.notifications.preferences.marketingDescription
+    - settings.notifications.preferences.saveChanges
+    - settings.billing.subscription.title
+    - settings.billing.subscription.description
+    - settings.billing.subscription.monthly
+    - settings.billing.subscription.active
+    - settings.billing.subscription.nextBilling
+    - settings.billing.subscription.cancel
+    - settings.billing.subscription.upgrade
+    - settings.billing.paymentMethod.title
+    - settings.billing.paymentMethod.description
+    - settings.billing.paymentMethod.expires
+    - settings.billing.paymentMethod.default
+    - settings.billing.paymentMethod.edit
+    - settings.billing.paymentMethod.addNew
+    - settings.billing.billingHistory.title
+    - settings.billing.billingHistory.description
+    - settings.billing.billingHistory.date
+    - settings.billing.billingHistory.amount
+    - settings.billing.billingHistory.status
+    - settings.billing.billingHistory.paid
+    - settings.billing.billingHistory.paid
+    - settings.billing.billingHistory.paid
+    - settings.billing.billingHistory.downloadAll
+    - settings.api.keys.title
+    - settings.api.keys.description
+    - settings.api.keys.name
+    - settings.api.keys.created
+    - settings.api.keys.actions
+    - settings.api.keys.revoke
+    - settings.api.keys.revoke
+    - settings.api.keys.generate
+  [动态键-模板] src/app/[locale]/(dashboard)/licenses/page.tsx: licenses.status.${license.status}
+在文件 src/app/[locale]/(dashboard)/licenses/page.tsx 中找到以下信息:
+  翻译函数映射:
+    - t => licenses
+  翻译键:
+    - licenses.title
+    - licenses.description
+    - licenses.addLicense
+    - licenses.searchPlaceholder
+    - licenses.filters.allProducts
+    - licenses.filters.allStatuses
+    - licenses.filters.active
+    - licenses.filters.expired
+    - licenses.yourLicenses
+    - licenses.licensesDescription
+    - licenses.table.product
+    - licenses.table.plan
+    - licenses.table.status
+    - licenses.table.validUntil
+    - licenses.table.activations
+    - licenses.table.actions
+    - licenses.actions.copy
+    - licenses.actions.download
+    - licenses.actions.more
+    - licenses.showing
+    - licenses.of
+    - licenses.licenses
+    - licenses.previous
+    - licenses.next
+    - licenses.activation.title
+    - licenses.activation.description
+    - licenses.activation.licenseKeyLabel
+    - licenses.activation.licenseKeyPlaceholder
+    - licenses.activation.productLabel
+    - licenses.activation.selectProduct
+    - licenses.activation.activateButton
+    - licenses.help.title
+    - licenses.help.description
+    - licenses.help.faq.title
+    - licenses.help.faq.question1
+    - licenses.help.faq.question2
+    - licenses.help.faq.question3
+    - licenses.help.support
+    - licenses.help.contactSupport
+    - licenses.status
+    - licenses.status.${license.status}
+在文件 src/app/[locale]/(dashboard)/dashboard/page.tsx 中找到以下信息:
+  翻译函数映射:
+    - t => dashboard
+  翻译键:
+    - dashboard.welcome
+
+在代码中找到 366 个使用的翻译键
+在代码中找到 15 个使用的命名空间: common.search, languageDetection, common.buttons, common, common.footer, blog, home, solutions, products, pricing, download, about, dashboard, settings, licenses
+
+在 en 翻译文件中找到 95 个未使用的键
+在 en 翻译文件中找到 1 个未使用的命名空间
+
+在 zh 翻译文件中找到 95 个未使用的键
+在 zh 翻译文件中找到 1 个未使用的命名空间
+
+在 ko 翻译文件中找到 0 个未使用的键
+在 ko 翻译文件中找到 0 个未使用的命名空间
+
+在 ja 翻译文件中找到 0 个未使用的键
+在 ja 翻译文件中找到 0 个未使用的命名空间
+
+在 de 翻译文件中找到 0 个未使用的键
+在 de 翻译文件中找到 0 个未使用的命名空间
+
+在 fr 翻译文件中找到 0 个未使用的键
+在 fr 翻译文件中找到 0 个未使用的命名空间
+
+在 zh-Hant 翻译文件中找到 0 个未使用的键
+在 zh-Hant 翻译文件中找到 0 个未使用的命名空间
+
+在 it 翻译文件中找到 0 个未使用的键
+在 it 翻译文件中找到 0 个未使用的命名空间
+
+要删除未使用的键，请使用 --remove 参数运行脚本
+
+=== 未使用的翻译键报告 ===
+
+🔍 en 翻译文件中未使用的命名空间:
+  - notFound
+
+🔍 en 翻译文件中未使用的键:
+  - common.buttons.tryFree
+  - common.buttons.buyNow
+  - common.buttons.signUp
+  - common.products.ide.description
+  - common.products.cloud.description
+  - common.products.mobile.description
+  - common.products.spaceProfiler.description
+  - pricing.title
+  - pricing.subtitle
+  - pricing.plans.free.name
+  - pricing.plans.free.description
+  - pricing.plans.pro.name
+  - pricing.plans.pro.description
+  - pricing.plans.enterprise.description
+  - pricing.faq.q1
+  - pricing.faq.a1
+  - dashboard.licenses
+  - dashboard.settings
+  - dashboard.profile
+  - solutions.title
+  - solutions.subtitle
+  - solutions.enterprise.title
+  - solutions.enterprise.description
+  - download.title
+  - download.subtitle
+  - download.windows
+  - download.mac
+  - download.linux
+  - download.versions
+  - download.beta
+  - about.title
+  - about.subtitle
+  - about.story.paragraph3
+  - about.story.imageAlt
+  - about.mission.title
+  - about.mission.description
+  - about.vision.title
+  - about.vision.description
+  - about.team.description
+  - about.team.joinUs
+  - about.team.positions
+  - about.team.culture
+  - about.values.innovation
+  - about.values.quality
+  - about.values.community
+  - about.values.accessibility
+  - about.values.descriptions.innovation
+  - about.values.descriptions.quality
+  - about.values.descriptions.community
+  - about.values.descriptions.accessibility
+  - about.milestones.title
+  - about.milestones.subtitle
+  - about.milestones.timeline
+  - about.contact.title
+  - about.contact.subtitle
+  - about.contact.office
+  - about.contact.email
+  - about.contact.phone
+  - about.timeline.event1.year
+  - about.timeline.event2.year
+  - about.timeline.event3.year
+  - about.timeline.event4.year
+  - about.cta.description
+  - about.cta.primaryButton
+  - about.cta.secondaryButton
+  - blog.title
+  - blog.subtitle
+  - blog.readMore
+  - blog.development
+  - blog.design
+  - blog.tutorials
+  - blog.company
+  - blog.readArticle
+  - blog.subscribe.title
+  - blog.subscribe.description
+  - blog.subscribe.placeholder
+  - blog.subscribe.button
+  - licenses.subtitle
+  - licenses.noLicenses
+  - licenses.licenseKey
+  - licenses.product
+  - licenses.expiryDate
+  - settings.subtitle
+  - settings.security
+  - settings.saveChanges
+  - settings.personalInfo
+  - settings.name
+  - settings.email
+  - settings.password
+  - settings.currentPassword
+  - settings.newPassword
+  - settings.confirmPassword
+  - notFound.title
+  - notFound.message
+  - notFound.backHome
+🔍 zh 翻译文件中未使用的命名空间:
+  - notFound
+
+🔍 zh 翻译文件中未使用的键:
+  - common.buttons.tryFree
+  - common.buttons.buyNow
+  - common.buttons.signUp
+  - common.products.ide.description
+  - common.products.cloud.description
+  - common.products.mobile.description
+  - common.products.spaceProfiler.description
+  - pricing.title
+  - pricing.subtitle
+  - pricing.plans.free.name
+  - pricing.plans.free.description
+  - pricing.plans.pro.name
+  - pricing.plans.pro.description
+  - pricing.plans.enterprise.description
+  - pricing.faq.q1
+  - pricing.faq.a1
+  - dashboard.licenses
+  - dashboard.settings
+  - dashboard.profile
+  - solutions.title
+  - solutions.subtitle
+  - solutions.enterprise.title
+  - solutions.enterprise.description
+  - download.title
+  - download.subtitle
+  - download.windows
+  - download.mac
+  - download.linux
+  - download.versions
+  - download.beta
+  - about.title
+  - about.subtitle
+  - about.story.paragraph3
+  - about.story.imageAlt
+  - about.mission.title
+  - about.mission.description
+  - about.vision.title
+  - about.vision.description
+  - about.team.description
+  - about.team.joinUs
+  - about.team.positions
+  - about.team.culture
+  - about.values.innovation
+  - about.values.quality
+  - about.values.community
+  - about.values.accessibility
+  - about.values.descriptions.innovation
+  - about.values.descriptions.quality
+  - about.values.descriptions.community
+  - about.values.descriptions.accessibility
+  - about.milestones.title
+  - about.milestones.subtitle
+  - about.milestones.timeline
+  - about.contact.title
+  - about.contact.subtitle
+  - about.contact.office
+  - about.contact.email
+  - about.contact.phone
+  - about.timeline.event1.year
+  - about.timeline.event2.year
+  - about.timeline.event3.year
+  - about.timeline.event4.year
+  - about.cta.description
+  - about.cta.primaryButton
+  - about.cta.secondaryButton
+  - blog.title
+  - blog.subtitle
+  - blog.readMore
+  - blog.development
+  - blog.design
+  - blog.tutorials
+  - blog.company
+  - blog.readArticle
+  - blog.subscribe.title
+  - blog.subscribe.description
+  - blog.subscribe.placeholder
+  - blog.subscribe.button
+  - licenses.subtitle
+  - licenses.noLicenses
+  - licenses.licenseKey
+  - licenses.product
+  - licenses.expiryDate
+  - settings.subtitle
+  - settings.security
+  - settings.saveChanges
+  - settings.personalInfo
+  - settings.name
+  - settings.email
+  - settings.password
+  - settings.currentPassword
+  - settings.newPassword
+  - settings.confirmPassword
+  - notFound.title
+  - notFound.message
+  - notFound.backHome
+✅ ko 翻译文件中没有未使用的命名空间
+
+✅ ko 翻译文件中没有未使用的键
+✅ ja 翻译文件中没有未使用的命名空间
+
+✅ ja 翻译文件中没有未使用的键
+✅ de 翻译文件中没有未使用的命名空间
+
+✅ de 翻译文件中没有未使用的键
+✅ fr 翻译文件中没有未使用的命名空间
+
+✅ fr 翻译文件中没有未使用的键
+✅ zh-Hant 翻译文件中没有未使用的命名空间
+
+✅ zh-Hant 翻译文件中没有未使用的键
+✅ it 翻译文件中没有未使用的命名空间
+
+✅ it 翻译文件中没有未使用的键
+
+=== 报告结束 ===
+
+检查完成，日志已保存到 /Users/funeye/IdeaProjects/space-brain/scripts/clean.log

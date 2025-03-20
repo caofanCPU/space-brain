@@ -37,7 +37,7 @@ const translations: Record<string, Record<string, any>> = {}
 // 注意翻译文件的目录位置，推荐项目根目录
 appConfig.i18n.locales.forEach(locale => {
   try {
-    const filePath = path.join(process.cwd(), `./src/messages/${locale}.json`)
+    const filePath = path.join(process.cwd(), `${appConfig.i18n.messageRoot}/${locale}.json`)
     translations[locale] = JSON.parse(fs.readFileSync(filePath, 'utf8'))
   } catch (error) {
     logError(`无法读取语言文件 ${locale}: ${error}`)

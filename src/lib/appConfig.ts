@@ -27,7 +27,8 @@ export const appConfig = {
       autoCloseTimeout: 10000,
       expirationDays: 30,
       storagePrefix: 'space-brain'
-    }
+    },
+    messageRoot: 'src/messages'
   },
   blog: {
     // 博客相关路径
